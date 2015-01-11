@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Test the session2 package with a variety of session stores.
+Test the session3 package with a variety of session stores.
 
 Publisher factory functions:
 
@@ -29,7 +29,7 @@ from quixote import get_session, get_session_manager, get_path, redirect
 from quixote.server import simple_server
 from quixote.server.util import get_server_parser
 from quixote.logger import DefaultLogger
-from cStringIO import StringIO
+from io import StringIO
 
 sys.path.insert(0, '..')
 from session2.Session import Session

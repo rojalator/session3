@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Session SYSTEM "Session-5.0.dtd">
+<!-- eric6 session file for project sessione -->
+<!-- This file was generated automatically, do not edit. -->
+<!-- Saved: 2015-01-11, 17:15:28 -->
+<Session version="5.0">
+  <Filenames>
+    <Filename cline="2" cindex="17" folds="" zoom="0">/home/rjl/Documents/session3/test/test_session2.py</Filename>
+    <Filename cline="3" cindex="0" folds="" zoom="0">/home/rjl/Documents/session3/session2/__init__.py</Filename>
+  </Filenames>
+  <ActiveWindow cline="2" cindex="17">/home/rjl/Documents/session3/test/test_session2.py</ActiveWindow>
+  <Breakpoints/>
+  <Watchexpressions/>
+  <DebugInfo>
+    <CommandLine></CommandLine>
+    <WorkingDirectory></WorkingDirectory>
+    <Environment></Environment>
+    <ReportExceptions value="True"/>
+    <Exceptions/>
+    <IgnoredExceptions/>
+    <AutoClearShell value="True"/>
+    <TracePython value="False"/>
+    <AutoContinue value="True"/>
+    <CovexcPattern/>
+  </DebugInfo>
+  <Bookmarks/>
+  <ProjectBrowserStates>
+    <ProjectBrowserState name="sources">
+      <ExpandedItemName>/home/rjl/Documents/session3/session2</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/Documents/session3/test</ExpandedItemName>
+    </ProjectBrowserState>
+    <ProjectBrowserState name="forms"/>
+    <ProjectBrowserState name="resources"/>
+    <ProjectBrowserState name="translations"/>
+    <ProjectBrowserState name="interfaces"/>
+    <ProjectBrowserState name="others"/>
+  </ProjectBrowserStates>
+</Session>

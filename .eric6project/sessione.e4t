@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Tasks SYSTEM "Tasks-5.1.dtd">
+<!-- eric6 tasks file for project sessione -->
+<!-- Saved: 2015-01-11, 17:15:28 -->
+<Tasks version="5.1">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="3">
+    <Summary>RJLRJL Converted to Python3</Summary>
+    <Description></Description>
+    <Created>2015-01-11, 17:10:27</Created>
+    <Resource>
+      <Filename>setup.py</Filename>
+      <Linenumber>3</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3">
+    <Summary>RJLRJL Converted to Python3</Summary>
+    <Description></Description>
+    <Created>2015-01-11, 17:11:20</Created>
+    <Resource>
+      <Filename>setup-store.py</Filename>
+      <Linenumber>7</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1">
+    <Summary>TODO:</Summary>
+    <Description></Description>
+    <Created>2015-01-11, 17:11:51</Created>
+    <Resource>
+      <Filename>test/test.py</Filename>
+      <Linenumber>6</Linenumber>
+    </Resource>
+  </Task>
+</Tasks>

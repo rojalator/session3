@@ -1,20 +1,26 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Initialize a session store.
 """
 import os, sys
-import cPickle as pickle
+#import pickle as pickle
+
+# RJLRJL Converted to Python3
+
+if sys.version_info < (3,4,0):
+    sys.stderr.write("You need python 3.4.0 or later to run this script\n")
+    exit(1)
 
 ##########
 def usage():
     dic = {'prog': os.path.basename(sys.argv[0])}
-    print """\
+    print("""\
 Usage:
     %(prog)s mysql     HOST USER PASSWORD DATABASE [TABLE]
     %(prog)s psycopg   HOST USER PASSWORD DATABASE [TABLE]
 Hints:
     Use HOST='' or 'localhost' for localhost;
     for psycopg/PostgreSQL, USER='' and PASSWORD='' will use default user/pass.
-""" % dic,
+""" % dic, end=' ')
 
 ##########
 def error(store_type, message, print_usage=True):
@@ -22,15 +28,15 @@ def error(store_type, message, print_usage=True):
         prefix = store_type.upper() + ' '
     else:
         prefix = ''
-    print "%sERROR: %s" % (prefix, message)
+    print("%sERROR: %s" % (prefix, message))
     if print_usage:
         usage()
     sys.exit(1)
 
 def mysql(args):
     import MySQLdb
-    from session2.store.MySQLSessionStore import MySQLSessionStore
-    from session2.store.MySQLSessionStore import DEFAULT_TABLE as table
+    from .session2.store.MySQLSessionStore import MySQLSessionStore
+    from .session2.store.MySQLSessionStore import DEFAULT_TABLE as table
     if   len(args) == 5:
         table = args[4]
     elif len(args) == 4:
@@ -38,15 +44,15 @@ def mysql(args):
     else:
         error("mysql", "incorrect number of command-line arguments")
     host, user, passwd, db = args[:4]
-    print "Creating MySQL table %r in database %r" % (table, db)
+    print("Creating MySQL table %r in database %r" % (table, db))
     conn = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db)
     store = MySQLSessionStore(conn, table)
     store.setup()
 
 def psycopg(args):
     import psycopg
-    from session2.store.PostgresSessionStore import PostgresSessionStore
-    from session2.store.PostgresSessionStore import DEFAULT_TABLE as table
+    from .session2.store.PostgresSessionStore import PostgresSessionStore
+    from .session2.store.PostgresSessionStore import DEFAULT_TABLE as table
     if   len(args) == 5:
         table = args[4]
     elif len(args) == 4:
@@ -54,7 +60,7 @@ def psycopg(args):
     else:
         error("psycopg", "incorrect number of command-line arguments")
     host, user, passwd, db = args[:4]
-    print "Creating PostgreSQL table %r in database %r" % (table, db)
+    print("Creating PostgreSQL table %r in database %r" % (table, db))
     conn_str = "dbname=%s" % (db,)
     if host:
         conn_str += " host=%s" % (host,)

@@ -12,4 +12,4 @@ or visit http://quixote.idyll.org/session2/.
 .. _README.txt: ../README.html
 """
 
-__version__ = '0.6.1'
+__version__ = '3.0.0'
