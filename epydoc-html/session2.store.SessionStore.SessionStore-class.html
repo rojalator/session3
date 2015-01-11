@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>session2.store.SessionStore.SessionStore</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="session2-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" align="right" width="100%">
+      <table border="0" cellpadding="0" cellspacing="0">
+      <tr><th class="navbar" align="center">
+        <p class="nomargin">
+          session2
+      </p></th></tr></table>
+    </th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        <a href="session2-module.html">Package&nbsp;session2</a> ::
+        <a href="session2.store-module.html">Package&nbsp;store</a> ::
+        <a href="session2.store.SessionStore-module.html">Module&nbsp;SessionStore</a> ::
+        Class&nbsp;SessionStore
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="session2.store.SessionStore.SessionStore-class.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF CLASS DESCRIPTION =========== -->
+<h2 class="class">Class SessionStore</h2>
+
+<dl><dt><b>Known Subclasses:</b></dt>
+<dd>
+    <a href="session2.store.DirectorySessionStore.DirectorySessionStore-class.html"><code>DirectorySessionStore</code></a>,
+    <a href="session2.store.DurusSessionStore.DurusSessionStore-class.html"><code>DurusSessionStore</code></a>,
+    <a href="session2.store.MySQLSessionStore.MySQLSessionStore-class.html"><code>MySQLSessionStore</code></a>,
+    <a href="session2.store.PostgresSessionStore.PostgresSessionStore-class.html"><code>PostgresSessionStore</code></a>,
+    <a href="session2.store.ShelveSessionStore.ShelveSessionStore-class.html"><code>ShelveSessionStore</code></a>,
+    <a href="session2.store.VolatileSessionStore.VolatileSessionStore-class.html"><code>VolatileSessionStore</code></a></dd></dl>
+
+<hr/>
+
+<p>Persistent <a href="session2.Session-module.html" class="link"><code>Session</code></a> storage API for session2's <a href="session2.SessionManager-module.html" class="link"><code>SessionManager</code></a>.</p>
+<p>Subclass this class &amp; provide implementations of <a href="session2.store.SessionStore.SessionStore-class.html#load_session" class="link"><code>load_session</code></a>,
+<a href="session2.store.SessionStore.SessionStore-class.html#save_session" class="link"><code>save_session</code></a>, and <a href="session2.store.SessionStore.SessionStore-class.html#delete_session" class="link"><code>delete_session</code></a>, and voila, persistent sessions!</p>
+<hr/>
+
+
+<!-- =========== START OF METHOD SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Method Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="session2.store.SessionStore.SessionStore-class.html#delete_old_sessions" class="summary-sig-name"><code>delete_old_sessions</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>minutes</span>)</span></code>
+<br />
+Delete all sessions that have not been modified for N minutes.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="session2.store.SessionStore.SessionStore-class.html#delete_session" class="summary-sig-name"><code>delete_session</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>session</span>)</span></code>
+<br />
+Delete the session in the store.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="session2.store.SessionStore.SessionStore-class.html#has_session" class="summary-sig-name"><code>has_session</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>id</span>)</span></code>
+<br />
+Return true if the session exists in the store, else false.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="session2.store.SessionStore.SessionStore-class.html#iter_sessions" class="summary-sig-name"><code>iter_sessions</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Return an iterable of (id, session) for all sessions in the store.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="session2.store.SessionStore.SessionStore-class.html#load_session" class="summary-sig-name"><code>load_session</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>id</span>,
+          <span class=summary-sig-arg>default</span>)</span></code>
+<br />
+Return the session if it exists, else return 'default'.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="session2.store.SessionStore.SessionStore-class.html#save_session" class="summary-sig-name"><code>save_session</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>session</span>)</span></code>
+<br />
+Save the session in the store.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="session2.store.SessionStore.SessionStore-class.html#setup" class="summary-sig-name"><code>setup</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Initialize the session store; e.g., create required database tables.</td></tr>
+</table><br />
+
+
+<!-- =========== START OF CLASS VARIABLE SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Class Variable Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>bool</code></font></td>
+<td><b><a href="session2.store.SessionStore.SessionStore-class.html#is_multiprocess_safe"><code>is_multiprocess_safe</code></a></b> = <span title="False"><code>False                             </code>
+</span></td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1"><code>bool</code></font></td>
+<td><b><a href="session2.store.SessionStore.SessionStore-class.html#is_thread_safe"><code>is_thread_safe</code></a></b> = <span title="False"><code>False                                   </code>
+</span></td></tr>
+</table><br />
+
+
+<!-- =========== START OF METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Method Details</th></tr>
+</table>
+
+<a name="delete_old_sessions"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">delete_old_sessions</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>minutes</span>)</span>
+  </h3>
+<p>Delete all sessions that have not been modified for N minutes.  The
+default implementation does nothing, meaning the store cannot delete
+old sessions.</p>
+<p>This method is never called by the session manager.  It's for your
+application maintenance program; e.g., a daily cron job.</p>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="delete_session"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">delete_session</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>session</span>)</span>
+  </h3>
+<p>Delete the session in the store.</p>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="has_session"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">has_session</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>id</span>)</span>
+  </h3>
+<p>Return true if the session exists in the store, else false.</p>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="iter_sessions"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">iter_sessions</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+<p>Return an iterable of (id, session) for all sessions in the store.</p>
+<p>This method is never called by the session manager; it's for admin
+applications that want to browse the sessions.</p>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="load_session"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">load_session</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>id</span>,
+          <span class=sig-arg>default</span>=<span class=sig-default>None</span>)</span>
+  </h3>
+<p>Return the session if it exists, else return 'default'.</p>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="save_session"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">save_session</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>session</span>)</span>
+  </h3>
+<p>Save the session in the store.</p>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="setup"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">setup</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+<p>Initialize the session store; e.g., create required database tables.
+If a previous store exists, overwrite it or raise an error.  The
+default implmenetation does nothing, meaning no setup is necessary.</p>
+<p>This method is never called by the session manager; it's for your
+application setup program.</p>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF CLASS VARIABLE DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Class Variable Details</th></tr>
+</table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="is_multiprocess_safe"></a>
+<h3>is_multiprocess_safe</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>bool</code>
+
+      </dd>
+<span title="False">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+False                                                                  </pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<table width="100%" class="var-details" bgcolor="#e0e0e0"><tr><td>
+<a name="is_thread_safe"></a>
+<h3>is_thread_safe</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Type:</b></dt>
+      <dd>
+          <code>bool</code>
+
+      </dd>
+<span title="False">      <dt><b>Value:</b></dt>
+      <dd><table><tr><td>
+<pre class="variable">
+False                                                                  </pre>
+        </td></tr></table></dd>
+</span>    </dl>
+  </dd>
+</dl></td></tr></table>
+<br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="session2-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" align="right" width="100%">
+      <table border="0" cellpadding="0" cellspacing="0">
+      <tr><th class="navbar" align="center">
+        <p class="nomargin">
+          session2
+      </p></th></tr></table>
+    </th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.1 on Sat Feb  4 16:40:10 2006</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>

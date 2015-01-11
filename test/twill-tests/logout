@@ -1,0 +1,14 @@
+# does basic logging out work?
+
+go http://localhost:8080/
+find 'Your session ID is None'
+follow keep
+notfind 'Your session ID is None'
+
+follow logout
+code 200
+
+find 'Your session ID is None'
+
+follow logout
+code 200

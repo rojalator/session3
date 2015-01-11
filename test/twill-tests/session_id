@@ -1,0 +1,6 @@
+# test basic assignment of session ID.
+
+go http://localhost:8080/
+find 'Your session ID is None'
+follow keep
+notfind 'Your session ID is None'

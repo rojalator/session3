@@ -1,0 +1,17 @@
+# test session increment.
+go http://localhost:8080/keep
+
+show
+find "Counter is at 0."
+reload
+
+show
+find "Counter is at 0."
+
+follow increment
+find "Counter is at 1."
+
+follow increment
+find "Counter is at 2."
+
+

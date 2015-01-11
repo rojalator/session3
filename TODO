@@ -1,0 +1,10 @@
+Nicer test code.
+
+Test multiprocess/multithreaded with twill.
+
+Build ZODB and sqlite stores.
+
+The pickle protocol for DirectorySessionStore is also 0.
+
+ShelveSessionStore has no file locking, so is unsafe for multi-process
+deployment (SCGI, CGI, FastCGI).
