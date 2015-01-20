@@ -3,8 +3,8 @@ Store sessions in individual files within a directory.
 """
 
 import fcntl, os, os.path
-from cPickle import dump, load
-from session2.store.SessionStore import SessionStore
+from pickle import dump, load
+from session3.store.SessionStore import SessionStore
 import time
 
 class DirectorySessionStore(SessionStore):

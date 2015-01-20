@@ -3,7 +3,7 @@ Store sessions in a 'shelve' database.
 """
 
 import shelve
-from session2.store.SessionStore import SessionStore
+from session3.store.SessionStore import SessionStore
 
 class ShelveSessionStore(SessionStore):
     """

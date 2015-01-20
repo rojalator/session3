@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project sessione -->
-<!-- Saved: 2015-01-11, 17:15:28 -->
+<!-- Saved: 2015-01-20, 08:15:37 -->
 <!-- Copyright (C) 2015 ,  -->
 <Project version="5.1">
   <Language>en_GB</Language>
@@ -27,23 +27,24 @@
     <Source>build/lib/session2/store/VolatileSessionStore.py</Source>
     <Source>build/lib/session2/SessionManager.py</Source>
     <Source>setup-store.py</Source>
-    <Source>test/test_session2.py</Source>
     <Source>test/utils.py</Source>
     <Source>test/test.py</Source>
     <Source>test/wsgi_server.py</Source>
     <Source>setup.py</Source>
-    <Source>session2/DictSession.py</Source>
-    <Source>session2/__init__.py</Source>
-    <Source>session2/Session.py</Source>
-    <Source>session2/store/DurusSessionStore.py</Source>
-    <Source>session2/store/DirectorySessionStore.py</Source>
-    <Source>session2/store/ShelveSessionStore.py</Source>
-    <Source>session2/store/MySQLSessionStore.py</Source>
-    <Source>session2/store/PostgresSessionStore.py</Source>
-    <Source>session2/store/__init__.py</Source>
-    <Source>session2/store/SessionStore.py</Source>
-    <Source>session2/store/VolatileSessionStore.py</Source>
-    <Source>session2/SessionManager.py</Source>
+    <Source>__init__.py</Source>
+    <Source>session3/DictSession.py</Source>
+    <Source>session3/__init__.py</Source>
+    <Source>session3/Session.py</Source>
+    <Source>session3/SessionManager.py</Source>
+    <Source>session3/store/DurusSessionStore.py</Source>
+    <Source>session3/store/DirectorySessionStore.py</Source>
+    <Source>session3/store/ShelveSessionStore.py</Source>
+    <Source>session3/store/MySQLSessionStore.py</Source>
+    <Source>session3/store/PostgresSessionStore.py</Source>
+    <Source>session3/store/__init__.py</Source>
+    <Source>session3/store/SessionStore.py</Source>
+    <Source>session3/store/VolatileSessionStore.py</Source>
+    <Source>test/test_session3.py</Source>
   </Sources>
   <Forms/>
   <Translations/>

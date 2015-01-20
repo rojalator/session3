@@ -32,28 +32,28 @@ from quixote.logger import DefaultLogger
 from io import StringIO
 
 sys.path.insert(0, '..')
-from session2.Session import Session
-from session2.SessionManager import SessionManager
+from session3.Session import Session
+from session3.SessionManager import SessionManager
 
 ##########################################
 
 def use_volatile():
-    from session2.store.VolatileSessionStore import VolatileSessionStore
+    from session3.store.VolatileSessionStore import VolatileSessionStore
     store = VolatileSessionStore()
     return create_publisher(store)
 
 def use_shelve():
-    from session2.store.ShelveSessionStore import ShelveSessionStore
+    from session3.store.ShelveSessionStore import ShelveSessionStore
     shelve_store = ShelveSessionStore('sessions.shelf')
     return create_publisher(shelve_store)
 
 def use_directory():
-    from session2.store.DirectorySessionStore import DirectorySessionStore
+    from session3.store.DirectorySessionStore import DirectorySessionStore
     dir_store = DirectorySessionStore('./sessiondir/', create=True)
     return create_publisher(dir_store)
 
 def use_psycopg():
-    from session2.store.PostgresSessionStore import PostgresSessionStore
+    from session3.store.PostgresSessionStore import PostgresSessionStore
     import psycopg
     conn = psycopg.connect('dbname=sql_store')
     sql_store = PostgresSessionStore(conn)
@@ -62,14 +62,14 @@ def use_psycopg():
 use_postgres = use_psycopg
 
 def use_mysql():
-    from session2.store.MySQLSessionStore import MySQLSessionStore
+    from session3.store.MySQLSessionStore import MySQLSessionStore
     import MySQLdb
     conn = MySQLdb.connect(db='test')
     sql_store = MySQLSessionStore(conn)
     return create_publisher(sql_store)
 
 def use_durus():
-    from session2.store.DurusSessionStore import DurusSessionStore
+    from session3.store.DurusSessionStore import DurusSessionStore
     from durus.file_storage import FileStorage
     from durus.connection import Connection
     durus_conn = Connection(FileStorage('sessions.durus'))

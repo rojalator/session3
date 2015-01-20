@@ -4,7 +4,7 @@ A persistent session manager class for Quixote 2.x.
 
 from quixote import get_request, get_publisher, get_cookie, get_response
 from quixote.util import randbytes
-from session2.Session import Session
+from session3.Session import Session
 
 class SessionManager:
     """
@@ -102,7 +102,7 @@ class SessionManager:
         """
         Clear any residual session information for this request.
         """
-        if self.expired_sessions.has_key(request):
+        if request in self.expired_sessions:
             del self.expired_sessions[request]
 
     # -- Hooks into the Quixote main loop ------------------------------
@@ -129,7 +129,7 @@ class SessionManager:
             self.store.save_session(session)
 
         # or delete, because it's expired?
-        elif self.expired_sessions.has_key(request):
+        elif request in self.expired_sessions:
             session = self.expired_sessions[request]
             if session.id:
                 self.store.delete_session(session)

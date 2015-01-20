@@ -7,7 +7,7 @@ from SessionStore import SessionStore
 
 class VolatileSessionStore(SessionStore):
     """
-    A simple volatile (non-persistent) session store for session2.
+    A simple volatile (non-persistent) session store for session3.
     """
     is_multiprocess_safe = True
     is_thread_safe = True

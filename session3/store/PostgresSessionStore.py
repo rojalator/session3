@@ -1,7 +1,7 @@
 """Store sessions in a PostgreSQL table.
 
 Two extra methods are provided, .create_table and .delete_old_sessions.
-These are not called by session2 but may be useful in your programs.
+These are not called by session3 but may be useful in your programs.
 They use a third column of type TIMESTAMP, which is updated every time
 the row changes.
 
@@ -12,7 +12,7 @@ else your transactions will become confused.
 
 import os, os.path
 import cPickle as pickle
-from session2.store.SessionStore import SessionStore
+from session3.store.SessionStore import SessionStore
 
 DEFAULT_TABLE = 'sessions'
 

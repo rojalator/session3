@@ -1,3 +1,3 @@
 """
-Persistent session stores for `session2.SessionManager`.
+Persistent session stores for `session3.SessionManager`.
 """

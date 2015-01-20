@@ -35,8 +35,8 @@ def error(store_type, message, print_usage=True):
 
 def mysql(args):
     import MySQLdb
-    from .session2.store.MySQLSessionStore import MySQLSessionStore
-    from .session2.store.MySQLSessionStore import DEFAULT_TABLE as table
+    from .session3.store.MySQLSessionStore import MySQLSessionStore
+    from .session3.store.MySQLSessionStore import DEFAULT_TABLE as table
     if   len(args) == 5:
         table = args[4]
     elif len(args) == 4:
@@ -51,8 +51,8 @@ def mysql(args):
 
 def psycopg(args):
     import psycopg
-    from .session2.store.PostgresSessionStore import PostgresSessionStore
-    from .session2.store.PostgresSessionStore import DEFAULT_TABLE as table
+    from .session3.store.PostgresSessionStore import PostgresSessionStore
+    from .session3.store.PostgresSessionStore import DEFAULT_TABLE as table
     if   len(args) == 5:
         table = args[4]
     elif len(args) == 4:

@@ -2,7 +2,7 @@
 Session storage class for Quixote 2.x.
 """
 
-from time import time
+from time import time, strftime, localtime
 from quixote import get_request
 
 class Session:

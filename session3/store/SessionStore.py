@@ -4,7 +4,7 @@ Base class for persistent session stores.
 
 class SessionStore:
     """
-    Persistent `Session` storage API for session2's `SessionManager`.
+    Persistent `Session` storage API for session3's `SessionManager`.
 
     Subclass this class & provide implementations of `load_session`,
     `save_session`, and `delete_session`, and voila, persistent sessions!

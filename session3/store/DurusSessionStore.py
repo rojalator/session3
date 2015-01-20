@@ -3,7 +3,7 @@ Store sessions in a Durus database.
 """
 
 import os, os.path
-from session2.store.SessionStore import SessionStore
+from session3.store.SessionStore import SessionStore
 from durus.persistent_dict import PersistentDict
 
 class DurusSessionStore(SessionStore):

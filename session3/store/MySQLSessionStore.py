@@ -1,7 +1,7 @@
 """Store sessions in a MySQL table.
 
 Two extra methods are provided, .create_table and .delete_old_sessions.
-These are not called by session2 but may be useful in your programs.
+These are not called by session3 but may be useful in your programs.
 They use a third column of type TIMESTAMP, which MySQL automatically updates
 whenever the row changes.
 
@@ -15,7 +15,7 @@ to avoid incompatible code stomping on each other's transactions.
 import os, sys
 from array import array
 import cPickle as pickle
-from session2.store.SessionStore import SessionStore
+from session3.store.SessionStore import SessionStore
 
 DEFAULT_TABLE = "sessions"
 
