@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 """
 Test the session3 package with a variety of session stores.
+Run with (for use_directory) in the "test" folder:
+
+    python3 -bb test_session3.py directory
+
+and then visit:
+
+    http://localhost:8080
 
 Publisher factory functions:
 

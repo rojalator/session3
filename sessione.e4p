@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project sessione -->
-<!-- Saved: 2015-01-20, 08:15:37 -->
+<!-- Saved: 2015-01-28, 08:39:27 -->
 <!-- Copyright (C) 2015 ,  -->
 <Project version="5.1">
   <Language>en_GB</Language>
@@ -14,18 +14,6 @@
   <Email></Email>
   <Eol index="-1"/>
   <Sources>
-    <Source>build/lib/session2/DictSession.py</Source>
-    <Source>build/lib/session2/__init__.py</Source>
-    <Source>build/lib/session2/Session.py</Source>
-    <Source>build/lib/session2/store/DurusSessionStore.py</Source>
-    <Source>build/lib/session2/store/DirectorySessionStore.py</Source>
-    <Source>build/lib/session2/store/ShelveSessionStore.py</Source>
-    <Source>build/lib/session2/store/MySQLSessionStore.py</Source>
-    <Source>build/lib/session2/store/PostgresSessionStore.py</Source>
-    <Source>build/lib/session2/store/__init__.py</Source>
-    <Source>build/lib/session2/store/SessionStore.py</Source>
-    <Source>build/lib/session2/store/VolatileSessionStore.py</Source>
-    <Source>build/lib/session2/SessionManager.py</Source>
     <Source>setup-store.py</Source>
     <Source>test/utils.py</Source>
     <Source>test/test.py</Source>

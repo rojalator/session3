@@ -2,16 +2,16 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project sessione -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2015-01-20, 08:15:37 -->
+<!-- Saved: 2015-01-28, 08:55:49 -->
 <Session version="5.0">
   <Filenames>
     <Filename cline="3" cindex="0" folds="" zoom="0">/home/rjl/Documents/session3/session3/store/SessionStore.py</Filename>
-    <Filename cline="200" cindex="51" folds="" zoom="0">/home/rjl/Documents/session3/test/test_session3.py</Filename>
-    <Filename cline="84" cindex="43" folds="" zoom="0">/home/rjl/Documents/session3/session3/store/DirectorySessionStore.py</Filename>
+    <Filename cline="53" cindex="55" folds="" zoom="0">/home/rjl/Documents/session3/test/test_session3.py</Filename>
+    <Filename cline="93" cindex="11" folds="" zoom="0">/home/rjl/Documents/session3/session3/store/DirectorySessionStore.py</Filename>
     <Filename cline="0" cindex="0" folds="" zoom="0">/home/rjl/Documents/session3/__init__.py</Filename>
-    <Filename cline="0" cindex="0" folds="" zoom="0">/home/rjl/Documents/session3/session3/SessionManager.py</Filename>
+    <Filename cline="21" cindex="42" folds="" zoom="0">/home/rjl/Documents/session3/session3/SessionManager.py</Filename>
   </Filenames>
-  <ActiveWindow cline="0" cindex="0">/home/rjl/Documents/session3/session3/SessionManager.py</ActiveWindow>
+  <ActiveWindow cline="53" cindex="55">/home/rjl/Documents/session3/test/test_session3.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -29,7 +29,6 @@
   <Bookmarks/>
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
-      <ExpandedItemName>/home/rjl/Documents/session3/build</ExpandedItemName>
       <ExpandedItemName>/home/rjl/Documents/session3/session3</ExpandedItemName>
       <ExpandedItemName>/home/rjl/Documents/session3/session3/store</ExpandedItemName>
       <ExpandedItemName>/home/rjl/Documents/session3/session3/store/DirectorySessionStore.py</ExpandedItemName>

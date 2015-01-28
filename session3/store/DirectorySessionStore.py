@@ -49,7 +49,7 @@ class DirectorySessionStore(SessionStore):
         
         filename = self._make_filename(id)
         try:
-            f = open(filename)
+            f = open(filename, 'rb')
             fcntl.flock(f.fileno(), fcntl.LOCK_SH)
             try:
                 obj = load(f)
@@ -66,7 +66,7 @@ class DirectorySessionStore(SessionStore):
         Pickle the session and save it into a file.
         """
         filename = self._make_filename(session.id)
-        f = open(filename, 'w')
+        f = open(filename, 'wb')
         fcntl.flock(f.fileno(), fcntl.LOCK_EX)
         try:
             dump(session, f, self.pickle_protocol)
