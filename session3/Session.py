@@ -4,6 +4,7 @@ Session storage class for Quixote 2.x.
 
 from time import time, strftime, localtime
 from quixote import get_request
+from quixote.util import randbytes
 
 class Session:
     """
@@ -27,6 +28,11 @@ class Session:
         two ways of keeping track of the "age" of the session.
         Note that '__access_time' is maintained by the SessionManager that
         owns this session, using _set_access_time().
+        
+      _form_tokens : [string]
+        Added from N.S.'s code
+        outstanding form tokens.  This is used as a queue that can grow
+        up to MAX_FORM_TOKENS.  Tokens are removed when forms are submitted.        
 
     Feel free to access 'id' and 'user' directly, but do not modify
     'id'.  The preferred way to set 'user' is with the set_user() method
@@ -35,6 +41,8 @@ class Session:
     Note: this class may be split into a SimpleSession superclass and a Session
     subclass in the future.
     """
+    
+    MAX_FORM_TOKENS = 16 # maximum number of outstanding form tokens
 
     def __init__(self, id):
         """
@@ -44,6 +52,7 @@ class Session:
         self.user = None
         self._remote_address = get_request().get_environ("REMOTE_ADDR")
         self._creation_time = self._access_time = time()
+        self._form_tokens = [] # queue
 
     def __repr__(self):
         return "<%s at %x: %s>" % (self.__class__.__name__, id(self), self.id)
@@ -72,6 +81,7 @@ class Session:
         file.write('  user %s' % self.user)
         file.write('  _remote_address: %s' % self._remote_address)
         file.write('  created %s, last accessed %s' % (ctime, atime))
+        file.write('  _form_tokens: %s\n' % self._form_tokens)
 
     def start_request(self):
         """
@@ -125,3 +135,35 @@ class Session:
         now = time()
         if now - self._access_time > resolution:
             self._access_time = now
+            
+
+    # -- Form token methods --------------------------------------------
+
+    def create_form_token(self):
+        """() -> string
+
+        Create a new form token and add it to a queue of outstanding form
+        tokens for this session.  A maximum of MAX_FORM_TOKENS are saved.
+        The new token is returned.
+        """
+        token = randbytes(16)
+        self._form_tokens.append(token)
+        extra = len(self._form_tokens) - self.MAX_FORM_TOKENS
+        if extra > 0:
+            del self._form_tokens[:extra]
+        return token
+
+    def has_form_token(self, token):
+        """(token : string) -> boolean
+
+        Return true if 'token' is in the queue of outstanding tokens.
+        """
+        return token in self._form_tokens
+
+    def remove_form_token(self, token):
+        """(token : string)
+
+        Remove 'token' from the queue of outstanding tokens.
+        """
+        self._form_tokens.remove(token)
+            
