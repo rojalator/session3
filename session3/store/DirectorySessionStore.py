@@ -1,5 +1,57 @@
 """
 Store sessions in individual files within a directory.
+RJLRJL: Note that python 3.3. change fcntl to return
+OSError instead of IOError
+
+RJLRJL: 19th August 2018
+There is a problem with the existing code (adopted from 
+the python 2 version), which leads to an EOFError: Ran out of input
+
+The code in ::save_session() does 
+    f = open(filename, 'wb') 
+which immediately makes the file zero bytes long. You can try this out in 2 
+terminals with one doing (where s is some dummy class with s.id as the file-name):-
+
+    >>> import pickle
+    >>> pickle.dump(s, f, 4)
+    >>> f.close()
+    >>> f = open(s.id, 'wb')
+
+If in the other terminal you do:-
+
+    >>> f = open(s.id, 'rb')
+    >>> o = pickle.load(f)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    EOFError: Ran out of input
+    >>> 
+
+This is not entirely unexpected BUT the code in load_session():-
+
+    f = open(filename, 'rb')
+    fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+
+Can get the shared lock (LOCK_SH) after save_session() performs 
+the open() but BEFORE save_session() gets a chance to get the exclusive lock.
+
+    f = open(filename, 'wb')
+    fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+
+(You can try it by quickly refreshing a browser calling a Quixote server.)
+    
+What happens appears to be:-
+
+    save_session() opens the file to write  f = open(filename, 'wb')
+    load_session() opens the file to read   f = open(filename, 'rb')
+    load_session() asks for and GETS a shared lock [fcntl.LOCK_SH]
+    save_session() asks for an exclusive lock BUT gets blocked by the shared lock
+    load_session() tries to load the object and gets zero bytes. It then closes the
+        file, allowing save_session() to proceed.
+
+All that we need to do, now that we know that save_session() truncates the file
+and then waits for an exclusive lock, is have load_session() check for a zero-sized file.
+If it has one, then save_session() has just created (or re-created) it and we should let
+go and try again.
 """
 
 
@@ -14,6 +66,8 @@ import fcntl, os, os.path
 from pickle import dump, load
 from session3.store.SessionStore import SessionStore
 import time
+
+SLEEPY_TIME = 0.1
 
 class DirectorySessionStore(SessionStore):
     """
@@ -52,37 +106,53 @@ class DirectorySessionStore(SessionStore):
         """
         return os.path.join(self.directory, id)
         
-    def load_session(self, id, default=None):
-        """
-        Load the pickled session from a file.
-        """
-        
-        filename = self._make_filename(id)
-        try:
-            f = open(filename, 'rb')
-            fcntl.flock(f.fileno(), fcntl.LOCK_SH)
-            try:
-                obj = load(f)
-            finally:
-                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
-                f.close()
-        except IOError:
-            obj = default
-
-        return obj
-
     def save_session(self, session):
         """
         Pickle the session and save it into a file.
         """
         filename = self._make_filename(session.id)
         f = open(filename, 'wb')
+        # We wait at the following statement until we get an exclusive lock
+        # Note that load_session() can sometimes jump in here before we get the lock
+        # (the naughty thing) but it will get a zero-sized file (wb mode truncates the file)
         fcntl.flock(f.fileno(), fcntl.LOCK_EX)
         try:
             dump(session, f, self.pickle_protocol)
         finally:
             fcntl.flock(f.fileno(), fcntl.LOCK_UN)
-            f.close()
+            f.close()        
+        
+    def load_session(self, id, default=None):
+        """
+        Load the pickled session from a file. 
+        """
+        filename = self._make_filename(id)
+        while True:
+            try:
+                f = open(filename, 'rb')
+                # Sometimes we get the following lock AFTER save_session() has created
+                # the file but BEFORE it has locked it. If so, we'll have a zero-sized file
+                # (hence the loop, BTW).
+                fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+                if os.stat(f.fileno()).st_size == 0:
+                    # wait around for a bit...
+                    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                    f.close()
+                    time.sleep(SLEEPY_TIME)
+                else:
+                    try:
+                        obj = load(f)
+                    finally:
+                        fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                        f.close()
+                        break
+                        
+            except OSError:
+                print("OSError on flock! for load_session")
+                obj = default
+                break
+
+        return obj
 
     def delete_session(self, session):
         """
@@ -117,3 +187,23 @@ class DirectorySessionStore(SessionStore):
                 remaining += 1
                 
         return (deleted, remaining)
+        
+        
+##    def xxx_load_session(self, id, default=None):
+##        """
+##        Load the pickled session from a file. OLD VERSION
+##        """
+##        filename = self._make_filename(id)
+##        try:
+##            f = open(filename, 'rb')
+##            fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+##            try:
+##                obj = load(f)
+##            finally:
+##                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+##                f.close()
+##        except OSError:
+##            obj = default
+##
+##        return obj
+
