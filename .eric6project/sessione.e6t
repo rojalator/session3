@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project sessione -->
-<!-- Saved: 2018-08-19, 17:26:29 -->
+<!-- Saved: 2018-08-19, 17:56:56 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="1" uid="{db4a23db-9a0e-4844-9824-f05ad28e7113}">
@@ -31,31 +31,31 @@
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{e3bca7c6-b8b1-47e4-8af0-d69241cd8ba0}">
+  <Task priority="1" completed="False" type="3" uid="{7c8c10a7-b980-4115-be9c-1b91c7c3fca1}">
     <Summary>RJLRJL: Note that python 3.3. change fcntl to return</Summary>
     <Description></Description>
-    <Created>2018-08-19, 17:25:59</Created>
+    <Created>2018-08-19, 17:56:09</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{c7b1f5a4-cda4-4cd8-ac4c-3e7264647961}">
+  <Task priority="1" completed="False" type="3" uid="{38f6b0ae-14d7-4bb1-8169-fa8c38d50b0c}">
     <Summary>RJLRJL: 19th August 2018</Summary>
     <Description></Description>
-    <Created>2018-08-19, 17:25:59</Created>
+    <Created>2018-08-19, 17:56:09</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
       <Linenumber>6</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{1eac5b1b-266e-4660-96f0-db14c9c09fbe}">
+  <Task priority="1" completed="False" type="3" uid="{7d274dae-c71a-467e-8d1f-179431de3b49}">
     <Summary>RJLRJL for Python3 we now use the highest protocol at time of writing,</Summary>
     <Description></Description>
-    <Created>2018-08-19, 17:25:59</Created>
+    <Created>2018-08-19, 17:56:09</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
-      <Linenumber>79</Linenumber>
+      <Linenumber>83</Linenumber>
     </Resource>
   </Task>
 </Tasks>

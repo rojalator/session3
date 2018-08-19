@@ -52,6 +52,10 @@ All that we need to do, now that we know that save_session() truncates the file
 and then waits for an exclusive lock, is have load_session() check for a zero-sized file.
 If it has one, then save_session() has just created (or re-created) it and we should let
 go and try again.
+
+Addendum:
+It turns out that, during testing, one can get at EOFError from pickle anyway, so testing for that
+was added too.
 """
 
 
@@ -127,7 +131,8 @@ class DirectorySessionStore(SessionStore):
         Load the pickled session from a file. 
         """
         filename = self._make_filename(id)
-        while True:
+        finished = False
+        while not finished:
             try:
                 f = open(filename, 'rb')
                 # Sometimes we get the following lock AFTER save_session() has created
@@ -142,15 +147,20 @@ class DirectorySessionStore(SessionStore):
                 else:
                     try:
                         obj = load(f)
-                    finally:
+                        # Don't be tempted to move this into a finally
                         fcntl.flock(f.fileno(), fcntl.LOCK_UN)
                         f.close()
-                        break
+                        finished = True             
+                    except EOFError:
+                        # Sometimes we'll also get EOFError from pickle anyway, so we might
+                        # as well trap for that too...
+                        fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                        f.close()
+                        time.sleep(SLEEPY_TIME)
                         
             except OSError:
-                print("OSError on flock! for load_session")
                 obj = default
-                break
+                finished = True
 
         return obj
 
