@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Session SYSTEM "Session-5.0.dtd">
+<!DOCTYPE Session SYSTEM "Session-6.1.dtd">
 <!-- eric6 session file for project sessione -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2015-01-28, 08:55:49 -->
-<Session version="5.0">
+<!-- Saved: 2018-08-19, 12:35:25 -->
+<Session version="6.1">
+  <ViewManagerSplits count="1" orientation="1"/>
   <Filenames>
-    <Filename cline="3" cindex="0" folds="" zoom="0">/home/rjl/Documents/session3/session3/store/SessionStore.py</Filename>
-    <Filename cline="53" cindex="55" folds="" zoom="0">/home/rjl/Documents/session3/test/test_session3.py</Filename>
-    <Filename cline="93" cindex="11" folds="" zoom="0">/home/rjl/Documents/session3/session3/store/DirectorySessionStore.py</Filename>
-    <Filename cline="0" cindex="0" folds="" zoom="0">/home/rjl/Documents/session3/__init__.py</Filename>
-    <Filename cline="21" cindex="42" folds="" zoom="0">/home/rjl/Documents/session3/session3/SessionManager.py</Filename>
+    <Filename cline="9" cindex="7" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/rjl/qsetup/session3/session3/Session.py</Filename>
+    <Filename cline="19" cindex="58" folds="" zoom="0" cloned="0" splitindex="0" editorindex="1">/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</Filename>
+    <Filename cline="3" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/rjl/qsetup/session3/setup.py</Filename>
+    <Filename cline="0" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/rjl/qsetup/session3/session3/store/PostgresSessionStore.py</Filename>
+    <Filename cline="0" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/rjl/qsetup/session3/session3/store/SessionStore.py</Filename>
+    <Filename cline="14" cindex="14" folds="" zoom="0" cloned="0" splitindex="0" editorindex="5">/home/rjl/qsetup/session3/session3/store/MySQLSessionStore.py</Filename>
   </Filenames>
-  <ActiveWindow cline="53" cindex="55">/home/rjl/Documents/session3/test/test_session3.py</ActiveWindow>
+  <ActiveWindow cline="14" cindex="14">/home/rjl/qsetup/session3/session3/store/MySQLSessionStore.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
+    <Interpreter></Interpreter>
     <CommandLine></CommandLine>
     <WorkingDirectory></WorkingDirectory>
     <Environment></Environment>
@@ -29,15 +32,18 @@
   <Bookmarks/>
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
-      <ExpandedItemName>/home/rjl/Documents/session3/session3</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/Documents/session3/session3/store</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/Documents/session3/session3/store/DirectorySessionStore.py</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/Documents/session3/test</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/qsetup/session3/session3</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/qsetup/session3/session3/store</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/qsetup/session3/session3/DictSession.py</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/qsetup/session3/session3/Session.py</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/qsetup/session3/session3/SessionManager.py</ExpandedItemName>
     </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>
     <ProjectBrowserState name="translations"/>
     <ProjectBrowserState name="interfaces"/>
+    <ProjectBrowserState name="protocols"/>
     <ProjectBrowserState name="others"/>
   </ProjectBrowserStates>
 </Session>

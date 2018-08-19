@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project sessione -->
-<!-- Saved: 2018-02-14, 22:22:45 -->
+<!-- Saved: 2018-08-19, 12:35:25 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="3" uid="{35fe8044-e6e3-4000-9fd2-fc7a1348e176}">
-    <Summary>RJLRJL Converted to Python3</Summary>
-    <Description></Description>
-    <Created>2018-02-14, 22:22:32</Created>
-    <Resource>
-      <Filename>setup-store.py</Filename>
-      <Linenumber>7</Linenumber>
-    </Resource>
-  </Task>
   <Task priority="1" completed="False" type="1" uid="{db4a23db-9a0e-4844-9824-f05ad28e7113}">
     <Summary>TODO:</Summary>
     <Description></Description>
@@ -22,13 +13,31 @@
       <Linenumber>6</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{ea63c2c5-6d23-4625-97fe-2758808f705d}">
+  <Task priority="1" completed="False" type="3" uid="{af2b249f-8a61-430a-bc7a-ed07af45848d}">
     <Summary>RJLRJL Converted to Python3</Summary>
     <Description></Description>
-    <Created>2018-02-14, 22:22:32</Created>
+    <Created>2018-08-19, 12:26:28</Created>
     <Resource>
       <Filename>setup.py</Filename>
       <Linenumber>3</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3" uid="{56e12fce-8928-45cf-a163-3fd5d889eb51}">
+    <Summary>RJLRJL Converted to Python3</Summary>
+    <Description></Description>
+    <Created>2018-08-19, 12:26:32</Created>
+    <Resource>
+      <Filename>setup-store.py</Filename>
+      <Linenumber>7</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3" uid="{1c32e76f-0a32-4d0d-a364-c098c66e047f}">
+    <Summary>RJLRJL for Python3 we now use the highest protocol at time of writing,</Summary>
+    <Description></Description>
+    <Created>2018-08-19, 12:33:19</Created>
+    <Resource>
+      <Filename>session3/store/DirectorySessionStore.py</Filename>
+      <Linenumber>25</Linenumber>
     </Resource>
   </Task>
 </Tasks>

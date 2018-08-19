@@ -2,6 +2,14 @@
 Store sessions in individual files within a directory.
 """
 
+
+import sys
+
+if sys.version_info < (3,4,0):
+    sys.stderr.write("You need python 3.4.0 or later to run this script\n")
+    exit(1)
+
+
 import fcntl, os, os.path
 from pickle import dump, load
 from session3.store.SessionStore import SessionStore
@@ -14,7 +22,9 @@ class DirectorySessionStore(SessionStore):
 
     is_multiprocess_safe = False  # Needs file locking; OS-specific.
     is_thread_safe = False        # Needs file locking or synchronization.
-    pickle_protocol = 2
+    # RJLRJL for Python3 we now use the highest protocol at time of writing,
+    # being protocol 4 (it was 2)
+    pickle_protocol = 4
     
     def __init__(self, directory, create=False):
         """
