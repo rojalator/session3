@@ -1,12 +1,12 @@
 =======================================================
-session2: Persistent Session Management for Quixote 2.x
+session3: Persistent Session Management for Quixote 3.0
 =======================================================
 
-:Authors: C Titus Brown, Mike Orr
-:Email: titus@caltech.edu, mso@oz.net
+:Authors: R J Ladymand, based upon session2 by C Titus Brown, Mike Orr
+:Email: it@file-away.co.uk
 :License: MIT  (http://www.opensource.org/licenses/mit-license.php)
-:Version: 0.6.1  released on 2006-2-05
-:Status: beta.  All stores pass basic tests and several are used in production code.
+:Version: 3.0.0 released 2018-12-02
+:Status: Only file-storage (DirectorySessionStore) working with Quixote 3
 
 .. contents::
 
@@ -16,11 +16,12 @@ Introduction
 Quixote_ is a Python Web application framework.  It comes with an
 in-memory session manager, which works but is incompatible with
 multi-process servers (SCGI, CGI, etc).  It also forgets the sessions
-when the Publisher quits.  `session2` solves these problems by
+when the Publisher quits.  `session3` solves these problems by
 providing a new session manager class and a simple back end storage
-API.
+API. Session3 is based upon the previouse session2 code (for, unsurprisingly,
+Quixote 2)
 
-`session2` also provides several (fully functional) persistent storage back
+`session3` also provides several (fully functional) persistent storage back
 ends:
 
 DirectorySessionStore_
@@ -54,7 +55,8 @@ additional back ends, and a simplified Session class (no .is_dirty method).
 It supports the usual ``.user``, ``.set_user()`` and ``.has_info()``
 attributes, and you can also set your own attributes which will be saved.
 There's also a DictSession subclass for those who prefer setting keys rather
-than attributes [1]_.
+than attributes [1]_. Note that this version (3.0) will only work with Quixote 3 as
+the next version of Quixote has (or will have) a BaseSessionManager class.
 
 It's quite likely that the session stores can be adapted for use with other
 Web frameworks; let us know if you do this so we can link to you and/or
@@ -70,23 +72,17 @@ include helpful code in our package.
    to use `Paste`_'s session middleware in the future, because it is dict-based.
    However, the migration for ``.user`` and ``.set_user()`` is not yet clear.
 
-Getting session2
+Getting session3
 ================
 
 Download the latest version here:
-http://quixote.idyll.org/session2/session2-0.6.tar.gz
-
-Source code browser: http://cafepy.com/quixote_extras/titus/session2/
-
-You can also `grab it directly via subversion`_.
-
-.. _grab it directly via subversion: http://cafepy.com/quixote_extras/README
+##http://quixote.idyll.org/session2/session2-0.6.tar.gz
 
 Installation
 ------------
 
-Unpack the tar.gz file, and install the normal Python way ("python
-setup.py install").  You can also just put the 'session2' subdirectory
+Unpack the tar.gz file, and install the normal Python way ("python3
+setup.py install").  ##You can also just put the 'session2' subdirectory
 in your Python path.
 
 Upgrading
@@ -95,7 +91,7 @@ Upgrading
 The MySQL database format changed in 0.4.  Users should convert the 'pickle'
 column to type BLOB, or delete the table and recreate it.
 
-Using session2
+Using session3
 ==============
 
 In your `create_publisher` function, place the following code::

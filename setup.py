@@ -12,10 +12,16 @@ if sys.version_info < (3,4,0):
 from distutils.core import setup
 
 setup(name = 'session3',
-      version = '3.0',
-      description = 'Persistent sessions for Quixote 2.x',
-      author = 'C. Titus Brown and Mike Orr',
-      author_email = 'titus@caltech.edu, mso@oz.net',
+      version = '3.0.0',
+      description = 'Persistent sessions for Quixote 3.0',
+      author = 'R J Ladyman [C. Titus Brown (titus@caltech.edu), and Mike Orr (mso@oz.net) for session2]',
+      author_email = 'it@file-away.co.uk',
       packages = ['session3', 'session3.store'],
       license='MIT',
-      url = 'http://quixote.idyll.org/session2/')
+      url = 'http://www.file-away.co.uk/quixote/session3/',
+      long_description=open('README.txt').read()
+      )
+
+#    install_requires = [
+#        "Quixote" = "3.0",
+#        ]

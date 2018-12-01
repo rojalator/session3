@@ -197,23 +197,3 @@ class DirectorySessionStore(SessionStore):
                 remaining += 1
                 
         return (deleted, remaining)
-        
-        
-##    def xxx_load_session(self, id, default=None):
-##        """
-##        Load the pickled session from a file. OLD VERSION
-##        """
-##        filename = self._make_filename(id)
-##        try:
-##            f = open(filename, 'rb')
-##            fcntl.flock(f.fileno(), fcntl.LOCK_SH)
-##            try:
-##                obj = load(f)
-##            finally:
-##                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
-##                f.close()
-##        except OSError:
-##            obj = default
-##
-##        return obj
-

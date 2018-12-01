@@ -2,14 +2,15 @@
 <!DOCTYPE Session SYSTEM "Session-6.1.dtd">
 <!-- eric6 session file for project sessione -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2018-08-19, 17:56:56 -->
+<!-- Saved: 2018-12-01, 15:50:46 -->
 <Session version="6.1">
   <ViewManagerSplits count="1" orientation="1"/>
   <Filenames>
-    <Filename cline="9" cindex="7" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/rjl/qsetup/session3/session3/Session.py</Filename>
-    <Filename cline="57" cindex="14" folds="" zoom="0" cloned="0" splitindex="0" editorindex="1">/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</Filename>
+    <Filename cline="23" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/rjl/qsetup/session3/setup.py</Filename>
+    <Filename cline="211" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="1">/home/rjl/qsetup/session3/README.txt</Filename>
+    <Filename cline="0" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/rjl/qsetup/session3/session3/SessionManager.py</Filename>
   </Filenames>
-  <ActiveWindow cline="57" cindex="14">/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</ActiveWindow>
+  <ActiveWindow cline="0" cindex="0">/home/rjl/qsetup/session3/session3/SessionManager.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -34,10 +35,9 @@
       <ExpandedItemName>/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py@@76</ExpandedItemName>
       <ExpandedItemName>/home/rjl/qsetup/session3/session3/store/ShelveSessionStore.py</ExpandedItemName>
       <ExpandedItemName>/home/rjl/qsetup/session3/session3/store/ShelveSessionStore.py@@8</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/qsetup/session3/session3/DictSession.py</ExpandedItemName>
       <ExpandedItemName>/home/rjl/qsetup/session3/session3/Session.py</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/qsetup/session3/session3/SessionManager.py</ExpandedItemName>
       <ExpandedItemName>/home/rjl/qsetup/session3/test</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/qsetup/session3/setup.py</ExpandedItemName>
     </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>
