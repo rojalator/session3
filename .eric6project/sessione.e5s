@@ -2,15 +2,17 @@
 <!DOCTYPE Session SYSTEM "Session-6.1.dtd">
 <!-- eric6 session file for project sessione -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2018-12-01, 15:50:46 -->
+<!-- Saved: 2018-12-01, 16:31:28 -->
 <Session version="6.1">
   <ViewManagerSplits count="1" orientation="1"/>
   <Filenames>
     <Filename cline="23" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/rjl/qsetup/session3/setup.py</Filename>
     <Filename cline="211" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="1">/home/rjl/qsetup/session3/README.txt</Filename>
     <Filename cline="0" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/rjl/qsetup/session3/session3/SessionManager.py</Filename>
+    <Filename cline="162" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/rjl/qsetup/session3/session3/Session.py</Filename>
+    <Filename cline="45" cindex="66" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</Filename>
   </Filenames>
-  <ActiveWindow cline="0" cindex="0">/home/rjl/qsetup/session3/session3/SessionManager.py</ActiveWindow>
+  <ActiveWindow cline="45" cindex="66">/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>

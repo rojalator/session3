@@ -42,7 +42,8 @@ class Session:
     subclass in the future.
     """
     
-    MAX_FORM_TOKENS = 16 # maximum number of outstanding form tokens
+    # Maximum number of outstanding form tokens
+    MAX_FORM_TOKENS = 16 
 
     def __init__(self, id):
         """
@@ -65,7 +66,6 @@ class Session:
 
     def has_info(self):
         """() -> boolean
-
         Return true if this session contains any information that must
         be saved.
         """
@@ -100,32 +100,37 @@ class Session:
         return self.user
 
     def get_remote_address(self):
-        """Return the IP address (dotted-quad string) that made the
-        initial request in this session.
+        """
+        Return the IP address (dotted-quad string) that made the initial request in this session.
         """
         return self._remote_address
 
     def get_creation_time(self):
-        """Return the time that this session was created (seconds
-        since epoch).
+        """
+        Return the time that this session was created (seconds since epoch).
         """
         return self._creation_time
 
     def get_access_time(self):
-        """Return the time that this session was last accessed (seconds
-        since epoch).
+        """
+        Return the time that this session was last accessed (seconds since epoch).
         """
         return self._access_time
 
     def get_creation_age(self, _now=None):
-        """Return the number of seconds since session was created."""
-        # _now arg is not strictly necessary, but there for consistency
-        # with get_access_age()
+        """
+        Return the number of seconds since session was created.
+         _now arg is not strictly necessary, but there for consistency
+         with get_access_age()
+         """
         return (_now or time()) - self._creation_time
 
     def get_access_age(self, _now=None):
-        """Return the number of seconds since session was last accessed."""
-        # _now arg is for SessionManager's use
+        """
+        Return the number of seconds since session was last accessed.
+        
+        _now arg is for SessionManager's use
+        """
         return (_now or time()) - self._access_time
 
 
@@ -135,9 +140,9 @@ class Session:
         now = time()
         if now - self._access_time > resolution:
             self._access_time = now
-            
 
-    # -- Form token methods --------------------------------------------
+
+    # -- Form token methods -------------------------------
 
     def create_form_token(self):
         """() -> string

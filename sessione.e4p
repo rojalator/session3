@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project sessione -->
-<!-- Saved: 2018-12-01, 15:50:46 -->
+<!-- Saved: 2018-12-01, 16:31:28 -->
 <!-- Copyright (C) 2018 ,  -->
 <Project version="5.1">
   <Language>en_GB</Language>
@@ -12,7 +12,6 @@
   <Author></Author>
   <Email></Email>
   <Sources>
-    <Source>ChangeLog</Source>
     <Source>README.txt</Source>
     <Source>TODO</Source>
     <Source>__init__.py</Source>

@@ -26,12 +26,12 @@ If in the other terminal you do:-
     EOFError: Ran out of input
     >>> 
 
-This is not entirely unexpected BUT the code in load_session():-
+This is not entirely unexpected BUT the code in load_session()...
 
     f = open(filename, 'rb')
     fcntl.flock(f.fileno(), fcntl.LOCK_SH)
 
-Can get the shared lock (LOCK_SH) after save_session() performs 
+...can get the shared lock (LOCK_SH) after save_session() performs 
 the open() but BEFORE save_session() gets a chance to get the exclusive lock.
 
     f = open(filename, 'wb')
@@ -140,9 +140,9 @@ class DirectorySessionStore(SessionStore):
                 # (hence the loop, BTW).
                 fcntl.flock(f.fileno(), fcntl.LOCK_SH)
                 if os.stat(f.fileno()).st_size == 0:
-                    # wait around for a bit...
                     fcntl.flock(f.fileno(), fcntl.LOCK_UN)
                     f.close()
+                    # wait around for a bit...
                     time.sleep(SLEEPY_TIME)
                 else:
                     try:
@@ -180,7 +180,8 @@ class DirectorySessionStore(SessionStore):
         your application maintenance program; e.g., a daily cron job.
 
         DirectorySessionStore.delete_old_sessions returns a tuple:
-           (n_deleted, n_remaining)
+        
+            (n_deleted, n_remaining)
         """
         
         deleted = 0
