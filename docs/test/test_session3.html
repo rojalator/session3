@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>test_session3.py</title>
+  <link rel="stylesheet" href="../pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>test_session3.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Test the session3 package with a variety of session stores.
+Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
+<pre><code>python3 -bb test_session3.py directory
+</code></pre>
+<p>and then visit:</p>
+<pre><code>http://localhost:8080
+</code></pre>
+<p>Publisher factory functions:</p>
+<ul>
+<li>
+<p>use_shelve() &ndash; use a &lsquo;shelve&rsquo; database to store sessions.</p>
+</li>
+<li>
+<p>use_directory() &ndash; store sessions in files under a directory.</p>
+</li>
+<li>
+<p>use_psycopg() &ndash; use &lsquo;psycopg&rsquo; to connect to a database called &lsquo;sql_store&rsquo;
+                      and store pickled sessions in that database.  Assumes a
+                      table &lsquo;sessions&rsquo; exists with the correct structure.</p>
+</li>
+<li>
+<p>use_postgres() &ndash; same as &lsquo;psycopg&rsquo;                      </p>
+</li>
+<li>
+<p>use_mysql()   &ndash; use &lsquo;MySQLdb&rsquo; to connect to a database called &lsquo;test&rsquo;
+                      and store pickled sessions in that database.  Assumes a
+                      table &lsquo;sessions&rsquo; exists with the correct structure.</p>
+</li>
+<li>
+<p>use_durus() &ndash; use the Durus object database to store sessions.</p>
+</li>
+</ul>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
+<span class="kn">from</span> <span class="nn">quixote.publish</span> <span class="kn">import</span> <span class="n">Publisher</span>
+<span class="kn">from</span> <span class="nn">quixote.directory</span> <span class="kn">import</span> <span class="n">Directory</span>
+<span class="kn">from</span> <span class="nn">quixote</span> <span class="kn">import</span> <span class="n">get_session</span><span class="p">,</span> <span class="n">get_session_manager</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">quixote.server</span> <span class="kn">import</span> <span class="n">simple_server</span>
+<span class="kn">from</span> <span class="nn">quixote.server.util</span> <span class="kn">import</span> <span class="n">get_server_parser</span>
+<span class="kn">from</span> <span class="nn">quixote.logger</span> <span class="kn">import</span> <span class="n">DefaultLogger</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">session3.Session</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="kn">from</span> <span class="nn">session3.SessionManager</span> <span class="kn">import</span> <span class="n">SessionManager</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <h6></h6>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_volatile</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">session3.store.VolatileSessionStore</span> <span class="kn">import</span> <span class="n">VolatileSessionStore</span>
+    <span class="n">store</span> <span class="o">=</span> <span class="n">VolatileSessionStore</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">store</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_shelve</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">session3.store.ShelveSessionStore</span> <span class="kn">import</span> <span class="n">ShelveSessionStore</span>
+    <span class="n">shelve_store</span> <span class="o">=</span> <span class="n">ShelveSessionStore</span><span class="p">(</span><span class="s1">&#39;sessions.shelf&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">shelve_store</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_directory</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">session3.store.DirectorySessionStore</span> <span class="kn">import</span> <span class="n">DirectorySessionStore</span>
+    <span class="n">dir_store</span> <span class="o">=</span> <span class="n">DirectorySessionStore</span><span class="p">(</span><span class="s1">&#39;./sessiondir/&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">dir_store</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_psycopg</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">session3.store.PostgresSessionStore</span> <span class="kn">import</span> <span class="n">PostgresSessionStore</span>
+    <span class="kn">import</span> <span class="nn">psycopg</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;dbname=sql_store&#39;</span><span class="p">)</span>
+    <span class="n">sql_store</span> <span class="o">=</span> <span class="n">PostgresSessionStore</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">sql_store</span><span class="p">)</span>
+
+<span class="n">use_postgres</span> <span class="o">=</span> <span class="n">use_psycopg</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_mysql</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">session3.store.MySQLSessionStore</span> <span class="kn">import</span> <span class="n">MySQLSessionStore</span>
+    <span class="kn">import</span> <span class="nn">MySQLdb</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="n">sql_store</span> <span class="o">=</span> <span class="n">MySQLSessionStore</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">sql_store</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_durus</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">session3.store.DurusSessionStore</span> <span class="kn">import</span> <span class="n">DurusSessionStore</span>
+    <span class="kn">from</span> <span class="nn">durus.file_storage</span> <span class="kn">import</span> <span class="n">FileStorage</span>
+    <span class="kn">from</span> <span class="nn">durus.connection</span> <span class="kn">import</span> <span class="n">Connection</span>
+    <span class="n">durus_conn</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">FileStorage</span><span class="p">(</span><span class="s1">&#39;sessions.durus&#39;</span><span class="p">))</span>
+    <span class="n">durus_store</span> <span class="o">=</span> <span class="n">DurusSessionStore</span><span class="p">(</span><span class="n">durus_conn</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">durus_store</span><span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="bp">None</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">create_publisher</span><span class="p">(</span><span class="n">session_store</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">logger</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">DefaultLogger</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">access_log</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error_log</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+    
+    <span class="n">session_manager</span> <span class="o">=</span> <span class="n">SessionManager</span><span class="p">(</span><span class="n">session_store</span><span class="p">,</span> <span class="n">session_class</span><span class="o">=</span><span class="n">TestSession</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">Publisher</span><span class="p">(</span><span class="n">LoginSession</span><span class="p">(),</span>
+                     <span class="n">session_manager</span><span class="o">=</span><span class="n">session_manager</span><span class="p">,</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <pre><code>                logger=logger,
+</code></pre>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>                     <span class="n">display_exceptions</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <h6></h6>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">TestSession</span><span class="p">(</span><span class="n">Session</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="n">Session</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep</span> <span class="o">=</span> <span class="bp">False</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">has_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p>Do some simple session manipulations.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">LoginSession</span><span class="p">(</span><span class="n">Directory</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">_q_exports</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;logout&#39;</span><span class="p">,</span> <span class="s1">&#39;logoutfail&#39;</span><span class="p">,</span> <span class="s1">&#39;increment&#39;</span><span class="p">,</span> <span class="s1">&#39;incrementfail&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;keep&#39;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_q_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <p>a session object exists for each connection: get it.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">session</span> <span class="o">=</span> <span class="n">get_session</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      <p>return page.
+% (session.id, session.counter)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Hello, world!</span>
+<span class="s2">&lt;p&gt;</span>
+<span class="s2">Your session ID is </span><span class="si">%s</span><span class="s2">.</span>
+<span class="s2">&lt;p&gt;</span>
+<span class="s2">Counter is at </span><span class="si">%d</span><span class="s2">.</span>
+<span class="s2">&lt;p&gt;</span>
+<span class="s2">&lt;a href=&quot;./&quot;&gt;revisit page&lt;/a&gt;</span>
+<span class="s2">&lt;p&gt;</span>
+<span class="s2">&lt;a href=&quot;keep&quot;&gt;assign session&lt;/a&gt;</span>
+<span class="s2">&lt;p&gt;</span>
+<span class="s2">&lt;a href=&quot;increment&quot;&gt;increment&lt;/a&gt; | &lt;a href=&quot;incrementfail&quot;&gt;increment+error&lt;/a&gt;</span>
+<span class="s2">&lt;p&gt;</span>
+<span class="s2">&lt;a href=&quot;logout&quot;&gt;log out&lt;/a&gt; | &lt;a href=&quot;logoutfail&quot;&gt;logout+error&lt;/a&gt;</span>
+<span class="s2">#DIVIDER</span>
+<span class="s2">        Set the session to persist.</span>
+<span class="s2">#DIVIDER</span>
+<span class="s2">        Expire the session, redirect back to index page.</span>
+<span class="s2">#DIVIDER</span>
+<span class="s2">        Expire the session, raise PublishException.</span>
+
+<span class="s2">        Effect: no log out.</span>
+<span class="s2">#DIVIDER</span>
+<span class="s2">    See the module docstring for additional help.&quot;&quot;&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      <p>def keep(self):</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">DESCRIPTION</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Runs a session testing application with Quixote&#39;s simple server.&quot;&quot;&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      <p>session = get_session()
+session.keep = True</p>
+<h1>redirect to index page.</h1>
+<p>return redirect(get_path(1) + &lsquo;/&rsquo;)</p>
+<pre><code>def logout(self):
+</code></pre>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_server_parser</span><span class="p">(</span><span class="n">DESCRIPTION</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">set_usage</span><span class="p">(</span><span class="n">USAGE</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">remove_option</span><span class="p">(</span><span class="s1">&#39;--factory&#39;</span><span class="p">)</span>
+    <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;wrong number of command-line args&quot;</span><span class="p">)</span>
+    <span class="n">factory_name</span> <span class="o">=</span> <span class="s2">&quot;use_&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">factory</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()[</span><span class="n">factory_name</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;unknown storage type&quot;</span><span class="p">)</span>
+    <span class="n">simple_server</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">factory</span><span class="p">,</span> <span class="n">opts</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">opts</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>  <span class="n">main</span><span class="p">()</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      <h1>expire session</h1>
+<p>session_manager = get_session_manager()
+session_manager.expire_session()</p>
+<h1>redirect to index page.</h1>
+<p>return redirect(get_path(1) + &lsquo;/&rsquo;)</p>
+<pre><code>def logoutfail(self):
+</code></pre>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-23'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>session_manager = get_session_manager()
+session_manager.expire_session()
+raise Exception(&ldquo;oops.&rdquo;)</p>
+<pre><code>def increment(self):
+</code></pre>
+<p>session = get_session()
+session.increment()
+return redirect(get_path(1) + &lsquo;/&rsquo;)</p>
+<pre><code>def incrementfail(self):
+</code></pre>
+<p>session = get_session()
+session.increment()
+raise Exception(&ldquo;oops!&rdquo;)</p>
+<h6></h6>
+<p>USAGE = &ldquo;&rdquo;&ldquo;\
+%prog STORAGE_TYPE
+    STORAGE_TYPE must be one of: directory durus mysql postgres psycopg shelve</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
+      <p>@@MO: &ndash;dict flag or second arg could select a TestDictStorage.
+Use &ndash;help for additional help, and see the module docstring.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-25'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-25'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

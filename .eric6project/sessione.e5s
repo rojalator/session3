@@ -2,17 +2,13 @@
 <!DOCTYPE Session SYSTEM "Session-6.1.dtd">
 <!-- eric6 session file for project sessione -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2018-12-01, 16:31:28 -->
+<!-- Saved: 2018-12-12, 13:21:27 -->
 <Session version="6.1">
   <ViewManagerSplits count="1" orientation="1"/>
   <Filenames>
-    <Filename cline="23" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/rjl/qsetup/session3/setup.py</Filename>
-    <Filename cline="211" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="1">/home/rjl/qsetup/session3/README.txt</Filename>
-    <Filename cline="0" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/rjl/qsetup/session3/session3/SessionManager.py</Filename>
-    <Filename cline="162" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/rjl/qsetup/session3/session3/Session.py</Filename>
-    <Filename cline="45" cindex="66" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</Filename>
+    <Filename cline="11" cindex="50" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/rjl/qsetup/session3/session3/Session.py</Filename>
   </Filenames>
-  <ActiveWindow cline="45" cindex="66">/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</ActiveWindow>
+  <ActiveWindow cline="11" cindex="50">/home/rjl/qsetup/session3/session3/Session.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -33,11 +29,8 @@
     <ProjectBrowserState name="sources">
       <ExpandedItemName>/home/rjl/qsetup/session3/session3</ExpandedItemName>
       <ExpandedItemName>/home/rjl/qsetup/session3/session3/store</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/qsetup/session3/session3/store/DirectorySessionStore.py@@76</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/qsetup/session3/session3/store/ShelveSessionStore.py</ExpandedItemName>
-      <ExpandedItemName>/home/rjl/qsetup/session3/session3/store/ShelveSessionStore.py@@8</ExpandedItemName>
       <ExpandedItemName>/home/rjl/qsetup/session3/session3/Session.py</ExpandedItemName>
+      <ExpandedItemName>/home/rjl/qsetup/session3/session3/Session.py@@8</ExpandedItemName>
       <ExpandedItemName>/home/rjl/qsetup/session3/test</ExpandedItemName>
       <ExpandedItemName>/home/rjl/qsetup/session3/setup.py</ExpandedItemName>
     </ProjectBrowserState>

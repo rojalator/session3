@@ -2,7 +2,7 @@
 session3: Persistent Session Management for Quixote 3.0
 =======================================================
 
-:Authors: R J Ladymand, based upon session2 by C Titus Brown, Mike Orr
+:Authors: R J Ladyman, based upon session2 by C Titus Brown, Mike Orr
 :Email: it@file-away.co.uk
 :License: MIT  (http://www.opensource.org/licenses/mit-license.php)
 :Version: 3.0.0 released 2018-12-02

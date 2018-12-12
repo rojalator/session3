@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project sessione -->
-<!-- Saved: 2018-12-01, 16:31:28 -->
+<!-- Saved: 2018-12-12, 13:52:10 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="3" uid="{4984f83e-624f-4105-9976-029d4e17f016}">
@@ -22,37 +22,37 @@
       <Linenumber>6</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{9bf25ad7-e2d3-4118-9970-e0419c7de571}">
+  <Task priority="1" completed="False" type="3" uid="{f1640b5f-d972-445f-9c60-666f4ec33a25}">
     <Summary>RJLRJL Converted to Python3</Summary>
     <Description></Description>
-    <Created>2018-12-01, 16:17:24</Created>
+    <Created>2018-12-12, 11:21:44</Created>
     <Resource>
       <Filename>setup.py</Filename>
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{49d2c951-330e-4de7-ac30-cd73378c95ef}">
+  <Task priority="1" completed="False" type="3" uid="{a65c046f-fc03-4e68-8648-b7aa62284bdb}">
     <Summary>RJLRJL: Note that python 3.3. change fcntl to return</Summary>
     <Description></Description>
-    <Created>2018-12-01, 16:31:04</Created>
+    <Created>2018-12-12, 11:21:44</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{43dabae0-b4ca-4eda-b4e6-87be274adaed}">
+  <Task priority="1" completed="False" type="3" uid="{0d96da8c-b893-43a3-b0a3-e27f1093b10a}">
     <Summary>RJLRJL: 19th August 2018</Summary>
     <Description></Description>
-    <Created>2018-12-01, 16:31:04</Created>
+    <Created>2018-12-12, 11:21:44</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
       <Linenumber>6</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{686cda54-5af7-4148-82d7-c77bba55df0e}">
+  <Task priority="1" completed="False" type="3" uid="{a82a9bdc-a3b8-4935-99c2-dd660764de83}">
     <Summary>RJLRJL for Python3 we now use the highest protocol at time of writing,</Summary>
     <Description></Description>
-    <Created>2018-12-01, 16:31:04</Created>
+    <Created>2018-12-12, 11:21:44</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
       <Linenumber>83</Linenumber>

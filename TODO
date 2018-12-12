@@ -1,5 +1,6 @@
-Version 3.0.0 only supports DirectorySessionStore at the moment:
 Recode the MySQL, Postgresql and ShelveSessionStore stores.
+(Version 3.0.0 only supports DirectorySessionStore at the moment.)
+
 
 Nicer test code.
 
