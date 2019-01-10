@@ -12,3 +12,17 @@ The pickle protocol for DirectorySessionStore is also 0.
 
 ShelveSessionStore has no file locking, so is unsafe for multi-process
 deployment (SCGI, CGI, FastCGI).
+
+
+Generate documentation
+pdoc --html   --all-submodules --html-dir docpdoc session3
+pycco --generate_index --paths --directory pyccodocs  ./**/*.py
+
+pycco --generate_index --paths -s  --directory pyccdocs  ./**/**/*.py ./session3/*.py
+rst2html5.py --footnote-references=superscript --smart-quotes=yes -g -d -t  README.txt > README.html
+
+https://faculty.math.illinois.edu/~gfrancis/illimath/windows/aszgard_mini/movpy-2.0.0-py2.4.4/manuals/docutils/ref/rst/restructuredtext.html#definition-lists
+
+See notes in the README.txt file
+
+

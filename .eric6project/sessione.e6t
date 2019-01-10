@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project sessione -->
-<!-- Saved: 2018-12-19, 09:54:17 -->
+<!-- Saved: 2019-01-10, 17:01:10 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="3" uid="{4984f83e-624f-4105-9976-029d4e17f016}">
@@ -31,28 +31,28 @@
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{a65c046f-fc03-4e68-8648-b7aa62284bdb}">
+  <Task priority="1" completed="False" type="3" uid="{4cdce84e-7872-4e07-99ae-a8a49116b6ab}">
     <Summary>RJLRJL: Note that python 3.3. change fcntl to return</Summary>
     <Description></Description>
-    <Created>2018-12-12, 11:21:44</Created>
+    <Created>2019-01-10, 17:00:52</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{0d96da8c-b893-43a3-b0a3-e27f1093b10a}">
+  <Task priority="1" completed="False" type="3" uid="{28e508cd-bb1d-49cc-9f15-c348dbfc9088}">
     <Summary>RJLRJL: 19th August 2018</Summary>
     <Description></Description>
-    <Created>2018-12-12, 11:21:44</Created>
+    <Created>2019-01-10, 17:00:52</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
       <Linenumber>6</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{a82a9bdc-a3b8-4935-99c2-dd660764de83}">
+  <Task priority="1" completed="False" type="3" uid="{231ef3c1-0e31-49ce-a654-635157578ba2}">
     <Summary>RJLRJL for Python3 we now use the highest protocol at time of writing,</Summary>
     <Description></Description>
-    <Created>2018-12-12, 11:21:44</Created>
+    <Created>2019-01-10, 17:00:52</Created>
     <Resource>
       <Filename>session3/store/DirectorySessionStore.py</Filename>
       <Linenumber>83</Linenumber>

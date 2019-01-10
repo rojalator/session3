@@ -1,141 +1,711 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.3.7: http://docutils.sourceforge.net/" />
-<title>session2: Persistent Session Management for Quixote 2.x</title>
-<meta name="author" content="C Titus Brown" />
-<meta name="author" content="Mike Orr" />
-<link rel="stylesheet" href="default.css" type="text/css" />
+<meta charset="utf-8"/>
+<meta name="generator" content="Docutils 0.14: http://docutils.sourceforge.net/" />
+<title>Session3: Persistent Session Management for Quixote 3.0</title>
+<style type="text/css">
+
+/* Minimal style sheet for the HTML output of Docutils.                    */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id: minimal.css 8036 2017-02-14 13:05:46Z milde $               */
+/* :Copyright: © 2015 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+
+/* This CSS2.1_ stylesheet defines rules for Docutils elements without    */
+/* HTML equivalent. It is required to make the document semantic visible. */
+/*                                                                        */
+/* .. _CSS2.1: http://www.w3.org/TR/CSS2                                  */
+/* .. _validates: http://jigsaw.w3.org/css-validator/validator$link       */
+
+/* alignment of text and inline objects inside block objects*/
+.align-left   { text-align: left; }
+.align-right  { text-align: right; }
+.align-center { clear: both; text-align: center; }
+.align-top    { vertical-align: top; }
+.align-middle { vertical-align: middle; }
+.align-bottom { vertical-align: bottom; }
+
+/* titles */
+h1.title, p.subtitle {
+  text-align: center;
+}
+p.admonition-title,
+p.topic-title,
+p.sidebar-title,
+p.rubric,
+p.system-message-title {
+  font-weight: bold;
+}
+h1 + p.subtitle,
+h1 + p.section-subtitle {
+  font-size: 1.6em;
+}
+h2 + p.section-subtitle { font-size: 1.28em; }
+p.subtitle,
+p.section-subtitle,
+p.sidebar-subtitle {
+  font-weight: bold;
+  margin-top: -0.5em;
+}
+p.sidebar-title,
+p.rubric {
+  font-size: larger;
+}
+p.rubric { color: maroon; }
+a.toc-backref {
+  color: black;
+  text-decoration: none; }
+
+/* Warnings, Errors */
+div.caution p.admonition-title,
+div.attention p.admonition-title,
+div.danger p.admonition-title,
+div.error p.admonition-title,
+div.warning p.admonition-title,
+div.system-messages h1,
+div.error,
+span.problematic,
+p.system-message-title {
+  color: red;
+}
+
+/* inline literals */
+span.docutils.literal {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+/* do not wraph at hyphens and similar: */
+.literal > span.pre { white-space: nowrap; }
+
+/* Lists */
+
+/* compact and simple lists: no margin between items */
+.simple  li, .compact li,
+.simple  ul, .compact ul,
+.simple  ol, .compact ol,
+.simple > li p, .compact > li p,
+dl.simple > dd, dl.compact > dd {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Table of Contents */
+div.topic.contents { margin: 0; }
+ul.auto-toc {
+  list-style-type: none;
+  padding-left: 1.5em; }
+
+/* Enumerated Lists */
+ol.arabic     { list-style: decimal }
+ol.loweralpha { list-style: lower-alpha }
+ol.upperalpha { list-style: upper-alpha }
+ol.lowerroman { list-style: lower-roman }
+ol.upperroman { list-style: upper-roman }
+
+dt span.classifier { font-style: italic }
+dt span.classifier:before {
+  font-style: normal;
+  margin: 0.5em;
+  content: ":";
+}
+
+/* Field Lists and drivatives */
+/* bold field name, content starts on the same line */
+dl.field-list > dt,
+dl.option-list > dt,
+dl.docinfo > dt,
+dl.footnote > dt,
+dl.citation > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.5em;
+}
+/* Offset for field content (corresponds to the --field-name-limit option) */
+dl.field-list > dd,
+dl.option-list > dd,
+dl.docinfo > dd {
+  margin-left:  9em; /* ca. 14 chars in the test examples */
+}
+/* start field-body on a new line after long field names */
+dl.field-list > dd > *:first-child,
+dl.option-list > dd > *:first-child
+{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+/* field names followed by a colon */
+dl.field-list > dt:after,
+dl.docinfo > dt:after {
+  content: ":";
+}
+
+/* Bibliographic Fields (docinfo) */
+pre.address { font: inherit; }
+dd.authors > p { margin: 0; }
+
+/* Option Lists */
+dl.option-list { margin-left: 40px; }
+dl.option-list > dt { font-weight: normal; }
+span.option { white-space: nowrap; }
+
+/* Footnotes and Citations  */
+dl.footnote.superscript > dd {margin-left: 1em; }
+dl.footnote.brackets > dd {margin-left: 2em; }
+dl > dt.label { font-weight: normal; }
+a.footnote-reference.brackets:before,
+dt.label > span.brackets:before { content: "["; }
+a.footnote-reference.brackets:after,
+dt.label > span.brackets:after { content: "]"; }
+a.footnote-reference.superscript,
+dl.footnote.superscript > dt.label {
+  vertical-align: super;
+  font-size: smaller;
+}
+dt.label > span.fn-backref { margin-left: 0.2em; }
+dt.label > span.fn-backref > a { font-style: italic; }
+
+/* Line Blocks */
+div.line-block { display: block; }
+div.line-block div.line-block {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 40px;
+}
+
+/* Figures, Images, and Tables */
+.figure.align-left,
+img.align-left,
+object.align-left,
+table.align-left {
+  margin-right: auto;
+}
+.figure.align-center,
+img.align-center,
+object.align-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.figure.align-right,
+img.align-right,
+object.align-right,
+table.align-right {
+  margin-left: auto;
+}
+/* reset inner alignment in figures and tables */
+/* div.align-left, div.align-center, div.align-right, */
+table.align-left, table.align-center, table.align-right
+{ text-align: inherit }
+
+/* Admonitions and System Messages */
+div.admonition,
+div.system-message,
+div.sidebar{
+  margin: 40px;
+  border: medium outset;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+/* Sidebar */
+div.sidebar {
+  width: 30%;
+  max-width: 26em;
+  float: right;
+  clear: right;
+}
+
+/* Text Blocks */
+div.topic,
+pre.literal-block,
+pre.doctest-block,
+pre.math,
+pre.code {
+  margin-right: 40px;
+  margin-left: 40px;
+}
+pre.code .ln { color: gray; } /* line numbers */
+
+/* Tables */
+table { border-collapse: collapse; }
+td, th {
+  border-style: solid;
+  border-color: silver;
+  padding: 0 1ex;
+  border-width: thin;
+}
+td > p:first-child, th > p:first-child { margin-top: 0; }
+td > p, th > p { margin-bottom: 0; }
+
+table > caption {
+  text-align: left;
+  margin-bottom: 0.25em
+}
+
+table.borderless td, table.borderless th {
+  border: 0;
+  padding: 0;
+  padding-right: 0.5em /* separate table cells */
+}
+
+</style>
+<style type="text/css">
+
+/* CSS31_ style sheet for the output of Docutils HTML writers.             */
+/* Rules for easy reading and pre-defined style variants.		   */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id: plain.css 8120 2017-06-22 21:02:40Z milde $               */
+/* :Copyright: © 2015 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*    	     	      	     	 					   */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+/* .. _CSS3: http://www.w3.org/TR/CSS3		        		   */
+
+
+/* Document Structure */
+/* ****************** */
+
+/* "page layout" */
+body {
+  padding: 0 5%;
+  margin: 8px 0;
+}
+div.document {
+  line-height:1.3;
+  counter-reset: table;
+  /* counter-reset: figure; */
+  /* avoid long lines --> better reading */
+  /* OTOH: lines should not be too short because of missing hyphenation, */
+  max-width: 50em;
+  margin: auto;
+}
+
+/* Sections */
+
+/* Transitions */
+
+hr.docutils {
+  width: 80%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  clear: both;
+}
+
+/* Paragraphs               */
+/* ==========               */
+
+/* vertical space (parskip) */
+p, ol, ul, dl,
+div.line-block,
+table{
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+h1, h2, h3, h4, h5, h6,
+dl > dd {
+  margin-bottom: 0.5em;
+}
+
+/* Lists                    */
+/* ==========               */
+
+/* Definition Lists         */
+
+dl > dd > p:first-child { margin-top: 0; }
+/* :last-child is not part of CSS 2.1 (introduced in CSS 3) */
+dl > dd > p:last-child  { margin-bottom: 0; }
+
+/* lists nested in definition lists */
+/* :only-child is not part of CSS 2.1 (introduced in CSS 3) */
+dd > ul:only-child, dd > ol:only-child { padding-left: 1em; }
+
+/* Description Lists */
+/* styled like in most dictionaries, encyclopedias etc. */
+dl.description > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.5em;
+}
+
+/* Field Lists */
+
+/* example for custom field-name width */
+dl.field-list.narrow > dd {
+  margin-left: 5em;
+}
+/* run-in: start field-body on same line after long field names */
+dl.field-list.run-in > dd p {
+  display: block;
+}
+
+/* Bibliographic Fields */
+
+/* generally, bibliographic fields use special definition list dl.docinfo */
+/* but dedication and abstract are placed into "topic" divs */
+div.abstract p.topic-title {
+  text-align: center;
+}
+div.dedication {
+  margin: 2em 5em;
+  text-align: center;
+  font-style: italic;
+}
+div.dedication p.topic-title {
+  font-style: normal;
+}
+
+/* Citations */
+dl.citation dt.label {
+  font-weight: bold;
+}
+span.fn-backref {
+  font-weight: normal;
+}
+
+/* Text Blocks           */
+/* ============          */
+
+/* Literal Blocks           */
+pre.literal-block, pre.doctest-block,
+pre.math, pre.code {
+  margin-left: 1.5em;
+  margin-right: 1.5em
+}
+
+/* Block Quotes             */
+
+blockquote,
+div.topic {
+  margin-left: 1.5em;
+  margin-right: 1.5em
+}
+blockquote > table,
+div.topic > table {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+blockquote p.attribution,
+div.topic p.attribution {
+  text-align: right;
+  margin-left: 20%;
+}
+
+/* Tables                   */
+/* ======                   */
+
+/* th { vertical-align: bottom; } */
+
+table tr { text-align: left; }
+
+/* "booktabs" style (no vertical lines) */
+table.booktabs {
+  border: 0;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.booktabs * {
+  border: 0;
+}
+table.booktabs th {
+  border-bottom: thin solid;
+}
+
+/* numbered tables (counter defined in div.document) */
+table.numbered > caption:before {
+  counter-increment: table;
+  content: "Table " counter(table) ": ";
+  font-weight: bold;
+}
+
+/* Explicit Markup Blocks   */
+/* ======================   */
+
+/* Footnotes and Citations  */
+/* -----------------------  */
+
+/* line on the left */
+dl.footnote {
+  padding-left: 1ex;
+  border-left: solid;
+  border-left-width: thin;
+}
+
+/* Directives               */
+/* ----------               */
+
+/* Body Elements            */
+/* ~~~~~~~~~~~~~            */
+
+/* Images and Figures */
+
+/* let content flow to the side of aligned images and figures */
+.figure.align-left,
+img.align-left,
+object.align-left {
+  display: block;
+  clear: left;
+  float: left;
+  margin-right: 1em
+}
+.figure.align-right,
+img.align-right,
+object.align-right {
+  display: block;
+  clear: right;
+  float: right;
+  margin-left: 1em
+}
+/* Stop floating sidebars, images and figures at section level 1,2,3 */
+h1, h2, h3 { clear: both; }
+
+/* Sidebar */
+
+/* Move into the margin. In a layout with fixed margins, */
+/* it can be moved into the margin completely.		 */
+div.sidebar {
+  width: 30%;
+  max-width: 26em;
+  margin-left: 1em;
+  margin-right: -5.5%;
+  background-color: #ffffee ;
+}
+
+/* Code                     */
+
+pre.code, code { background-color: #eeeeee }
+pre.code .ln { color: gray; } /* line numbers */
+/* basic highlighting: for a complete scheme, see */
+/* http://docutils.sourceforge.net/sandbox/stylesheets/ */
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+/* Math                     */
+/* styled separately (see math.css for math-output=HTML) */
+
+/* Epigraph                 */
+/* Highlights               */
+/* Pull-Quote               */
+/* Compound Paragraph       */
+/* Container                */
+
+/* can be styled in a custom stylesheet */
+
+/* Document Header and Footer */
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller;
+}
+
+/* Inline Markup            */
+/* =============            */
+
+/* Emphasis                 */
+/*   em                     */
+/* Strong Emphasis          */
+/*   strong		    */
+/* Interpreted Text         */
+/*   span.interpreted  	    */
+/* Title Reference 	    */
+/*   cite		    */
+/* Inline Literals          */
+/* possible values: normal, nowrap, pre, pre-wrap, pre-line */
+/*   span.docutils.literal { white-space: pre-wrap; } */
+
+/* Hyperlink References     */
+a { text-decoration: none; }
+
+/* External Targets         */
+/*   span.target.external   */
+/* Internal Targets  	    */
+/*   span.target.internal   */
+/* Footnote References      */
+/*   a.footnote-reference   */
+/* Citation References      */
+/*   a.citation-reference   */
+
+</style>
 </head>
 <body>
-<div class="document" id="session2-persistent-session-management-for-quixote-2-x">
-<h1 class="title">session2: Persistent Session Management for Quixote 2.x</h1>
-<table class="docinfo" frame="void" rules="none">
-<col class="docinfo-name" />
-<col class="docinfo-content" />
-<tbody valign="top">
-<tr><th class="docinfo-name">Author:</th>
-<td>C Titus Brown</td></tr>
-<tr><th class="docinfo-name">Author:</th>
-<td>Mike Orr</td></tr>
-<tr class="field"><th class="docinfo-name">Email:</th><td class="field-body"><a class="reference" href="mailto:titus&#64;caltech.edu">titus&#64;caltech.edu</a>, <a class="reference" href="mailto:mso&#64;oz.net">mso&#64;oz.net</a></td>
-</tr>
-<tr class="field"><th class="docinfo-name">License:</th><td class="field-body">MIT  (<a class="reference" href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a>)</td>
-</tr>
-<tr><th class="docinfo-name">Version:</th>
-<td>0.6.1  released on 2006-2-05</td></tr>
-<tr><th class="docinfo-name">Status:</th>
-<td>beta.  All stores pass basic tests and several are used in production code.</td></tr>
-</tbody>
-</table>
+<div class="document" id="session3-persistent-session-management-for-quixote-3-0">
+<h1 class="title">Session3: Persistent Session Management for Quixote 3.0</h1>
+
+<dl class="docinfo">
+<dt class="authors">Authors</dt>
+<dd class="authors"><p>R J Ladyman</p>
+<p>(based upon session2 by C Titus Brown and Mike Orr)</p>
+</dd>
+<dt class="email">Email</dt>
+<dd class="email"><p><a class="reference external" href="mailto:it&#64;file-away.co.uk">it&#64;file-away.co.uk</a></p>
+</dd>
+<dt class="license">License</dt>
+<dd class="license"><p>MIT  (<a class="reference external" href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a>)</p>
+</dd>
+<dt class="version">Version</dt>
+<dd class="version">3.0.0 released 2018-12-02</dd>
+<dt class="status">Status</dt>
+<dd class="status">Only the file-storage mechanism (DirectorySessionStore) is working with Quixote 3.0</dd>
+</dl>
 <div class="contents topic" id="contents">
-<p class="topic-title first"><a name="contents">Contents</a></p>
+<p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference" href="#introduction" id="id3" name="id3">Introduction</a></li>
-<li><a class="reference" href="#getting-session2" id="id4" name="id4">Getting session2</a><ul>
-<li><a class="reference" href="#installation" id="id5" name="id5">Installation</a></li>
-<li><a class="reference" href="#upgrading" id="id6" name="id6">Upgrading</a></li>
+<li><p><a class="reference internal" href="#to-do-for-this-documentation" id="id4">TO-DO for this documentation</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id5">Introduction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#changes-from-session2" id="id6">Changes from Session2</a></p></li>
 </ul>
 </li>
-<li><a class="reference" href="#using-session2" id="id7" name="id7">Using session2</a><ul>
-<li><a class="reference" href="#using-mysql" id="id8" name="id8">Using MySQL</a></li>
-<li><a class="reference" href="#customizing-the-user-member" id="id9" name="id9">Customizing the 'user' member</a></li>
+<li><p><a class="reference internal" href="#getting-session3" id="id7">Getting Session3</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installation" id="id8">Installation</a></p></li>
+<li><p><a class="reference internal" href="#documentation" id="id9">Documentation</a></p></li>
+<li><p><a class="reference internal" href="#upgrading-mysql" id="id10">Upgrading MySQL</a></p></li>
 </ul>
 </li>
-<li><a class="reference" href="#features" id="id10" name="id10">Features</a><ul>
-<li><a class="reference" href="#setup-store-py" id="id11" name="id11">setup-store.py</a></li>
-<li><a class="reference" href="#interactive-testing" id="id12" name="id12">Interactive Testing</a></li>
-<li><a class="reference" href="#fcntl-caution" id="id13" name="id13"><tt class="docutils literal"><span class="pre">fcntl</span></tt> Caution</a></li>
+<li><p><a class="reference internal" href="#using-session3" id="id11">Using session3</a></p>
+<ul>
+<li><p><a class="reference internal" href="#using-mysql" id="id12">Using MySQL</a></p></li>
+<li><p><a class="reference internal" href="#customizing-the-user-member" id="id13">Customizing the ‘user’ member</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#features" id="id14">Features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#setup-store-py" id="id15">setup-store.py</a></p></li>
+<li><p><a class="reference internal" href="#interactive-testing" id="id16">Interactive Testing</a></p></li>
+<li><p><a class="reference internal" href="#fcntl-caution" id="id17"><span class="docutils literal">fcntl</span> Caution</a></p></li>
 </ul>
 </li>
 </ul>
+</div>
+<div class="section" id="to-do-for-this-documentation">
+<h1><a class="toc-backref" href="#id4">TO-DO for this documentation</a></h1>
+<p>The following needs to be done before release (it might also be useful to remove the relevant code
+from the auto-generated documentation: however, if someone else decides to help, they’ll need the
+code and references):-</p>
+<blockquote>
+<ul class="simple">
+<li><p>Formalize the location of the two types of documentation — where are the docs installed?</p></li>
+<li><p>Remove references (or hide them) for the non-functioning back-ends.</p></li>
+<li><p>Remove references to now discontinued packages (twill, nose, etc.)</p></li>
+<li><p>Check the <a class="reference internal" href="#upgrading-mysql">Upgrading MySQL</a> section</p></li>
+<li><p>Check the example code in <a class="reference internal" href="#using-session3">Using Session3</a></p></li>
+</ul>
+</blockquote>
 </div>
 <div class="section" id="introduction">
-<h1><a class="toc-backref" href="#id3" name="introduction">Introduction</a></h1>
-<p><a class="reference" href="http://www.mems-exchange.org/software/quixote/">Quixote</a> is a Python Web application framework.  It comes with an
+<h1><a class="toc-backref" href="#id5">Introduction</a></h1>
+<p><a class="reference external" href="http://quixote.ca/">Quixote</a> is a Python Web application framework.  It comes with an
 in-memory session manager, which works but is incompatible with
 multi-process servers (SCGI, CGI, etc).  It also forgets the sessions
-when the Publisher quits.  <cite>session2</cite> solves these problems by
-providing a new session manager class and a simple back end storage
-API.</p>
-<p><cite>session2</cite> also provides several (fully functional) persistent storage back
-ends:</p>
-<dl class="docutils">
-<dt><a class="reference" href="epydoc-html/session2.store.DirectorySessionStore.DirectorySessionStore-class.html">DirectorySessionStore</a></dt>
-<dd><p class="first">Store each pickled session in a file in the designated directory.  The
-filename is the session ID.  Uses <tt class="docutils literal"><span class="pre">fcntl</span></tt> file locking.</p>
-<pre class="last literal-block">
-DirectorySessionStore(directory)
-</pre>
+when the Publisher quits.  <cite>Session3</cite> solves these problems by
+providing a new session manager class and a simple back-end storage
+API. Session3 is based upon the previous <a class="reference external" href="http://quixote.idyll.org/session2/">Session2</a> code (for, unsurprisingly,
+Quixote 2)</p>
+<p><cite>Session3</cite> also provides several (fully functional)<a class="footnote-reference superscript" href="#limited" id="id1">1</a> persistent storage back-ends:-</p>
+<dl>
+<dt><a class="reference external" href="epydoc-html/session2.store.DirectorySessionStore.DirectorySessionStore-class.html">DirectorySessionStore</a></dt>
+<dd><p>Store each pickled session in a file in the designated directory.  The
+filename is the session ID.  Uses <span class="docutils literal">fcntl</span> file locking.</p>
+<pre class="literal-block">DirectorySessionStore(directory)</pre>
 </dd>
-<dt><a class="reference" href="epydoc-html/session2.store.DurusSessionStore.DurusSessionStore-class.html">DurusSessionStore</a></dt>
-<dd><p class="first">Store sessions in a <a class="reference" href="http://www.mems-exchange.org/software/durus/">Durus</a> database.</p>
-<pre class="last literal-block">
-DurusSessionStore(durus_connection)
-</pre>
+<dt>DurusSessionStore</dt>
+<dd><p>Store sessions in a <a class="reference external" href="http://www.mems-exchange.org/software/durus/">Durus</a> database.</p>
+<pre class="literal-block">DurusSessionStore(durus_connection)</pre>
 </dd>
-<dt><a class="reference" href="epydoc-html/session2.store.MySQLSessionStore.MySQLSessionStore-class.html">MySQLSessionStore</a></dt>
-<dd><p class="first">Store sessions in a <a class="reference" href="http://mysql.org/">MySQL</a> database.</p>
-<pre class="last literal-block">
-MySQLSessionStore(mysql_connection, table='sessions')
-</pre>
+<dt>MySQLSessionStore</dt>
+<dd><p>Store sessions in a <a class="reference external" href="http://mysql.org/">MySQL</a> database.</p>
+<pre class="literal-block">MySQLSessionStore(mysql_connection, table='sessions')</pre>
 </dd>
-<dt><a class="reference" href="epydoc-html/session2.store.PostgresSessionStore.PostgresSessionStore-class.html">PostgresSessionStore</a></dt>
-<dd><p class="first">Store sessions in a <a class="reference" href="http://postgresql.org/">PostgreSQL</a> database.</p>
-<pre class="last literal-block">
-PostgresSessionStore(psycopg_connection)
-</pre>
+<dt>PostgresSessionStore</dt>
+<dd><p>Store sessions in a <a class="reference external" href="http://postgresql.org/">PostgreSQL</a> database.</p>
+<pre class="literal-block">PostgresSessionStore(psycopg_connection)</pre>
 </dd>
-<dt><a class="reference" href="epydoc-html/session2.store.ShelveSessionStore.ShelveSessionStore-class.html">ShelveSessionStore</a></dt>
-<dd><p class="first">Store sessions in a DBM database using <tt class="docutils literal"><span class="pre">shelve</span></tt>.</p>
-<pre class="last literal-block">
-ShelveSessionStore(filename)
-</pre>
+<dt>ShelveSessionStore</dt>
+<dd><p>Store sessions in a DBM database using <span class="docutils literal">shelve</span>.</p>
+<pre class="literal-block">ShelveSessionStore(filename)</pre>
 </dd>
 </dl>
-<p>This package includes a refactored SessionManager that makes it easy to develop
-additional back ends, and a simplified Session class (no .is_dirty method).
-It supports the usual <tt class="docutils literal"><span class="pre">.user</span></tt>, <tt class="docutils literal"><span class="pre">.set_user()</span></tt> and <tt class="docutils literal"><span class="pre">.has_info()</span></tt>
+<p>This package includes a refactored <a class="reference external" href="epydoc-html/session2.SessionManager.SessionManager-class.html#__init__">SessionManager</a> that makes it easy to develop
+additional back ends, and a simplified Session class (no <span class="docutils literal">.is_dirty</span> method).
+It supports the usual <span class="docutils literal">.user</span>, <span class="docutils literal">.set_user()</span> and <span class="docutils literal">.has_info()</span>
 attributes, and you can also set your own attributes which will be saved.
-There's also a DictSession subclass for those who prefer setting keys rather
-than attributes <a class="footnote-reference" href="#id2" id="id1" name="id1">[1]</a>.</p>
-<p>It's quite likely that the session stores can be adapted for use with other
-Web frameworks; let us know if you do this so we can link to you and/or
+There’s also a DictSession subclass for those who prefer setting keys rather
+than attributes<a class="footnote-reference superscript" href="#dict-note" id="id2">2</a>. Note that this version (3.0) will only work with Quixote 3.0 as
+the next version of Quixote has (or will have) a BaseSessionManager class.</p>
+<p>It’s quite likely that the session stores can be adapted for use with other
+Web frameworks; let us know if you do this so we can link to you and / or
 include helpful code in our package.</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1" name="id2">[1]</a></td><td>DictSession is especially useful for applications that may want
-to use <a class="reference" href="http://pythonpaste.org/">Paste</a>'s session middleware in the future, because it is dict-based.
-However, the migration for <tt class="docutils literal"><span class="pre">.user</span></tt> and <tt class="docutils literal"><span class="pre">.set_user()</span></tt> is not yet clear.</td></tr>
-</tbody>
-</table>
+<div class="section" id="changes-from-session2">
+<h2><a class="toc-backref" href="#id6">Changes from Session2</a></h2>
+<p>Since <a class="reference external" href="http://quixote.idyll.org/session2/">Session2</a> was released a number of packages that were referred to in the documentation (and the source)
+have either ceased to exist or moved into maintenance mode and Session3 itself is solely for Python 3.</p>
+<blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nose.readthedocs.io/en/latest/">Nose</a> is in maintenance mode</p></li>
+<li><p>The web-site for <a class="reference external" href="https://pypi.org/project/twill/">Twill</a> has disappeared. Existing Twill code appears to be Python 2 only</p></li>
+</ul>
+</blockquote>
 </div>
-<div class="section" id="getting-session2">
-<h1><a class="toc-backref" href="#id4" name="getting-session2">Getting session2</a></h1>
+</div>
+<div class="section" id="getting-session3">
+<h1><a class="toc-backref" href="#id7">Getting Session3</a></h1>
 <p>Download the latest version here:
-<a class="reference" href="http://quixote.idyll.org/session2/session2-0.6.tar.gz">http://quixote.idyll.org/session2/session2-0.6.tar.gz</a></p>
-<p>Source code browser: <a class="reference" href="http://cafepy.com/quixote_extras/titus/session2/">http://cafepy.com/quixote_extras/titus/session2/</a></p>
-<p>You can also <a class="reference" href="http://cafepy.com/quixote_extras/README">grab it directly via subversion</a>.</p>
+##http://quixote.idyll.org/session2/session2-0.6.tar.gz</p>
 <div class="section" id="installation">
-<h2><a class="toc-backref" href="#id5" name="installation">Installation</a></h2>
-<p>Unpack the tar.gz file, and install the normal Python way (&quot;python
-setup.py install&quot;).  You can also just put the 'session2' subdirectory
+<h2><a class="toc-backref" href="#id8">Installation</a></h2>
+<p>Unpack the tar.gz file, and install the normal Python way (<cite>python3
+setup.py install</cite>).  ##You can also just put the ‘session2’ subdirectory
 in your Python path.</p>
 </div>
-<div class="section" id="upgrading">
-<h2><a class="toc-backref" href="#id6" name="upgrading">Upgrading</a></h2>
-<p>The MySQL database format changed in 0.4.  Users should convert the 'pickle'
+<div class="section" id="documentation">
+<h2><a class="toc-backref" href="#id9">Documentation</a></h2>
+<p><a class="reference external" href="./docpdoc/session3/index.html">API documentation</a> is available as is <a class="reference external" href="./pyccdocs/index.html">Literate Programming documentation</a></p>
+</div>
+<div class="section" id="upgrading-mysql">
+<h2><a class="toc-backref" href="#id10">Upgrading MySQL</a></h2>
+<p>The MySQL database format changed in 0.4.  Users should convert the ‘pickle’
 column to type BLOB, or delete the table and recreate it.</p>
 </div>
 </div>
-<div class="section" id="using-session2">
-<h1><a class="toc-backref" href="#id7" name="using-session2">Using session2</a></h1>
+<div class="section" id="using-session3">
+<h1><a class="toc-backref" href="#id11">Using session3</a></h1>
 <p>In your <cite>create_publisher</cite> function, place the following code:</p>
-<pre class="literal-block">
-# create the session store.
+<pre class="literal-block"># create the session store.
 from session2.store.VolatileSessionStore import VolatileSessionStore
 store = VolatileSessionStore()
 
@@ -145,42 +715,36 @@ session_manager = SessionManager(store)
 
 # create the publisher.
 from quixote.publish import Publisher
-publisher = Publisher(..., session_manager.session_manager)
-</pre>
+publisher = Publisher(..., session_manager.session_manager)</pre>
 <p>Each session store has different initialization requirements; see
-the <a class="reference" href="./epydoc-html/session2-module.html">source documentation</a> for more information.</p>
+the <a class="reference external" href="./docpdoc/session3/index.html">API documentation</a> or the <a class="reference external" href="./pyccdocs/index.html">literate programming documentation</a> for more information.</p>
 <p>To use an alternate session class:</p>
-<pre class="literal-block">
-from session2.DictSession import DictSession
-session_manager = SessionManager(store, DictSession)
-</pre>
+<pre class="literal-block">from session2.DictSession import DictSession
+session_manager = SessionManager(store, DictSession)</pre>
 <div class="section" id="using-mysql">
-<h2><a class="toc-backref" href="#id8" name="using-mysql">Using MySQL</a></h2>
-<pre class="literal-block">
-import MySQLdb
+<h2><a class="toc-backref" href="#id12">Using MySQL</a></h2>
+<pre class="literal-block">import MySQLdb
 from session2.store.MySQLSessionStore import MySQLSessionStore
 from session2.SessionManager import SessionManager
 from quixote.publish import Publisher
 conn = MySQLdb.connect(user='USER', passwd='PASSWORD', db='DB')
 store = MySQLSessionStore(conn, table='sessions')
 session_manager = SessionManager(store)
-publisher = Publisher(MyDirectory(), session_manager=session_manager)
-</pre>
+publisher = Publisher(MyDirectory(), session_manager=session_manager)</pre>
 </div>
 <div class="section" id="customizing-the-user-member">
-<h2><a class="toc-backref" href="#id9" name="customizing-the-user-member">Customizing the 'user' member</a></h2>
+<h2><a class="toc-backref" href="#id13">Customizing the ‘user’ member</a></h2>
 <p>The session2 code is fairly flexible.  You can assign anything pickle-able
-to the 'Session.user' variable, and it will work with any of the session
+to the ‘Session.user’ variable, and it will work with any of the session
 stores.  This lets you use almost any Python class for user information.</p>
 <p>However, you might want your session store to be independent from your
 primary database.  If your user information is stored in this
-database, but your session information is not, then you probably don't
+database, but your session information is not, then you probably don’t
 want to store pickled user objects in your session store.</p>
-<p>All of this is the long way to say that there's no reason for you to
+<p>All of this is the long way to say that there’s no reason for you to
 store your entire user object within the session store.  You can easily
-write an application-specific wrapper around the 'user' member of Session:</p>
-<pre class="literal-block">
-class MySessionWrapper(Session):
+write an application-specific wrapper around the ‘user’ member of Session:</p>
+<pre class="literal-block">class MySessionWrapper(Session):
    &quot;&quot;&quot;Store only your user's database ID in the user variable.&quot;&quot;&quot;
    def set_user(self, user):
       self.user = user.db_id
@@ -189,95 +753,117 @@ class MySessionWrapper(Session):
       if self.user is None:   # user not set
          return None
 
-      return database.load_user(self.user)
-</pre>
+      return database.load_user(self.user)</pre>
 <p>(Remember to pass the new session class in as the second argument to your
-<a class="reference" href="epydoc-html/session2.SessionManager.SessionManager-class.html#__init__">SessionManager</a> instance!)</p>
+<a class="reference external" href="epydoc-html/session2.SessionManager.SessionManager-class.html#__init__">SessionManager</a> instance!)</p>
 </div>
 </div>
 <div class="section" id="features">
-<h1><a class="toc-backref" href="#id10" name="features">Features</a></h1>
+<h1><a class="toc-backref" href="#id14">Features</a></h1>
 <p>All session stores have the following methods, which are called by the session
-manager: <tt class="docutils literal"><span class="pre">.load_session</span></tt>, <tt class="docutils literal"><span class="pre">.save_session</span></tt>, <tt class="docutils literal"><span class="pre">.delete_session</span></tt>,
-<tt class="docutils literal"><span class="pre">.has_session</span></tt>.</p>
-<p>They also have these convenience methods:</p>
-<p><tt class="docutils literal"><span class="pre">.setup()</span></tt>: initializes the store.  For MySQL and PostgreSQL, this
-creates the table.  This is meant to be called in your application
+manager:-</p>
+<p><span class="docutils literal">.load_session</span>, <span class="docutils literal">.save_session</span>, <span class="docutils literal">.delete_session</span>,
+<span class="docutils literal">.has_session</span>.</p>
+<p>They also have these convenience methods:-</p>
+<dl class="simple">
+<dt><span class="docutils literal">.setup()</span>:</dt>
+<dd><p>initializes the store.  For MySQL and PostgreSQL, this creates the table.
+This is meant to be called in your application
 setup code when you deploy it on a new server.</p>
-<p><tt class="docutils literal"><span class="pre">.delete_old_sessions(minutes)</span></tt>: deletes sessions that haven't been modified
-for N minutes.  This is meant for your application maintenance program; e.g.,
+</dd>
+<dt><span class="docutils literal">.delete_old_sessions(minutes)</span>:</dt>
+<dd><p>deletes sessions that haven’t been modified for N minutes.
+This is meant for your application maintenance program; e.g.,
 a daily cron job.  Only MySQLSessionStore actually deletes the sessions at
-this point; it's a no-op for the others.</p>
-<p><tt class="docutils literal"><span class="pre">.iter_sessions()</span></tt>: Return an iterable of (id, session) for all sessions
+this point; it’s a no-op for the others.</p>
+</dd>
+<dt><span class="docutils literal">.iter_sessions()</span>:</dt>
+<dd><p>Return an iterable of (id, session) for all sessions
 in the store.  This is for admin applications that want to browse the sessions.
 Only MySQLSessionStore currently implements this; the others raise
 NotImplementedError.</p>
-<p>All stores have <tt class="docutils literal"><span class="pre">.is_multiprocess_safe</span></tt> and <tt class="docutils literal"><span class="pre">.is_thread_safe</span></tt> attributes.
+</dd>
+</dl>
+<p>All stores have <span class="docutils literal">.is_multiprocess_safe</span> and <span class="docutils literal">.is_thread_safe</span> attributes.
 An application can check these flags and abort if configured inappropriately.
-The flags are defined as follows:</p>
+The flags are defined as follows:-</p>
 <ul class="simple">
-<li>DirectorySessionStore is multiprocess safe because it uses <tt class="docutils literal"><span class="pre">fcntl</span></tt> file
+<li><p>DirectorySessionStore is multiprocess safe because it uses <span class="docutils literal">fcntl</span> file
 locking.  This limits its use to POSIX.  See the fcntl caution below.  It may
 be thread safe because it always locks-unlocks within the same method, but we
-don't know for sure so the attribute is false.</li>
-<li>DurusSessionStore is multiprocess safe.  It's not thread safe because Durus
-isn't.  With synchronization (see <tt class="docutils literal"><span class="pre">thread.allocate_lock</span></tt>) a subclass could
-be made safe, maybe.</li>
-<li>The two SQL session stores (MySQLSessionStore and
+don’t know for sure so the attribute is false.<a class="footnote-reference superscript" href="#limited" id="id3">1</a></p></li>
+<li><p>DurusSessionStore is multiprocess safe.  It’s not thread safe because Durus
+isn’t.  With synchronization (see <span class="docutils literal">thread.allocate_lock</span>) a subclass could
+be made safe, maybe.</p></li>
+<li><p>The two SQL session stores (MySQLSessionStore and
 PostgresSessionStore) are multiprocess safe.  They are not thread
 safe because each connection is per-process.  A subclass could use
-thread-specific connections or a connection pool.</li>
-<li>ShelveSessionStore is <em>not</em> multiprocess safe because it doesn't do file
-locking.  See the &quot;Restrictions&quot; section for the <tt class="docutils literal"><span class="pre">shelve</span></tt> module in the
-Python Library Reference.  It's not thread safe for the same reason.  If you
-think about using <tt class="docutils literal"><span class="pre">fcntl</span></tt> in a subclass, see the fcntl caution below.</li>
+thread-specific connections or a connection pool.</p></li>
+<li><p>ShelveSessionStore is <em>not</em> multiprocess safe because it doesn’t do file
+locking.  See the ‘Restrictions’ section for the <span class="docutils literal">shelve</span> module in the
+Python Library Reference.  It’s not thread safe for the same reason.  If you
+think about using <span class="docutils literal">fcntl</span> in a subclass, see the <a class="reference internal" href="#fcntl-caution">fcntl caution</a> below.</p></li>
 </ul>
 <div class="section" id="setup-store-py">
-<h2><a class="toc-backref" href="#id11" name="setup-store-py">setup-store.py</a></h2>
-<p>This is a command-line interface to the <tt class="docutils literal"><span class="pre">.setup()</span></tt> method.  It currently
-supports MySQL and PostgreSQL/psycopg with the following syntax:</p>
-<pre class="literal-block">
-$ setup-store.py mysql HOST USER PASSWORD DATABASE [TABLE]
+<h2><a class="toc-backref" href="#id15">setup-store.py</a></h2>
+<p>This is a command-line interface to the <span class="docutils literal">.setup()</span> method.  It currently
+supports MySQL and PostgreSQL / psycopg with the following syntax:</p>
+<pre class="literal-block">$ setup-store.py mysql HOST USER PASSWORD DATABASE [TABLE]
 $ setup-store.py mysql '' joe sEcReT test
-$ setup-store.py mysql '' joe sEcReT test Session
-</pre>
-<p>The table name defaults to 'sessions'.  All stores except PostgreSQL
+$ setup-store.py mysql '' joe sEcReT test Session</pre>
+<p>The table name defaults to ‘sessions’.  All stores except PostgreSQL
 automatically create themselves when instantiated, but this command is
-useful if the application won't have permission to create the store.</p>
-<p>This command is not installed by <tt class="docutils literal"><span class="pre">setup.py</span></tt>; it's available only in the
-application source.  It's not used frequently enough to warrant installation.</p>
+useful if the application won’t have permission to create the store.</p>
+<p>This command is not installed by <span class="docutils literal">setup.py</span>; it’s available only in the
+application source.  It’s not used frequently enough to warrant installation.</p>
 </div>
 <div class="section" id="interactive-testing">
-<h2><a class="toc-backref" href="#id12" name="interactive-testing">Interactive Testing</a></h2>
+<h2><a class="toc-backref" href="#id16">Interactive Testing</a></h2>
 <p>session2 comes with two ways to test it: an interactive web application, and
-<a class="reference" href="http://somethingaboutorange.com/mrl/projects/nose/">nose</a>-based unit tests that require <a class="reference" href="http://www.idyll.org/~t/www-tools/twill.html">twill</a>.</p>
-<p>To run the unit tests, run <tt class="docutils literal"><span class="pre">nosetests</span></tt>.</p>
+<a class="reference external" href="https://nose.readthedocs.io/en/latest/">nose</a>-based unit tests that require <a class="reference external" href="https://pypi.org/project/twill/">twill</a>.</p>
+<p>To run the unit tests, run <span class="docutils literal">nosetests</span>.</p>
 <p>To run the web demo, cd to the <strong>test/</strong> directory in the application
 source and run one of:</p>
-<pre class="literal-block">
-$ test_session2.py directory
+<pre class="literal-block">$ test_session2.py directory
 $ test_session2.py durus
 $ test_session2.py mysql
 $ test_session2.py psycopg
-$ test_session2.py shelve
-</pre>
+$ test_session2.py shelve</pre>
 <p>Point your web browser to <strong>http://localhost:8080/</strong> and play around.
-You can use '--host=hostname' and <tt class="docutils literal"><span class="pre">--port=N</span></tt> to bind to a different hostname
+You can use <span class="docutils literal"><span class="pre">--host=hostname</span></span> and <span class="docutils literal"><span class="pre">--port=N</span></span> to bind to a different hostname
 or port.</p>
 <p>Press ctrl-C to quit the demo (or command-C on the Mac, or ctrl-Break on
 Windows).</p>
 <p>See the module source for the filenames, databases, and tables it
-uses.  Note that you'll have to create the PostgreSQL table yourself
-using 'setup-store.py'.</p>
+uses.  Note that you’ll have to create the PostgreSQL table yourself
+using ‘setup-store.py’.</p>
 </div>
 <div class="section" id="fcntl-caution">
-<h2><a class="toc-backref" href="#id13" name="fcntl-caution"><tt class="docutils literal"><span class="pre">fcntl</span></tt> Caution</a></h2>
-<p>On Mac OS X when using PTL, import <tt class="docutils literal"><span class="pre">fcntl</span></tt> <em>before</em> enabling PTL.
+<h2><a class="toc-backref" href="#id17"><span class="docutils literal">fcntl</span> Caution</a></h2>
+<p>On Mac OS X when using PTL, import <span class="docutils literal">fcntl</span> <em>before</em> enabling PTL.
 Otherwise the import hook may load the deprecated FCNTL.py instead due to
-the Mac's case-insensitive filesystem, which will cause errors down the road.
-This is supposedly fixed in Python 2.4, which doesn't have FCNTL.py.</p>
+the Mac’s case-insensitive filesystem, which will cause errors down the road.
+This is supposedly fixed in Python 2.4, which doesn’t have FCNTL.py.</p>
+<hr class="docutils" />
+<dl class="footnote superscript">
+<dt class="label" id="limited"><span class="superscript">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
+<dd><p>Note that only <a class="reference external" href="epydoc-html/session2.store.DirectorySessionStore.DirectorySessionStore-class.html">DirectorySessionStore</a> is working for version 3.0</p>
+</dd>
+<dt class="label" id="dict-note"><span class="superscript"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>DictSession is especially useful for applications that may want
+to use <a class="reference external" href="https://github.com/cdent/paste/">Paste</a>’s session middleware in the future, because it is dict-based.
+However, the migration for <span class="docutils literal">.user</span> and <span class="docutils literal">.set_user()</span> is not yet clear.</p>
+</dd>
+</dl>
 </div>
 </div>
+</div>
+<div class="footer">
+<hr class="footer" />
+<p>Generated on: 2019-01-10 16:52 UTC.
+Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
+</p>
+
 </div>
 </body>
 </html>
