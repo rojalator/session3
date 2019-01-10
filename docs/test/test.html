@@ -23,7 +23,7 @@
  * cleanup files after running tests</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">require</span></pre></div>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">require</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -35,7 +35,7 @@
       <p>require(&lsquo;quixote &gt;= 2.3&rsquo;)</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="n">require</span><span class="p">(</span><span class="s1">&#39;twill &gt;= 0.8.2a3&#39;</span><span class="p">)</span>
+      <div class="highlight"><pre><span class="n">require</span><span class="p">(</span><span class="s">&#39;twill &gt;= 0.8.2a3&#39;</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">utils</span><span class="o">,</span> <span class="nn">test_session2</span>
@@ -69,12 +69,12 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
 
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_err</span>
     
@@ -107,12 +107,12 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
         
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_err</span>
     
@@ -145,12 +145,12 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
 
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
-        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_err</span>
     
@@ -188,12 +188,12 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
 
-            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
-            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
-            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
-            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
-            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
-            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_err</span>
 

@@ -20,7 +20,7 @@
       <p>utilities for running twill-based unit tests.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">wsgi_server</span> <span class="kn">import</span> <span class="n">QWIP</span>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">wsgi_server</span> <span class="kn">import</span> <span class="n">QWIP</span>
 <span class="kn">from</span> <span class="nn">twill.wsgi_intercept</span> <span class="kn">import</span> <span class="n">add_wsgi_intercept</span><span class="p">,</span> <span class="n">remove_wsgi_intercept</span>
 <span class="kn">from</span> <span class="nn">quixote</span> <span class="kn">import</span> <span class="n">publish</span></pre></div>
     </div>
@@ -38,7 +38,7 @@ handler for twill Web calls.</p>
 should be intercepted.  Defaults to &lsquo;localhost&rsquo;, 8080.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">setup_wsgi_intercept</span><span class="p">(</span><span class="n">create_publisher_fn</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">setup_wsgi_intercept</span><span class="p">(</span><span class="n">create_publisher_fn</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -52,7 +52,7 @@ should be intercepted.  Defaults to &lsquo;localhost&rsquo;, 8080.</p>
     <div class='code'>
       <div class="highlight"><pre>    <span class="n">publish</span><span class="o">.</span><span class="n">_publisher</span> <span class="o">=</span> <span class="bp">None</span>
     
-    <span class="n">_cached_app</span> <span class="o">=</span> <span class="p">{}</span>                    <span class="c1"># for persistence reasons, use object</span></pre></div>
+    <span class="n">_cached_app</span> <span class="o">=</span> <span class="p">{}</span>                    <span class="c"># for persistence reasons, use object</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -68,9 +68,9 @@ should be intercepted.  Defaults to &lsquo;localhost&rsquo;, 8080.</p>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">_cached_app</span><span class="p">:</span>
             <span class="n">publisher</span> <span class="o">=</span> <span class="n">create_publisher_fn</span><span class="p">()</span>
             <span class="n">wsgi_app</span> <span class="o">=</span> <span class="n">QWIP</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
-            <span class="n">_cached_app</span><span class="p">[</span><span class="s1">&#39;app&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wsgi_app</span>
+            <span class="n">_cached_app</span><span class="p">[</span><span class="s">&#39;app&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wsgi_app</span>
 
-        <span class="k">return</span> <span class="n">_cached_app</span><span class="p">[</span><span class="s1">&#39;app&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">_cached_app</span><span class="p">[</span><span class="s">&#39;app&#39;</span><span class="p">]</span>
 
     <span class="n">add_wsgi_intercept</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">create_app</span><span class="p">)</span></pre></div>
     </div>
@@ -84,7 +84,7 @@ should be intercepted.  Defaults to &lsquo;localhost&rsquo;, 8080.</p>
       <p>Uninstall the WSGI intercept handler.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">teardown_wsgi_intercept</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">teardown_wsgi_intercept</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
