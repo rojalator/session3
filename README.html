@@ -584,94 +584,55 @@ a { text-decoration: none; }
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#to-do-for-this-documentation" id="id4">TO-DO for this documentation</a></p></li>
 <li><p><a class="reference internal" href="#introduction" id="id5">Introduction</a></p>
 <ul>
 <li><p><a class="reference internal" href="#changes-from-session2" id="id6">Changes from Session2</a></p></li>
+<li><p><a class="reference internal" href="#road-map" id="id7">Road-map</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#getting-session3" id="id7">Getting Session3</a></p>
+<li><p><a class="reference internal" href="#getting-session3" id="id8">Getting Session3</a></p>
 <ul>
-<li><p><a class="reference internal" href="#installation" id="id8">Installation</a></p></li>
-<li><p><a class="reference internal" href="#documentation" id="id9">Documentation</a></p></li>
-<li><p><a class="reference internal" href="#upgrading-mysql" id="id10">Upgrading MySQL</a></p></li>
+<li><p><a class="reference internal" href="#installation" id="id9">Installation</a></p></li>
+<li><p><a class="reference internal" href="#documentation" id="id10">Documentation</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#using-session3" id="id11">Using session3</a></p>
+<li><p><a class="reference internal" href="#using-session3" id="id11">Using session3</a></p></li>
+<li><p><a class="reference internal" href="#features" id="id12">Features</a></p>
 <ul>
-<li><p><a class="reference internal" href="#using-mysql" id="id12">Using MySQL</a></p></li>
-<li><p><a class="reference internal" href="#customizing-the-user-member" id="id13">Customizing the ‘user’ member</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#features" id="id14">Features</a></p>
-<ul>
-<li><p><a class="reference internal" href="#setup-store-py" id="id15">setup-store.py</a></p></li>
-<li><p><a class="reference internal" href="#interactive-testing" id="id16">Interactive Testing</a></p></li>
-<li><p><a class="reference internal" href="#fcntl-caution" id="id17"><span class="docutils literal">fcntl</span> Caution</a></p></li>
+<li><p><a class="reference internal" href="#interactive-testing" id="id13">Interactive Testing</a></p></li>
+<li><p><a class="reference internal" href="#fcntl-caution" id="id14"><span class="docutils literal">fcntl</span> Caution</a></p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="to-do-for-this-documentation">
-<h2><a class="toc-backref" href="#id4">TO-DO for this documentation</a></h2>
-<p>The following needs to be done before release (it might also be useful to remove the relevant code
-from the auto-generated documentation: however, if someone else decides to help, they’ll need the
-code and references):-</p>
-<blockquote>
-<ul class="simple">
-<li><p>Formalize the location of the two types of documentation — where are the docs installed?</p></li>
-<li><p>Remove references (or hide them) for the non-functioning back-ends.</p></li>
-<li><p>Remove references to now discontinued packages (twill, nose, etc.)</p></li>
-<li><p>Check the <a class="reference internal" href="#upgrading-mysql">Upgrading MySQL</a> section</p></li>
-<li><p>Check the example code in <a class="reference internal" href="#using-session3">Using Session3</a></p></li>
-</ul>
-</blockquote>
 </div>
 <div class="section" id="introduction">
-<h2><a class="toc-backref" href="#id5">Introduction</a></h2>
+<h1><a class="toc-backref" href="#id5">Introduction</a></h1>
 <p><a class="reference external" href="http://quixote.ca/">Quixote</a> is a Python Web application framework.  It comes with an
 in-memory session manager, which works but is incompatible with
 multi-process servers (SCGI, CGI, etc).  It also forgets the sessions
 when the Publisher quits.  <cite>Session3</cite> solves these problems by
 providing a new session manager class and a simple back-end storage
 API. Session3 is based upon the previous <a class="reference external" href="http://quixote.idyll.org/session2/">Session2</a> code (for, unsurprisingly,
-Quixote 2)</p>
-<p><cite>Session3</cite> also provides several (fully functional)<a class="footnote-reference superscript" href="#limited" id="id1">1</a> persistent storage back-ends:-</p>
+Quixote 2).</p>
 <dl>
-<dt><a class="reference external" href="epydoc-html/session2.store.DirectorySessionStore.DirectorySessionStore-class.html">DirectorySessionStore</a></dt>
+<dt><cite>Session3</cite> version 3.0.0 provides a fully functional<a class="footnote-reference superscript" href="#limited" id="id1">1</a> persistent storage</dt>
+<dd><p>back-end for use with Quixote 3.0.0 (also see <a class="reference internal" href="#road-map">Road-map</a> below, for later version notes):-</p>
+</dd>
+<dt><a class="reference external" href="docs/session3/store/DirectorySessionStore.m.html">DirectorySessionStore</a></dt>
 <dd><p>Store each pickled session in a file in the designated directory.  The
 filename is the session ID.  Uses <span class="docutils literal">fcntl</span> file locking.</p>
 <pre class="literal-block">DirectorySessionStore(directory)</pre>
 </dd>
-<dt>DurusSessionStore</dt>
-<dd><p>Store sessions in a <a class="reference external" href="http://www.mems-exchange.org/software/durus/">Durus</a> database.</p>
-<pre class="literal-block">DurusSessionStore(durus_connection)</pre>
-</dd>
-<dt>MySQLSessionStore</dt>
-<dd><p>Store sessions in a <a class="reference external" href="http://mysql.org/">MySQL</a> database.</p>
-<pre class="literal-block">MySQLSessionStore(mysql_connection, table='sessions')</pre>
-</dd>
-<dt>PostgresSessionStore</dt>
-<dd><p>Store sessions in a <a class="reference external" href="http://postgresql.org/">PostgreSQL</a> database.</p>
-<pre class="literal-block">PostgresSessionStore(psycopg_connection)</pre>
-</dd>
-<dt>ShelveSessionStore</dt>
-<dd><p>Store sessions in a DBM database using <span class="docutils literal">shelve</span>.</p>
-<pre class="literal-block">ShelveSessionStore(filename)</pre>
-</dd>
 </dl>
-<p>This package includes a refactored <a class="reference external" href="epydoc-html/session2.SessionManager.SessionManager-class.html#__init__">SessionManager</a> that makes it easy to develop
+<p>This package includes a refactored <a class="reference external" href="docs/session3/SessionManager.m.html">SessionManager</a> that makes it easy to develop
 additional back ends, and a simplified Session class (no <span class="docutils literal">.is_dirty</span> method).
 It supports the usual <span class="docutils literal">.user</span>, <span class="docutils literal">.set_user()</span> and <span class="docutils literal">.has_info()</span>
-attributes, and you can also set your own attributes which will be saved.
-There’s also a DictSession subclass for those who prefer setting keys rather
-than attributes<a class="footnote-reference superscript" href="#dict-note" id="id2">2</a>. Note that this version (3.0) will only work with Quixote 3.0 as
-the next version of Quixote has (or will have) a BaseSessionManager class.</p>
+attributes, and you can also set your own attributes which will be saved.</p>
 <p>It’s quite likely that the session stores can be adapted for use with other
 Web frameworks; let us know if you do this so we can link to you and / or
-include helpful code in our package.</p>
+include helpful code in the package.</p>
 <div class="section" id="changes-from-session2">
-<h3><a class="toc-backref" href="#id6">Changes from Session2</a></h3>
+<h2><a class="toc-backref" href="#id6">Changes from Session2</a></h2>
 <p>Since <a class="reference external" href="http://quixote.idyll.org/session2/">Session2</a> was released a number of packages that were referred to in the documentation (and the source)
 have either ceased to exist or moved into maintenance mode and Session3 itself is solely for Python 3.</p>
 <blockquote>
@@ -681,85 +642,52 @@ have either ceased to exist or moved into maintenance mode and Session3 itself i
 </ul>
 </blockquote>
 </div>
+<div class="section" id="road-map">
+<h2><a class="toc-backref" href="#id7">Road-map</a></h2>
+<p>Quixote (at time of writing - January 2019) is at version 3.0.0 and Session3 works with that
+(stable) version.</p>
+<p>Quixote 3.1.x has added BaseSessionManager and SessionStore classes requiring Session3
+to be updated (the new
+Session3 version-number will reflect the Quixote version it works with).</p>
+</div>
 </div>
 <div class="section" id="getting-session3">
-<h2><a class="toc-backref" href="#id7">Getting Session3</a></h2>
+<h1><a class="toc-backref" href="#id8">Getting Session3</a></h1>
 <p>Download the latest version here:
 ##http://quixote.idyll.org/session2/session2-0.6.tar.gz</p>
 <div class="section" id="installation">
-<h3><a class="toc-backref" href="#id8">Installation</a></h3>
-<p>Unpack the tar.gz file, and install the normal Python way (<cite>python3
-setup.py install</cite>).  ##You can also just put the ‘session2’ subdirectory
-in your Python path.</p>
+<h2><a class="toc-backref" href="#id9">Installation</a></h2>
+<p>Session3 can be installed via pip (<span class="docutils literal">pip3 install session3</span>).
+Alternatively (or if you also want the documentation) download and unpack
+the tar.gz file, and install the normal Python way (<span class="docutils literal">python3 setup.py install</span>). Note that Session3 requires Quixote 3.0.0 — this
+is also available in pip.</p>
 </div>
 <div class="section" id="documentation">
-<h3><a class="toc-backref" href="#id9">Documentation</a></h3>
-<p><a class="reference external" href="./docpdoc/session3/index.html">API documentation</a> is available as is <a class="reference external" href="./pyccdocs/index.html">Literate Programming documentation</a></p>
-</div>
-<div class="section" id="upgrading-mysql">
-<h3><a class="toc-backref" href="#id10">Upgrading MySQL</a></h3>
-<p>The MySQL database format changed in 0.4.  Users should convert the ‘pickle’
-column to type BLOB, or delete the table and recreate it.</p>
+<h2><a class="toc-backref" href="#id10">Documentation</a></h2>
+<p><a class="reference external" href="./docpdoc/session3/index.html">API documentation</a> is available as is <a class="reference external" href="./pyccdocs/index.html">Literate Programming documentation</a> —
+you’ll need to extract it from the tar.gz file.</p>
 </div>
 </div>
 <div class="section" id="using-session3">
-<h2><a class="toc-backref" href="#id11">Using session3</a></h2>
-<p>In your <cite>create_publisher</cite> function, place the following code:</p>
+<h1><a class="toc-backref" href="#id11">Using session3</a></h1>
+<p>You need a <em>store</em>, a <em>manager</em> and then you need to tell Quixote’s
+publisher to use them both: in your <cite>create_publisher</cite> function, place the following code:</p>
 <pre class="literal-block"># create the session store.
-from session2.store.VolatileSessionStore import VolatileSessionStore
-store = VolatileSessionStore()
+from session3.store.DirectorySessionStore import DirectorySessionStore
+from session3.SessionManager import SessionManager
 
 # create the session manager.
-from session2.SessionManager import SessionManager
+store = DirectorySessionStore(path.expanduser(some_location), create=True)
 session_manager = SessionManager(store)
 
 # create the publisher.
 from quixote.publish import Publisher
 publisher = Publisher(..., session_manager.session_manager)</pre>
-<p>Each session store has different initialization requirements; see
+<p>Each session store has different initialization requirements:<a class="footnote-reference superscript" href="#limited" id="id2">1</a> see
 the <a class="reference external" href="./docpdoc/session3/index.html">API documentation</a> or the <a class="reference external" href="./pyccdocs/index.html">literate programming documentation</a> for more information.</p>
-<p>To use an alternate session class:</p>
-<pre class="literal-block">from session2.DictSession import DictSession
-session_manager = SessionManager(store, DictSession)</pre>
-<div class="section" id="using-mysql">
-<h3><a class="toc-backref" href="#id12">Using MySQL</a></h3>
-<pre class="literal-block">import MySQLdb
-from session2.store.MySQLSessionStore import MySQLSessionStore
-from session2.SessionManager import SessionManager
-from quixote.publish import Publisher
-conn = MySQLdb.connect(user='USER', passwd='PASSWORD', db='DB')
-store = MySQLSessionStore(conn, table='sessions')
-session_manager = SessionManager(store)
-publisher = Publisher(MyDirectory(), session_manager=session_manager)</pre>
-</div>
-<div class="section" id="customizing-the-user-member">
-<h3><a class="toc-backref" href="#id13">Customizing the ‘user’ member</a></h3>
-<p>The session2 code is fairly flexible.  You can assign anything pickle-able
-to the ‘Session.user’ variable, and it will work with any of the session
-stores.  This lets you use almost any Python class for user information.</p>
-<p>However, you might want your session store to be independent from your
-primary database.  If your user information is stored in this
-database, but your session information is not, then you probably don’t
-want to store pickled user objects in your session store.</p>
-<p>All of this is the long way to say that there’s no reason for you to
-store your entire user object within the session store.  You can easily
-write an application-specific wrapper around the ‘user’ member of Session:</p>
-<pre class="literal-block">class MySessionWrapper(Session):
-   &quot;&quot;&quot;Store only your user's database ID in the user variable.&quot;&quot;&quot;
-   def set_user(self, user):
-      self.user = user.db_id
-
-   def get_user(self):
-      if self.user is None:   # user not set
-         return None
-
-      return database.load_user(self.user)</pre>
-<p>(Remember to pass the new session class in as the second argument to your
-<a class="reference external" href="epydoc-html/session2.SessionManager.SessionManager-class.html#__init__">SessionManager</a> instance!)</p>
-</div>
 </div>
 <div class="section" id="features">
-<h2><a class="toc-backref" href="#id14">Features</a></h2>
+<h1><a class="toc-backref" href="#id12">Features</a></h1>
 <p>All session stores have the following methods, which are called by the session
 manager:-</p>
 <p><span class="docutils literal">.load_session</span>, <span class="docutils literal">.save_session</span>, <span class="docutils literal">.delete_session</span>,
@@ -767,21 +695,17 @@ manager:-</p>
 <p>They also have these convenience methods:-</p>
 <dl class="simple">
 <dt><span class="docutils literal">.setup()</span>:</dt>
-<dd><p>initializes the store.  For MySQL and PostgreSQL, this creates the table.
-This is meant to be called in your application
-setup code when you deploy it on a new server.</p>
+<dd><p>initializes the store.</p>
 </dd>
 <dt><span class="docutils literal">.delete_old_sessions(minutes)</span>:</dt>
 <dd><p>deletes sessions that haven’t been modified for N minutes.
 This is meant for your application maintenance program; e.g.,
-a daily cron job.  Only MySQLSessionStore actually deletes the sessions at
-this point; it’s a no-op for the others.</p>
+a daily cron job.</p>
 </dd>
 <dt><span class="docutils literal">.iter_sessions()</span>:</dt>
 <dd><p>Return an iterable of (id, session) for all sessions
 in the store.  This is for admin applications that want to browse the sessions.
-Only MySQLSessionStore currently implements this; the others raise
-NotImplementedError.</p>
+The DirectorySession will raise a <em>NotImplementedError</em><a class="footnote-reference superscript" href="#wasinsession2" id="id3">3</a>.</p>
 </dd>
 </dl>
 <p>All stores have <span class="docutils literal">.is_multiprocess_safe</span> and <span class="docutils literal">.is_thread_safe</span> attributes.
@@ -791,68 +715,37 @@ The flags are defined as follows:-</p>
 <li><p>DirectorySessionStore is multiprocess safe because it uses <span class="docutils literal">fcntl</span> file
 locking.  This limits its use to POSIX.  See the fcntl caution below.  It may
 be thread safe because it always locks-unlocks within the same method, but we
-don’t know for sure so the attribute is false.<a class="footnote-reference superscript" href="#limited" id="id3">1</a></p></li>
-<li><p>DurusSessionStore is multiprocess safe.  It’s not thread safe because Durus
-isn’t.  With synchronization (see <span class="docutils literal">thread.allocate_lock</span>) a subclass could
-be made safe, maybe.</p></li>
-<li><p>The two SQL session stores (MySQLSessionStore and
-PostgresSessionStore) are multiprocess safe.  They are not thread
-safe because each connection is per-process.  A subclass could use
-thread-specific connections or a connection pool.</p></li>
-<li><p>ShelveSessionStore is <em>not</em> multiprocess safe because it doesn’t do file
-locking.  See the ‘Restrictions’ section for the <span class="docutils literal">shelve</span> module in the
-Python Library Reference.  It’s not thread safe for the same reason.  If you
-think about using <span class="docutils literal">fcntl</span> in a subclass, see the <a class="reference internal" href="#fcntl-caution">fcntl caution</a> below.</p></li>
+don’t know for sure so the attribute is false.<a class="footnote-reference superscript" href="#limited" id="id4">1</a></p></li>
 </ul>
-<div class="section" id="setup-store-py">
-<h3><a class="toc-backref" href="#id15">setup-store.py</a></h3>
-<p>This is a command-line interface to the <span class="docutils literal">.setup()</span> method.  It currently
-supports MySQL and PostgreSQL / psycopg with the following syntax:</p>
-<pre class="literal-block">$ setup-store.py mysql HOST USER PASSWORD DATABASE [TABLE]
-$ setup-store.py mysql '' joe sEcReT test
-$ setup-store.py mysql '' joe sEcReT test Session</pre>
-<p>The table name defaults to ‘sessions’.  All stores except PostgreSQL
-automatically create themselves when instantiated, but this command is
-useful if the application won’t have permission to create the store.</p>
-<p>This command is not installed by <span class="docutils literal">setup.py</span>; it’s available only in the
-application source.  It’s not used frequently enough to warrant installation.</p>
-</div>
 <div class="section" id="interactive-testing">
-<h3><a class="toc-backref" href="#id16">Interactive Testing</a></h3>
-<p>session2 comes with two ways to test it: an interactive web application, and
-<a class="reference external" href="https://nose.readthedocs.io/en/latest/">nose</a>-based unit tests that require <a class="reference external" href="https://pypi.org/project/twill/">twill</a>.</p>
-<p>To run the unit tests, run <span class="docutils literal">nosetests</span>.</p>
-<p>To run the web demo, cd to the <strong>test/</strong> directory in the application
-source and run one of:</p>
-<pre class="literal-block">$ test_session2.py directory
-$ test_session2.py durus
-$ test_session2.py mysql
-$ test_session2.py psycopg
-$ test_session2.py shelve</pre>
-<p>Point your web browser to <strong>http://localhost:8080/</strong> and play around.
+<h2><a class="toc-backref" href="#id13">Interactive Testing</a></h2>
+<p>session3 comes with an interactive web test application. To run the web demo,
+cd to the <strong>test/</strong> directory in the application source and run:</p>
+<pre class="literal-block">$ test_session2.py directory</pre>
+<p>Point your web browser to <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a>  and play around.
 You can use <span class="docutils literal"><span class="pre">--host=hostname</span></span> and <span class="docutils literal"><span class="pre">--port=N</span></span> to bind to a different hostname
 or port.</p>
 <p>Press ctrl-C to quit the demo (or command-C on the Mac, or ctrl-Break on
 Windows).</p>
-<p>See the module source for the filenames, databases, and tables it
-uses.  Note that you’ll have to create the PostgreSQL table yourself
-using ‘setup-store.py’.</p>
 </div>
 <div class="section" id="fcntl-caution">
-<h3><a class="toc-backref" href="#id17"><span class="docutils literal">fcntl</span> Caution</a></h3>
+<h2><a class="toc-backref" href="#id14"><span class="docutils literal">fcntl</span> Caution</a></h2>
 <p>On Mac OS X when using PTL, import <span class="docutils literal">fcntl</span> <em>before</em> enabling PTL.
 Otherwise the import hook may load the deprecated FCNTL.py instead due to
 the Mac’s case-insensitive filesystem, which will cause errors down the road.
-This is supposedly fixed in Python 2.4, which doesn’t have FCNTL.py.</p>
+This was supposedly fixed in Python 2.4, which doesn’t have FCNTL.py.</p>
 <hr class="docutils" />
 <dl class="footnote superscript">
-<dt class="label" id="limited"><span class="superscript">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
-<dd><p>Note that only <a class="reference external" href="epydoc-html/session2.store.DirectorySessionStore.DirectorySessionStore-class.html">DirectorySessionStore</a> is working for version 3.0</p>
+<dt class="label" id="limited"><span class="superscript">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id4">3</a>)</span></dt>
+<dd><p>Note that only <a class="reference external" href="docs/session3/store/DirectorySessionStore.m.html">DirectorySessionStore</a> is working for version 3.0</p>
 </dd>
-<dt class="label" id="dict-note"><span class="superscript"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="label" id="dict-note"><span class="superscript">2</span></dt>
 <dd><p>DictSession is especially useful for applications that may want
 to use <a class="reference external" href="https://github.com/cdent/paste/">Paste</a>’s session middleware in the future, because it is dict-based.
 However, the migration for <span class="docutils literal">.user</span> and <span class="docutils literal">.set_user()</span> is not yet clear.</p>
+</dd>
+<dt class="label" id="wasinsession2"><span class="superscript"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>For the Session2 code, this <em>was</em> implemented but <em>only</em> for MySQL</p>
 </dd>
 </dl>
 </div>
@@ -860,7 +753,7 @@ However, the migration for <span class="docutils literal">.user</span> and <span
 </div>
 <div class="footer">
 <hr class="footer" />
-<p>Generated on: 2019-01-11 11:41 UTC.
+<p>Generated on: 2019-01-11 17:26 UTC.
 Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
 </p>
 
