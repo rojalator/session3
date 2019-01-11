@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>wsgi_server.py</title>
+  <link rel="stylesheet" href="../pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>wsgi_server.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>A WSGI wrapper for Quixote applications, and a standalone interface to two HTTP
+servers.</p>
+<p>To run the Quixote demos or your own application using the built-in
+synchronous HTTP server:</p>
+<pre><code>wsgi_server.py
+wsgi_server.py --factory=quixote.demo.altdemo.create_publisher
+wsgi_server.py --factory=quixote.demo.mini_demo.create_publisher
+wsgi_server.py --help              # Shows all options and defaults.
+</code></pre>
+<p>and point your browser to http://localhost:8080/ .  The &ndash;factory option names
+a function that returns a Publisher object configured for the desired
+application.  </p>
+<p>To use a multi-threaded HTTP server instead, add the &ndash;thread option.  The
+threaded server is from the &lsquo;wsgiutils&rsquo; package, which is available at 
+%s .</p>
+<p>To use your Quixote application with any WSGI server or middleware:</p>
+<pre><code>from quixote.server.wsgi_server import QWIP
+wsgi_application = QWIP(publisher)
+# 'publisher' is a quixote.publish.Publisher instance or compatible.
+</code></pre>
+<p>MULTITHREADING ISSUES:
+- The default Quixote Publisher is not thread safe.
+- To make a thread safe publisher, use ThreadedPublisher or
+  make_publisher_thread_safe() below.  See doc/multi-threaded.txt .
+- QWIP will refuse to connect a multi-threaded server to an unsafe publisher.
+  It assumes safe publishers have an .is_thread_safe attribute that is true.
+  The default Quixote Publisher does not have this attribute, so is presumed
+  unsafe.<br />
+- Even if the publisher is thread safe, your application code or its dependent
+  modules may not be.<br />
+- Your create_publisher function has the best knowledge of whether the
+  publisher-application combination it&rsquo;s returning is thread safe.  So please
+  set the publisher.is_thread_safe instance variable to the correct value
+  before returning, because the default value may be wrong.
+- ALL MULTITHREADING SUPPORT IN THIS MODULE IS EXPERIMENTAL AND SHOULD NOT BE
+  USED IN A PRODUCTION ENVIRONMENT WITHOUT THOROUGH TESTING!!!</p>
+<p>The synchronous server (WSGI_HTTPRequestHandler) is also experimental.</p>
+<p>Author: Mike Orr <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#115;&#111;&#64;&#111;&#122;&#46;&#110;&#101;&#116;">&#109;&#115;&#111;&#64;&#111;&#122;&#46;&#110;&#101;&#116;</a>.<br />
+Based on an earlier version of QWIP by Titus Brown <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#105;&#116;&#117;&#115;&#64;&#99;&#97;&#108;&#116;&#101;&#99;&#104;&#46;&#101;&#100;&#117;">&#116;&#105;&#116;&#117;&#115;&#64;&#99;&#97;&#108;&#116;&#101;&#99;&#104;&#46;&#101;&#100;&#117;</a>.
+Last updated 2005-05-18.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">BaseHTTPServer</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">thread</span><span class="o">,</span> <span class="nn">traceback</span><span class="o">,</span> <span class="nn">urlparse</span>
+<span class="kn">from</span> <span class="nn">quixote.http_request</span> <span class="kn">import</span> <span class="n">HTTPRequest</span>
+<span class="kn">from</span> <span class="nn">quixote.publish</span> <span class="kn">import</span> <span class="n">Publisher</span>
+<span class="kn">from</span> <span class="nn">quixote.server.util</span> <span class="kn">import</span> <span class="n">get_server_parser</span>
+<span class="kn">from</span> <span class="nn">quixote.util</span> <span class="kn">import</span> <span class="n">import_object</span>
+
+<span class="n">WSGIUTILS_URL</span> <span class="o">=</span> <span class="s2">&quot;http://www.owlfish.com/software/wsgiutils/&quot;</span>
+<span class="vm">__doc__</span> <span class="o">%=</span> <span class="n">WSGIUTILS_URL</span>
+
+<span class="n">MAIN_DOC</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Publish a Quixote application using QWIP/WSGI and a synchronous or </span>
+<span class="s2">multi-threaded HTTP server.&quot;&quot;&quot;</span>
+
+<span class="n">THREAD_HELP</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Use a multi-threaded server and hack the Publisher to make it thread safe.</span>
+<span class="s2">Depends on &#39;wsgiutils&#39; package from </span><span class="si">%s</span><span class="s2"> .&quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">WSGIUTILS_URL</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <h5>QWIP: WSGI COMPATIBILITY WRAPPER FOR QUIXOTE</h5>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">QWIP</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;I make a Quixote Publisher object look like a WSGI application.&quot;&quot;&quot;</span>
+    <span class="n">request_class</span> <span class="o">=</span> <span class="n">HTTPRequest</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publisher</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span> <span class="o">=</span> <span class="n">publisher</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>I am called for each request.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;wsgi.multithread&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> \
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">publisher</span><span class="p">,</span> <span class="s1">&#39;is_thread_safe&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
+            <span class="n">reason</span> <span class="o">=</span>  <span class="s2">&quot;</span><span class="si">%r</span><span class="s2"> is not thread safe&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">env</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;REQUEST_URI&#39;</span><span class="p">):</span>
+            <span class="n">env</span><span class="p">[</span><span class="s1">&#39;REQUEST_URI&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;SCRIPT_NAME&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;PATH_INFO&#39;</span><span class="p">]</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;wsgi.input&#39;</span><span class="p">]</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_class</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span><span class="o">.</span><span class="n">process_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%03d</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">reason_phrase</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">generate_headers</span><span class="p">()</span>
+        <span class="n">start_response</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">generate_body_chunks</span><span class="p">()</span>  <span class="c1"># Iterable object.</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <h5>WSGI REQUEST HANDLER FOR BaseHTTPServer</h5>
+<p>Based on PEP 333 and Colin Stewart&rsquo;s WSGIHandler in WSGI Utils.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">WSGI_RequestHandler</span><span class="p">(</span><span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">BaseHTTPRequestHandler</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Assumes self.server.application is a WSGI application.</p>
+<p>Doesn&rsquo;t catch all possible exceptions; e.g., misformed headers.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">protocol</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">fragment</span> <span class="o">=</span> \
+            <span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="s2">&quot;http://DUMMY&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;wsgi.version&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+            <span class="s1">&#39;wsgi.url_scheme&#39;</span><span class="p">:</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;wsgi.input&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rfile</span><span class="p">,</span>
+            <span class="s1">&#39;wsgi.errors&#39;</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+            <span class="s1">&#39;wsgi.multithread&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+            <span class="s1">&#39;wsgi.multiprocess&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+            <span class="s1">&#39;wsgi.run_once&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+            <span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">,</span>
+            <span class="s1">&#39;SCRIPT_NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PATH_INFO&#39;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
+            <span class="s1">&#39;QUERY_STRING&#39;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+            <span class="s1">&#39;CONTENT_TYPE&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;CONTENT_LENGTH&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Content-Length&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_address</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s1">&#39;SERVER_NAME&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">server_address</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s1">&#39;SERVER_PORT&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">server_address</span> <span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="s1">&#39;SERVER_PROTOCOL&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_version</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="k">for</span> <span class="n">header</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;HTTP_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">header</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="n">env</span><span class="p">[</span><span class="n">header</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_message</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers_sent</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_response</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">data</span><span class="p">:</span>               <span class="c1"># Delay sending headers until first</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>   <span class="c1"># non-empty body element appears.</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers_sent</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>         <span class="c1"># If no body, send headers now.</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">):</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_exception</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">())</span>
+
+    <span class="n">do_POST</span> <span class="o">=</span> <span class="n">do_GET</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="s2">&quot;write() before start_response()!&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers_sent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send_response</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_message</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">header</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send_header</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">end_headers</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">headers_sent</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">start_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">headers_received</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">exc_info</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_exception</span><span class="p">(</span><span class="n">exc_info</span><span class="p">)</span>
+            <span class="n">exc_info</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c1"># Avoid dangling circular reference.</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="s2">&quot;Headers already set!&quot;</span>
+        <span class="n">status_code</span><span class="p">,</span> <span class="n">status_message</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">status_code</span><span class="p">)</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_message</span> <span class="o">=</span> <span class="n">status_message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">headers_received</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">write</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">log_exception</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_info</span><span class="p">):</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">exc_info</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <h5>THREAD SUPPORT</h5>
+<p>Internal functions that will be used as methods.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">_set_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_request_dict</span><span class="p">[</span><span class="n">thread</span><span class="o">.</span><span class="n">get_ident</span><span class="p">()]</span> <span class="o">=</span> <span class="n">request</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">_clear_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">thread</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_dict</span><span class="p">[</span><span class="n">thread</span><span class="o">.</span><span class="n">get_ident</span><span class="p">()]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">pass</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">get_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">thread</span><span class="o">.</span><span class="n">get_ident</span><span class="p">())</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Public classes and functions.
+A thread-safe version of Quixote&rsquo;s Publisher.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">ThreadedPublisher</span><span class="p">(</span><span class="n">Publisher</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">is_thread_safe</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">_set_request</span> <span class="o">=</span> <span class="n">_set_request</span>
+    <span class="n">_clear_request</span> <span class="o">=</span> <span class="n">_clear_request</span>
+    <span class="n">get_request</span> <span class="o">=</span> <span class="n">get_request</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">Publisher</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_request_dict</span> <span class="o">=</span> <span class="p">{}</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p>Modify an existing Publisher instance to make it compatible with</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">make_publisher_thread_safe</span><span class="p">(</span><span class="n">publisher</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p>multithreaded servers.
+   Side effects: replaces several methods in the instance&rsquo;s class.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">publisher</span><span class="p">,</span> <span class="s1">&#39;is_thread_safe&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
+        <span class="k">return</span>
+    <span class="n">publisher</span><span class="o">.</span><span class="n">_request_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">publisher</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_set_request</span> <span class="o">=</span> <span class="n">_set_request</span>
+    <span class="n">publisher</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_clear_request</span> <span class="o">=</span> <span class="n">_clear_request</span>
+    <span class="n">publisher</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">get_request</span> <span class="o">=</span> <span class="n">get_request</span>
+    <span class="n">publisher</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">is_thread_safe</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">publisher</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_modified_by__make_publisher_web_safe</span> <span class="o">=</span> <span class="bp">True</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <h5>LAUNCH A SERVER</h5>
+<p>Launch the synchronous HTTP server.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">create_publisher</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">publisher</span> <span class="o">=</span> <span class="n">create_publisher</span><span class="p">()</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">),</span> <span class="n">WSGI_RequestHandler</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">application</span> <span class="o">=</span> <span class="n">QWIP</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      <p>Launch a multithreaded HTTP server.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">run_multithreaded</span><span class="p">(</span><span class="n">create_publisher</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="kn">from</span> <span class="nn">wsgiutils.wsgiServer</span> <span class="kn">import</span> <span class="n">WSGIServer</span>
+    <span class="n">publisher</span> <span class="o">=</span> <span class="n">create_publisher</span><span class="p">()</span>
+    <span class="n">make_publisher_thread_safe</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
+    <span class="n">app_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="n">QWIP</span><span class="p">(</span><span class="n">publisher</span><span class="p">)}</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">WSGIServer</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">),</span> <span class="n">app_map</span><span class="p">,</span> <span class="n">serveFiles</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      <h5>MAIN ROUTINE</h5>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_server_parser</span><span class="p">(</span><span class="n">MAIN_DOC</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s1">&#39;--thread&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;thread&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="n">THREAD_HELP</span><span class="p">)</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">factory</span> <span class="o">=</span> <span class="n">import_object</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">factory</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">thread</span><span class="p">:</span>
+        <span class="n">run_multithreaded</span><span class="p">(</span><span class="n">factory</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">run</span><span class="p">(</span><span class="n">factory</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  <span class="n">main</span><span class="p">()</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

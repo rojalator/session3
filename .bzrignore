@@ -1,3 +1,5 @@
 build
 build/lib
 test/sessiondir
+dist
+session3.egg-info

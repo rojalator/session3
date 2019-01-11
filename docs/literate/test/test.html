@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>test.py</title>
+  <link rel="stylesheet" href="../pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>test.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>nose-based unit tests.</p>
+<p>CTB: where is stdout getting captured in here!?</p>
+<p>CTB TODO:
+ * cleanup files after running tests</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">require</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>require(&lsquo;quixote &gt;= 2.3&rsquo;)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">require</span><span class="p">(</span><span class="s1">&#39;twill &gt;= 0.8.2a3&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">utils</span><span class="o">,</span> <span class="nn">test_session2</span>
+<span class="kn">import</span> <span class="nn">twill</span>
+<span class="kn">from</span> <span class="nn">cStringIO</span> <span class="kn">import</span> <span class="n">StringIO</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Test basic session handling with the volatile session handler.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_basic</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">utils</span><span class="o">.</span><span class="n">setup_wsgi_intercept</span><span class="p">(</span><span class="n">test_session2</span><span class="o">.</span><span class="n">use_volatile</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
+
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_err</span>
+    
+    <span class="n">utils</span><span class="o">.</span><span class="n">teardown_wsgi_intercept</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Test basic session handling with the directory session handler.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_directory</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">utils</span><span class="o">.</span><span class="n">setup_wsgi_intercept</span><span class="p">(</span><span class="n">test_session2</span><span class="o">.</span><span class="n">use_directory</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
+        
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_err</span>
+    
+    <span class="n">utils</span><span class="o">.</span><span class="n">teardown_wsgi_intercept</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Test basic session handling with the shelve session handler.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_shelve</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">utils</span><span class="o">.</span><span class="n">setup_wsgi_intercept</span><span class="p">(</span><span class="n">test_session2</span><span class="o">.</span><span class="n">use_shelve</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
+
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
+        <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_err</span>
+    
+    <span class="n">utils</span><span class="o">.</span><span class="n">teardown_wsgi_intercept</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>Test basic session handling with the durus session handler.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_durus</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">durus</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">setup_wsgi_intercept</span><span class="p">(</span><span class="n">test_session2</span><span class="o">.</span><span class="n">use_durus</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
+
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/increment+fail&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+fail&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/logout+nokeep&#39;</span><span class="p">)</span>
+            <span class="n">twill</span><span class="o">.</span><span class="n">execute_file</span><span class="p">(</span><span class="s1">&#39;test/twill-tests/session_id&#39;</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_err</span>
+
+        <span class="n">utils</span><span class="o">.</span><span class="n">teardown_wsgi_intercept</span><span class="p">()</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
