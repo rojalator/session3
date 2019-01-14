@@ -21,7 +21,7 @@ setuptools.setup(
     description="Persistent sessions for Quixote 3.0.0",
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    url="http://www.file-away.co.uk/quixote/session3/",
+    url="http://www.file-away.co.uk/session3/README.html",
     packages=setuptools.find_packages(),
     license='MIT',
     classifiers=[
