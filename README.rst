@@ -63,7 +63,8 @@ Getting Session3
 ================
 
 Download the latest version here:
-##http://quixote.idyll.org/session2/session2-0.6.tar.gz
+http://www.file-away.co.uk/session3/dist/session3-3.0.0.tar.gz
+
 
 Installation
 ------------
@@ -77,6 +78,9 @@ Documentation
 -------------
 `API documentation`_ is available as is `Literate Programming documentation`_ ---
 you'll need to extract it from the tar.gz file.
+
+You can read it on-line at:
+http://www.file-away.co.uk/session3/README.html
 
 
 Using session3
@@ -164,8 +168,8 @@ This was supposedly fixed in Python 2.4, which doesn't have FCNTL.py.
 .. _Paste: https://github.com/cdent/paste/
 .. _Durus: http://www.mems-exchange.org/software/durus/
 .. _twill: https://pypi.org/project/twill/
-.. _api documentation: ./docpdoc/session3/index.html
-.. _literate programming documentation: ./pyccdocs/index.html
+.. _api documentation: ./docs/session3/index.html
+.. _literate programming documentation: ./docs/literate/index.html
 .. _nose: https://nose.readthedocs.io/en/latest/
 .. _session2: http://quixote.idyll.org/session2/
 

@@ -15,7 +15,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="session3",
-    version="3.0.0",
+    version="3.0.post0",
     author="R J Ladyman [C. Titus Brown (titus@caltech.edu), and Mike Orr (mso@oz.net) for session2]",
     author_email="it@file-away.co.uk",
     description="Persistent sessions for Quixote 3.0.0",
@@ -29,7 +29,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Development Status :: 5 - Production/Stable",
-        "Framework :: Quixote",
         "Intended Audience :: Developers",
         "Topic :: Internet :: WWW/HTTP :: Session"
     ],
