@@ -4,12 +4,12 @@ RJLRJL: Note that python 3.3. change fcntl to return
 OSError instead of IOError
 
 RJLRJL: 19th August 2018
-There is a problem with the existing code (adopted from 
+There is a problem with the existing code (adopted from
 the python 2 version), which leads to an EOFError: Ran out of input
 
-The code in ::save_session() does 
-    f = open(filename, 'wb') 
-which immediately makes the file zero bytes long. You can try this out in 2 
+The code in ::save_session() does
+    f = open(filename, 'wb')
+which immediately makes the file zero bytes long. You can try this out in 2
 terminals with one doing (where s is some dummy class with s.id as the file-name):-
 
     >>> import pickle
@@ -24,21 +24,21 @@ If in the other terminal you do:-
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     EOFError: Ran out of input
-    >>> 
+    >>>
 
 This is not entirely unexpected BUT the code in load_session()...
 
     f = open(filename, 'rb')
     fcntl.flock(f.fileno(), fcntl.LOCK_SH)
 
-...can get the shared lock (LOCK_SH) after save_session() performs 
+...can get the shared lock (LOCK_SH) after save_session() performs
 the open() but BEFORE save_session() gets a chance to get the exclusive lock.
 
     f = open(filename, 'wb')
     fcntl.flock(f.fileno(), fcntl.LOCK_EX)
 
 (You can try it by quickly refreshing a browser calling a Quixote server.)
-    
+
 What happens appears to be:-
 
     save_session() opens the file to write  f = open(filename, 'wb')
@@ -83,14 +83,14 @@ class DirectorySessionStore(SessionStore):
     # RJLRJL for Python3 we now use the highest protocol at time of writing,
     # being protocol 4 (it was 2)
     pickle_protocol = 4
-    
+
     def __init__(self, directory, create=False):
         """
         __init__ takes a directory name, with an option to create it if
         it's not already there.
         """
         directory = os.path.abspath(directory)
-        
+
         # make sure the directory exists:
         if not os.path.exists(directory):
             if create:
@@ -101,19 +101,15 @@ class DirectorySessionStore(SessionStore):
         # is it actually a directory?
         if not os.path.isdir(directory):
             raise OSError("error, '%s' is not a directory." % (directory,))
-        
+
         self.directory = directory
-        
+
     def _make_filename(self, id):
-        """
-        Build the filename from the session ID.
-        """
+        """Build the filename from the session ID."""
         return os.path.join(self.directory, id)
-        
+
     def save_session(self, session):
-        """
-        Pickle the session and save it into a file.
-        """
+        """Pickle the session and save it into a file."""
         filename = self._make_filename(session.id)
         f = open(filename, 'wb')
         # We wait at the following statement until we get an exclusive lock
@@ -124,12 +120,10 @@ class DirectorySessionStore(SessionStore):
             dump(session, f, self.pickle_protocol)
         finally:
             fcntl.flock(f.fileno(), fcntl.LOCK_UN)
-            f.close()        
-        
+            f.close()
+
     def load_session(self, id, default=None):
-        """
-        Load the pickled session from a file. 
-        """
+        """Load the pickled session from a file."""
         filename = self._make_filename(id)
         finished = False
         while not finished:
@@ -150,14 +144,14 @@ class DirectorySessionStore(SessionStore):
                         # Don't be tempted to move this into a finally
                         fcntl.flock(f.fileno(), fcntl.LOCK_UN)
                         f.close()
-                        finished = True             
+                        finished = True
                     except EOFError:
                         # Sometimes we'll also get EOFError from pickle anyway, so we might
                         # as well trap for that too...
                         fcntl.flock(f.fileno(), fcntl.LOCK_UN)
                         f.close()
                         time.sleep(SLEEPY_TIME)
-                        
+
             except OSError:
                 obj = default
                 finished = True
@@ -168,7 +162,7 @@ class DirectorySessionStore(SessionStore):
         """
         Delete the session file.
         """
-        
+
         filename = self._make_filename(session.id)
         os.unlink(filename)
 
@@ -180,21 +174,21 @@ class DirectorySessionStore(SessionStore):
         your application maintenance program; e.g., a daily cron job.
 
         DirectorySessionStore.delete_old_sessions returns a tuple:
-        
+
             (n_deleted, n_remaining)
         """
-        
+
         deleted = 0
         remaining = 0
         for sess_id in os.listdir(self.directory):
             pth = self._make_filename(sess_id)
             mtime = os.stat(pth).st_mtime
             inactive_for = (time.time() - mtime) / 60.0
-            
+
             if inactive_for > minutes:
                 os.unlink(pth)
                 deleted += 1
             else:
                 remaining += 1
-                
+
         return (deleted, remaining)

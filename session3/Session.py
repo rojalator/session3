@@ -5,10 +5,11 @@ from time import time, strftime, localtime
 from quixote import get_request
 from quixote.util import randbytes
 
+
 class Session:
-    """
-    Holds information about the current session.  The only information
-    that is likely to be useful to applications is the `user` attribute,
+    """Holds information about the current session.
+
+    The only information that is likely to be useful to applications is the `user` attribute,
     which applications can use as they please.[^1]
 
     *See Also: [[SessionManager.py]]*
@@ -58,9 +59,7 @@ class Session:
     MAX_FORM_TOKENS = 32
 
     def __init__(self, id):
-        """
-        \__init__ is called only by `SessionManager.SessionManager`
-        """
+        r"""\__init__ is called only by `SessionManager.SessionManager`"""
         self.id = id
         self.user = None
         self._remote_address = get_request().get_environ("REMOTE_ADDR")
