@@ -1,5 +1,4 @@
-"""
-Store sessions in individual files within a directory.
+"""Store sessions in individual files within a directory.
 RJLRJL: Note that python 3.3. change fcntl to return
 OSError instead of IOError
 
@@ -7,8 +6,10 @@ RJLRJL: 19th August 2018
 There is a problem with the existing code (adopted from
 the python 2 version), which leads to an EOFError: Ran out of input
 
-The code in ::save_session() does
+The code in ::save_session() does::
+
     f = open(filename, 'wb')
+
 which immediately makes the file zero bytes long. You can try this out in 2
 terminals with one doing (where s is some dummy class with s.id as the file-name):-
 
@@ -17,7 +18,7 @@ terminals with one doing (where s is some dummy class with s.id as the file-name
     >>> f.close()
     >>> f = open(s.id, 'wb')
 
-If in the other terminal you do:-
+If in the other terminal you do::
 
     >>> f = open(s.id, 'rb')
     >>> o = pickle.load(f)
@@ -26,20 +27,20 @@ If in the other terminal you do:-
     EOFError: Ran out of input
     >>>
 
-This is not entirely unexpected BUT the code in load_session()...
+This is not entirely unexpected BUT the code in load_session()...::
 
     f = open(filename, 'rb')
     fcntl.flock(f.fileno(), fcntl.LOCK_SH)
 
 ...can get the shared lock (LOCK_SH) after save_session() performs
-the open() but BEFORE save_session() gets a chance to get the exclusive lock.
+the open() but BEFORE save_session() gets a chance to get the exclusive lock::
 
     f = open(filename, 'wb')
     fcntl.flock(f.fileno(), fcntl.LOCK_EX)
 
 (You can try it by quickly refreshing a browser calling a Quixote server.)
 
-What happens appears to be:-
+What happens appears to be::
 
     save_session() opens the file to write  f = open(filename, 'wb')
     load_session() opens the file to read   f = open(filename, 'rb')
@@ -66,12 +67,15 @@ if sys.version_info < (3,4,0):
     exit(1)
 
 
-import fcntl, os, os.path
+import fcntl
+import os
+import os.path
 from pickle import dump, load
 from session3.store.SessionStore import SessionStore
 import time
 
 SLEEPY_TIME = 0.1
+
 
 class DirectorySessionStore(SessionStore):
     """

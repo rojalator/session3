@@ -14,7 +14,7 @@ class Session:
 
     *See Also: [[SessionManager.py]]*
 
-    Instance attributes:--
+    Instance attributes:-
 
      * id : string
 

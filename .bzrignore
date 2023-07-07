@@ -8,3 +8,5 @@ docs/literate
 docs/session3
 .spyproject
 .pytest_cache
+.idea
+venv
