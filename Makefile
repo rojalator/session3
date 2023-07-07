@@ -1,5 +1,4 @@
 RST2HTML := rst2html5.py --initial-header-level=2 --footnote-references=superscript --smart-quotes=yes -g -d -t
-# RJL June 2021 changed pdoc / pdoc3 (yuk) to pydoctor
 PDOC = pydoctor --make-html --disable-intersphinx-cache --html-output
 PYCCO := pycco --generate_index --paths -s --directory
 
