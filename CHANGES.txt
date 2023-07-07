@@ -1,0 +1,41 @@
+2018-12-01 R J Ladyman <it@file-away.co.uk>
+	* Renamed ChangeLog back to CHANGES.txt
+	* Started preparation for formal release of DirectorySession
+
+2015-01-11 R J Ladyman <it@file-away.co.uk>
+	* Converted to Python3 (renamed to Session3, accordingly)
+
+
+2006-02-04  Titus Brown  <t@issola.caltech.edu>
+
+	* Renamed CHANGES to ChangeLog for no good reason.  (Sorry, MO!)
+
+	* Added Graham Fawcett's 'delete_old_sessions' implementation
+	  for DirectorySessionStore.
+
+[6/20/05] MO
+  - Release 0.5; adjust MySQLSessionStore and DirectorySessionStore for Python
+    2.3 compatibility, and to accept either a string or array.array('c') type
+    from MySQL.
+
+[6/17/05] MO
+  - Release 0.4; MySQLSessionStore uses pickle protocol 2 and saves it in a 
+    BLOB column; strategy contributed by Damjan.  This allows better pickling
+    of new-style classes and gets around a charset feature in MySQL 4.1.
+    Users need to convert the 'pickle' column in their sessions table to type
+    BLOB, or delete the table and recreate it.
+
+  - DirectorySessionStore uses pickle protocol 2.  Existing sessions will
+    automatically be updated.
+
+  - Note: the only other store using pickle is PostgresSessionStore.  It's
+    still using pickle protocol 0.
+
+[6/15/05] MO
+  - Release 0.3; typo in Makefile.
+
+[6/14/05] MO
+  - Release 0.2; fix bug in setup.py
+
+[6/12/05] CTB
+  - Release 0.1; first for public consumption.

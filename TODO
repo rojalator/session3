@@ -1,0 +1,66 @@
+Recode the MySQL, Postgresql and ShelveSessionStore stores.
+(Version 3.0.0 only supports DirectorySessionStore at the moment.)
+
+
+Nicer test code.
+
+Test multiprocess/multithreaded with twill.
+
+Build ZODB and sqlite stores.
+
+The pickle protocol for DirectorySessionStore is also 0.
+
+ShelveSessionStore has no file locking, so is unsafe for multi-process
+deployment (SCGI, CGI, FastCGI).
+
+
+Generate documentation
+pdoc --html   --all-submodules --html-dir docpdoc session3
+pycco --generate_index --paths --directory pyccodocs  ./**/*.py
+
+pycco --generate_index --paths -s  --directory pyccdocs  ./**/**/*.py ./session3/*.py
+rst2html5.py --footnote-references=superscript --smart-quotes=yes -g -d -t  README.rst > README.html
+
+https://faculty.math.illinois.edu/~gfrancis/illimath/windows/aszgard_mini/movpy-2.0.0-py2.4.4/manuals/docutils/ref/rst/restructuredtext.html#definition-lists
+
+See notes in the README.txt file
+
+
+python3 setup.py sdist bdist_wheel
+setup.py
+MANIFEST.in
+README.rst
+LICENSE
+
+Will probably need the README.html included too
+MAKEFILE?
+
+description='A sample Python project',
+long_description=long_description,
+long_description_content_type='text/x-rst',
+
+https://packaging.python.org/guides/distributing-packages-using-setuptools/
+
+project_urls
+
+project_urls={
+    'Documentation': 'https://packaging.python.org/tutorials/distributing-packages/',
+    'Funding': 'https://donate.pypi.org',
+    'Say Thanks!': 'http://saythanks.io/to/example',
+    'Source': 'https://github.com/pypa/sampleproject/',
+    'Tracker': 'https://github.com/pypa/sampleproject/issues',
+},
+
+List additional relevant URLs about your project. This is the place to link to bug trackers, source repositories, 
+or where to support package development. The string of the key is the exact text that will be displayed on PyPI
+
+python_requires='>=3',
+
+https://pypi.org/classifiers/
+
+https://packaging.python.org/tutorials/packaging-projects/
+
+
+
+
+

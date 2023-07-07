@@ -1,0 +1,14 @@
+# make sure counter doesn't increment on a failed request.
+
+go http://localhost:8080/keep
+find "Counter is at 0."
+reload
+find "Counter is at 0."
+
+follow increment
+find "Counter is at 1."
+
+follow incrementfail
+code 500
+back
+find "Counter is at 1."
