@@ -10,3 +10,5 @@ docs/session3
 .pytest_cache
 .idea
 venv
+*.pyc
+__pycache__/
