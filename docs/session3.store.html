@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>session3.store</title>
+    <meta name="generator" content="pydoctor 23.4.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          session3 <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Package</span>
+        <code class="thisobject"><a href="session3.store.html" class="internal-link" title="This package">store</a></code> 
+      </div>
+      
+      <div>
+        
+
+        <div class="childrenKindTitle">Modules</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.store.DirectorySessionStore.html" class="internal-link" title="session3.store.DirectorySessionStore"><wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.store.DurusSessionStore.html" class="internal-link" title="session3.store.DurusSessionStore"><wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.store.MySQLSessionStore.html" class="internal-link" title="session3.store.MySQLSessionStore"><wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.store.PostgresSessionStore.html" class="internal-link" title="session3.store.PostgresSessionStore"><wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.store.SessionStore.html" class="internal-link" title="session3.store.SessionStore"><wbr></wbr>Session<wbr></wbr>Store</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.store.ShelveSessionStore.html" class="internal-link" title="session3.store.ShelveSessionStore"><wbr></wbr>Shelve<wbr></wbr>Session<wbr></wbr>Store</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.store.VolatileSessionStore.html" class="internal-link" title="session3.store.VolatileSessionStore"><wbr></wbr>Volatile<wbr></wbr>Session<wbr></wbr>Store</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+        
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Package</span>
+        <code><a href="index.html" class="internal-link" title="The parent of this package">session3</a></code> 
+      </div>
+      
+      <div>
+        
+
+        <div class="childrenKindTitle">Modules</div>
+        <ul>
+    
+    <li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.store.html" class="internal-link" title="session3.store">store</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.DictSession.html" class="internal-link" title="session3.DictSession"><wbr></wbr>Dict<wbr></wbr>Session</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.Session.html" class="internal-link" title="session3.Session"><wbr></wbr>Session</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.SessionManager.html" class="internal-link" title="session3.SessionManager"><wbr></wbr>Session<wbr></wbr>Manager</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+        
+
+        
+         
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="index.html#__version__" class="internal-link" title="session3.__version__">__version__</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="package"><code><code><a href="index.html" class="internal-link">session3</a></code><wbr></wbr>.<code><a href="session3.store.html" class="internal-link" title="session3.store">store</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          package documentation
+        </div>
+
+        <div class="extrasDocstring">
+          
+          <p></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p>Persistent session stores for <code><a href="session3.SessionManager.html" class="internal-link">session3.SessionManager</a></code>.</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id10">
+  
+  
+  <tr class="module">
+    
+    <td>Module</td>
+    <td><code><a href="session3.store.DirectorySessionStore.html" class="internal-link" title="session3.store.DirectorySessionStore"><wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store</a></code></td>
+    <td>Store sessions in individual files within a directory.</td>
+  </tr><tr class="module">
+    
+    <td>Module</td>
+    <td><code><a href="session3.store.DurusSessionStore.html" class="internal-link" title="session3.store.DurusSessionStore"><wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store</a></code></td>
+    <td>Store sessions in a Durus database.</td>
+  </tr><tr class="module">
+    
+    <td>Module</td>
+    <td><code><a href="session3.store.MySQLSessionStore.html" class="internal-link" title="session3.store.MySQLSessionStore"><wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store</a></code></td>
+    <td>Store sessions in a MySQL table.</td>
+  </tr><tr class="module">
+    
+    <td>Module</td>
+    <td><code><a href="session3.store.PostgresSessionStore.html" class="internal-link" title="session3.store.PostgresSessionStore"><wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store</a></code></td>
+    <td>Store sessions in a PostgreSQL table.</td>
+  </tr><tr class="module">
+    
+    <td>Module</td>
+    <td><code><a href="session3.store.SessionStore.html" class="internal-link" title="session3.store.SessionStore"><wbr></wbr>Session<wbr></wbr>Store</a></code></td>
+    <td>Base class for persistent session stores.</td>
+  </tr><tr class="module">
+    
+    <td>Module</td>
+    <td><code><a href="session3.store.ShelveSessionStore.html" class="internal-link" title="session3.store.ShelveSessionStore"><wbr></wbr>Shelve<wbr></wbr>Session<wbr></wbr>Store</a></code></td>
+    <td>Store sessions in a 'shelve' database.</td>
+  </tr><tr class="module">
+    
+    <td>Module</td>
+    <td><code><a href="session3.store.VolatileSessionStore.html" class="internal-link" title="session3.store.VolatileSessionStore"><wbr></wbr>Volatile<wbr></wbr>Session<wbr></wbr>Store</a></code></td>
+    <td>A simple in-memory volatile session store, mimicking the default Quixote session management.  Here for example's sake only...</td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for session3,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    23.4.1 at 2023-08-16 09:39:27.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
