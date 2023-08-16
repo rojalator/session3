@@ -1,4 +1,4 @@
-# == Session storage class for Quixote 2.x. ==
+# == Session storage class for Quixote 3.x. ==
 
 
 from time import time, strftime, localtime
@@ -9,7 +9,7 @@ from quixote.util import randbytes
 class Session:
     """Holds information about the current session.
 
-    The only information that is likely to be useful to applications is the `user` attribute,
+    The only information that is likely to be useful to applications is the *user* attribute,
     which applications can use as they please.[^1]
 
     *See Also: [[SessionManager.py]]*
@@ -24,7 +24,7 @@ class Session:
      * user : any
 
         an object to identify the human being on the other end of the
-        line.  It's up to you whether to store just a string in `user`,
+        line.  It's up to you whether to store just a string in *user*,
         or some more complex data structure or object.
 
      * _remote_address : string
@@ -37,14 +37,14 @@ class Session:
      * _access_time : float
 
         two ways of keeping track of the "age" of the session.
-        Note that `__access_time` is maintained by the `SessionManager` that
-        owns this session, using [`_set_access_time()`](#methods-for-sessionmanager-only).
+        Note that *__access_time* is maintained by the *SessionManager* that
+        owns this session, using [*_set_access_time()*](#methods-for-sessionmanager-only).
 
      * _form_tokens : string
 
         Added from N.S.'s code ---
-        Outstanding form tokens.  This is used as a queue that can grow
-        up to `MAX_FORM_TOKENS`.  Tokens are removed when forms are submitted.
+        Outstanding form tokens.  This is used as a queue that can grow in size
+        up to *MAX_FORM_TOKENS*.  Tokens are removed when forms are submitted.
 
     Feel free to access `id` and `user` directly, but do not modify
     `id`.  The preferred way to set `user` is with the `set_user()` method
@@ -54,12 +54,11 @@ class Session:
     and a `Session` subclass in the future.
     """
 
-    # Maximum number of outstanding form tokens
-    # Increased from 16 to 32, RJL 2019-10-22
+    # Maximum number of *outstanding* form tokens
     MAX_FORM_TOKENS = 32
 
     def __init__(self, id):
-        r"""\__init__ is called only by `SessionManager.SessionManager`"""
+        """ `__init__` is called only by `SessionManager.SessionManager`"""
         self.id = id
         self.user = None
         self._remote_address = get_request().get_environ("REMOTE_ADDR")
@@ -76,10 +75,9 @@ class Session:
         else:
             return "session %s (no user)" % self.id
 
-    def has_info(self):
-        """() -> boolean
-        Return True if this session contains any information that must
-        be saved.
+    def has_info(self) -> bool:
+        """
+        Return True if this session contains any information that must be saved.
         """
         return self.user
 
@@ -145,19 +143,16 @@ class Session:
         """
         return (_now or time()) - self._access_time
 
-
     # === Methods for SessionManager only ===
     def _set_access_time(self, resolution):
         now = time()
         if now - self._access_time > resolution:
             self._access_time = now
 
-
     # === Form token methods ===
 
-    def create_form_token(self):
-        """() -> string
-
+    def create_form_token(self) -> str:
+        """
         Create a new form token and add it to a queue of outstanding form
         tokens for this session.  A maximum of `MAX_FORM_TOKENS` are saved.
         The new token is returned.
@@ -169,17 +164,14 @@ class Session:
             del self._form_tokens[:extra]
         return token
 
-    def has_form_token(self, token):
-        """(token : string) -> boolean
-
+    def has_form_token(self, token: str) -> bool:
+        """
         Return True if `token` is in the queue of outstanding tokens.
         """
         return token in self._form_tokens
 
-    def remove_form_token(self, token):
-        """(token : string)
-
+    def remove_form_token(self, token:str):
+        """
         Remove `token` from the queue of outstanding tokens.
         """
         self._form_tokens.remove(token)
-

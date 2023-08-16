@@ -8,13 +8,15 @@ the row changes.
 This module assumes the connection is in transaction-mode (the default
 for psycopg).  Use a separate database connection for sessions, or
 else your transactions will become confused.
+
+### NOT YET IMPLEMENTED ###
 """
 
-import os, os.path
-import cPickle as pickle
+import pickle
 from session3.store.SessionStore import SessionStore
 
 DEFAULT_TABLE = 'sessions'
+
 
 class PostgresSessionStore(SessionStore):
     """
@@ -23,37 +25,36 @@ class PostgresSessionStore(SessionStore):
     See the create() function for the table definition.
 
     This implementation has been tested with psycopg.  It should work
-    with any DB-API module that supports connection.rollback() and
+    with any DB-API module that supports *connection.rollback()* and
     "%(var)s" substitution style, e.g. psycopg.
-    
+
     """
 
     is_multiprocess_safe = True
     is_thread_safe = False       # Can't share db connection between threads.
-    
+
     def __init__(self, conn, table=None):
         """
-        __init__ takes a psycopg connection to a PostgreSQL database,
+        *__init__* takes a psycopg connection to a PostgreSQL database,
         together with an optional table name, 'table'.
         """
         if table is None:
             table = DEFAULT_TABLE
-            
+
         # @CTB test for table existence
-        
+
         self.conn = conn
         self.table = table
 
-    ####### SessionStore methods ######
+    # #### SessionStore methods ####
     def load_session(self, id, default=None):
         """
         Load a pickled session from the database.
         """
-        
+
         self.conn.rollback()
         c = self.conn.cursor()
-        c.execute('SELECT pickle FROM sessions WHERE id=%(id)s',
-                  dict(id=id))
+        c.execute('SELECT pickle FROM sessions WHERE id=%(id)s', dict(id=id))
 
         if c.rowcount == 0:
             return default
@@ -61,17 +62,17 @@ class PostgresSessionStore(SessionStore):
 
         pck = c.fetchone()[0]
         obj = pickle.loads(pck)
-        
+
         return obj
 
     def save_session(self, session):
         """
         Pickle session & save it into the database.
         """
-        
+
         # build a pickle.
         pck = pickle.dumps(session)
-        
+
         self.conn.rollback()
         c = self.conn.cursor()
 
@@ -88,7 +89,7 @@ class PostgresSessionStore(SessionStore):
         """
         Delete session from the database.
         """
-        
+
         self.conn.rollback()
         c = self.conn.cursor()
         c.execute('DELETE FROM sessions WHERE id=%(id)s', dict(id=session.id))
@@ -100,7 +101,7 @@ class PostgresSessionStore(SessionStore):
             c.execute("DROP TABLE %s" % self.table)
         except:                         # table did not exist...
             self.conn.rollback()
-        
+
         c.execute("""\
 CREATE TABLE %s (
    id TEXT PRIMARY KEY NOT NULL,

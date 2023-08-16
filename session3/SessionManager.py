@@ -1,34 +1,30 @@
-"""
-A persistent session manager class for Quixote 2.x.
-"""
+from __future__ import annotations
 
 from quixote import get_request, get_publisher, get_cookie, get_response
 from quixote.util import randbytes
 from session3.Session import Session
 
+
 class SessionManager:
     """
     A persistent session manager for Quixote.
     """
-    ACCESS_TIME_RESOLUTION = 1 # in seconds
-    
+    ACCESS_TIME_RESOLUTION = 1  # in seconds
+
     def __init__(self, store_obj, session_class=Session):
         """
-        __init__ takes a session store instance and (optionally) the
-        session class to use for storing session information.  (This
-        defaults to `Session.Session`).
+        `__init__` takes a session store instance and (optionally) the
+        session class to use for storing session information. (This defaults to `Session.Session`).
         """
         self.store = store_obj
         self.session_class = session_class
-
         self.expired_sessions = {}
 
     def __repr__(self):
         return "<%s at %x>" % (self.__class__.__name__, id(self))
 
-    def get_session(self):
-        """() -> Session
-
+    def get_session(self) -> Session:
+        """
         Fetch or create a session object for the current session, and
         return it.  If a session cookie is found in the HTTP request
         object, use it to look up and return an existing session object.
@@ -36,25 +32,20 @@ class SessionManager:
 
         Note that this method does *not* cause the new session to be
         stored in the session manager, nor does it drop a session cookie
-        on the user.  Those are both the responsibility of
-        finish_successful_request().
+        on the user --- those are both the responsibility of [`finish_successful_request()`](#section-14).
         """
         config = get_publisher().config
         id = self._get_session_id(config)
-
         session = None
         if id:
             session = self.store.load_session(id)
-
         if session is None:
             session = self._create_session()
-
         session._set_access_time(self.ACCESS_TIME_RESOLUTION)
         return session
 
-    def maintain_session(self, session):
-        """(session : Session) -> bool
-
+    def maintain_session(self, session) -> bool:
+        """
         Maintain session information.  This method is called after servicing
         an HTTP request, just before the response is returned.  If a session
         contains information a cookie is dropped on the client and True is
@@ -63,11 +54,10 @@ class SessionManager:
         """
         if not session.has_info():
             # Session has no useful info -- forget it.  If it previously
-            # had useful information and no longer does, we have to
-            # explicitly forget it.
+            # had useful information and no longer does, we have to explicitly forget it.
             if session.id and self.has_session(session.id):
                 self.expire_session()
-            return 0
+            return False
 
         if session.id is None:
             # This is the first time this session has had useful
@@ -75,7 +65,7 @@ class SessionManager:
             session.id = self._make_session_id()
             self.set_session_cookie(session.id)
 
-        return 1
+        return True
 
     def expire_session(self):
         """
@@ -90,9 +80,8 @@ class SessionManager:
             self.expired_sessions[request] = request.session
             request.session = None
 
-    def has_session(self, session_id):
-        """(session_id : string) -> boolean
-
+    def has_session(self, session_id: str) -> bool:
+        """
         Return true if a session identified by 'session_id' exists in
         the session manager.
         """
@@ -105,7 +94,7 @@ class SessionManager:
         if request in self.expired_sessions:
             del self.expired_sessions[request]
 
-    # -- Hooks into the Quixote main loop ------------------------------
+    # === Hooks into the Quixote main loop ===
 
     def start_request(self):
         """
@@ -128,7 +117,7 @@ class SessionManager:
         if session and self.maintain_session(session):
             self.store.save_session(session)
 
-        # or delete, because it's expired?
+        # ...or delete, because it's expired?
         elif request in self.expired_sessions:
             session = self.expired_sessions[request]
             if session.id:
@@ -144,24 +133,23 @@ class SessionManager:
         request = get_request()
         self.clear_session(request)
 
-    #### CTB: no changes below this line; stolen from SessionManager.
+    # ### CTB: no changes below this line; stolen from SessionManager.
 
-    # -- Session management --------------------------------------------
-    # these build on the storage mechanism implemented by the
+    # === Session management ===
+
+    # These build on the storage mechanism implemented by the
     # above mapping methods, and are concerned with all the high-
     # level details of managing web sessions
 
-    def new_session(self, id):
-        """(id : string) -> Session
-
+    def new_session(self, id:str | None) -> Session:
+        """
         Return a new session object, ie. an instance of the session_class
-        class passed to the constructor (defaults to Session).
+        class passed to the constructor (defaults to `Session`).
         """
         return self.session_class(id)
 
-    def _get_session_id(self, config):
-        """() -> string
-
+    def _get_session_id(self, config) -> str | None:
+        """
         Find the ID of the current session by looking for the session
         cookie in the request.  Return None if no such cookie or the
         cookie has been expired, otherwise return the cookie's value.
@@ -186,7 +174,6 @@ class SessionManager:
         # be assigned later if we save the session.
         return self.new_session(None)
 
-
     def _set_cookie(self, value, **attrs):
         config = get_publisher().config
         name = config.session_cookie_name
@@ -197,20 +184,18 @@ class SessionManager:
             if not path.endswith("/"):
                 path += "/"
         domain = config.session_cookie_domain
-        
-        # Modified R J Ladyman 2010-11-23 to include secure and httponly as per Quixote 2.7b1
+
+        # Include `secure` and `httponly` as per Quixote 2.7b1
         attrs = attrs.copy()
         if config.session_cookie_secure:
             attrs['secure'] = 1
         if config.session_cookie_httponly:
             attrs['httponly'] = 1
-        # End of modification R J Ladyman 2010-11-23
         get_response().set_cookie(name, value, domain=domain,  path=path, **attrs)
         return name
 
-    def set_session_cookie(self, session_id):
-        """(session_id : string)
-
+    def set_session_cookie(self, session_id:str):
+        """
         Ensure that a session cookie with value 'session_id' will be
         returned to the client via the response object.
         """
@@ -227,9 +212,8 @@ class SessionManager:
         if get_cookie(cookie_name) is not None:
             del get_request().cookies[cookie_name]
 
-    def has_session_cookie(self, must_exist=False):
-        """(must_exist : boolean = false) -> bool
-
+    def has_session_cookie(self, must_exist:bool = False) -> bool:
+        """
         Return true if the request already has a cookie identifying a
         session object.  If 'must_exist' is true, the cookie must
         correspond to a currently existing session; otherwise (the

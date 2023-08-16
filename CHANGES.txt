@@ -1,3 +1,7 @@
+2023-07-07 R J Ladyman <it@file-away.co.uk>
+    * Removed Quixote dependency (although it's needed, auto-installing can cause problems)
+    * Updated Makefile for document generation
+
 2018-12-01 R J Ladyman <it@file-away.co.uk>
 	* Renamed ChangeLog back to CHANGES.txt
 	* Started preparation for formal release of DirectorySession
@@ -19,7 +23,7 @@
     from MySQL.
 
 [6/17/05] MO
-  - Release 0.4; MySQLSessionStore uses pickle protocol 2 and saves it in a 
+  - Release 0.4; MySQLSessionStore uses pickle protocol 2 and saves it in a
     BLOB column; strategy contributed by Damjan.  This allows better pickling
     of new-style classes and gets around a charset feature in MySQL 4.1.
     Users need to convert the 'pickle' column in their sessions table to type

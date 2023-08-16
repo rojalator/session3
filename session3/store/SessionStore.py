@@ -2,6 +2,7 @@
 Base class for persistent session stores.
 """
 
+
 class SessionStore:
     """
     Persistent `Session` storage API for session3's `SessionManager`.
@@ -12,29 +13,25 @@ class SessionStore:
 
     is_multiprocess_safe = False
     is_thread_safe = False
-    
-    #### Methods called by the SessionManager ####
+
+    # ### Methods called by the SessionManager ###
     def load_session(self, id, default=None):
         """Return the session if it exists, else return 'default'."""
-
         raise NotImplementedError()
 
     def save_session(self, session):
         """Save the session in the store."""
-
         raise NotImplementedError()
 
     def delete_session(self, session):
         """Delete the session in the store."""
-
         raise NotImplementedError()
 
     def has_session(self, id):
         """Return true if the session exists in the store, else false."""
-
         return self.load_session(id, None)
 
-    #### Other methods ####
+    # ### Other methods ###
     def iter_sessions(self):
         """
         Return an iterable of (id, session) for all sessions in the store.
@@ -42,9 +39,8 @@ class SessionStore:
         This method is never called by the session manager; it's for admin
         applications that want to browse the sessions.
         """
-
         raise NotImplementedError()
-    
+
     def setup(self):
         """
         Initialize the session store; e.g., create required database tables.
@@ -54,7 +50,6 @@ class SessionStore:
         This method is never called by the session manager; it's for your
         application setup program.
         """
-
         pass
 
     def delete_old_sessions(self, minutes):
@@ -66,5 +61,4 @@ class SessionStore:
         This method is never called by the session manager.  It's for your
         application maintenance program; e.g., a daily cron job.
         """
-
         pass

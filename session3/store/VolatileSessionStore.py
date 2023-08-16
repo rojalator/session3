@@ -5,6 +5,7 @@ Quixote session management.  Here for example's sake only...
 
 from SessionStore import SessionStore
 
+
 class VolatileSessionStore(SessionStore):
     """
     A simple volatile (non-persistent) session store for session3.
@@ -15,7 +16,7 @@ class VolatileSessionStore(SessionStore):
     def __init__(self):
         """Create the dictionary."""
         self.sessions = {}
-    
+
     def load_session(self, id, default=None):
         """Return the session if it exists, else return 'default'."""
         return self.sessions.get(id, default)
@@ -26,9 +27,9 @@ class VolatileSessionStore(SessionStore):
 
     def delete_session(self, session):
         """Delete the session in the dictionary."""
-        if self.sessions.has_key(session.id):
+        if session.id in self.sessions:
             del self.sessions[session.id]
 
     def has_session(self, id):
         """Return true if the session exists in the dictionary, else false."""
-        return self.sessions.has_key(id)
+        return id in self.sessions

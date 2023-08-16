@@ -1,0 +1,1181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>session3.SessionManager.SessionManager</title>
+    <meta name="generator" content="pydoctor 23.4.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          session3 <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="session3.SessionManager.SessionManager.html" class="internal-link" title="This class"><wbr></wbr>Session<wbr></wbr>Manager</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="session3.SessionManager.SessionManager.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__repr__" class="internal-link" title="session3.SessionManager.SessionManager.__repr__">__repr__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#clear_session" class="internal-link" title="session3.SessionManager.SessionManager.clear_session">clear<wbr></wbr>_session</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#expire_session" class="internal-link" title="session3.SessionManager.SessionManager.expire_session">expire<wbr></wbr>_session</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#finish_failed_request" class="internal-link" title="session3.SessionManager.SessionManager.finish_failed_request">finish<wbr></wbr>_failed<wbr></wbr>_request</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#finish_successful_request" class="internal-link" title="session3.SessionManager.SessionManager.finish_successful_request">finish<wbr></wbr>_successful<wbr></wbr>_request</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#get_session" class="internal-link" title="session3.SessionManager.SessionManager.get_session">get<wbr></wbr>_session</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#has_session" class="internal-link" title="session3.SessionManager.SessionManager.has_session">has<wbr></wbr>_session</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#has_session_cookie" class="internal-link" title="session3.SessionManager.SessionManager.has_session_cookie">has<wbr></wbr>_session<wbr></wbr>_cookie</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#maintain_session" class="internal-link" title="session3.SessionManager.SessionManager.maintain_session">maintain<wbr></wbr>_session</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#new_session" class="internal-link" title="session3.SessionManager.SessionManager.new_session">new<wbr></wbr>_session</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#revoke_session_cookie" class="internal-link" title="session3.SessionManager.SessionManager.revoke_session_cookie">revoke<wbr></wbr>_session<wbr></wbr>_cookie</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#set_session_cookie" class="internal-link" title="session3.SessionManager.SessionManager.set_session_cookie">set<wbr></wbr>_session<wbr></wbr>_cookie</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#start_request" class="internal-link" title="session3.SessionManager.SessionManager.start_request">start<wbr></wbr>_request</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_create_session" class="internal-link" title="session3.SessionManager.SessionManager._create_session">_create<wbr></wbr>_session</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_get_session_id" class="internal-link" title="session3.SessionManager.SessionManager._get_session_id">_get<wbr></wbr>_session<wbr></wbr>_id</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_make_session_id" class="internal-link" title="session3.SessionManager.SessionManager._make_session_id">_make<wbr></wbr>_session<wbr></wbr>_id</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_set_cookie" class="internal-link" title="session3.SessionManager.SessionManager._set_cookie">_set<wbr></wbr>_cookie</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#ACCESS_TIME_RESOLUTION" class="internal-link" title="session3.SessionManager.SessionManager.ACCESS_TIME_RESOLUTION">ACCESS<wbr></wbr>_TIME<wbr></wbr>_RESOLUTION</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#expired_sessions" class="internal-link" title="session3.SessionManager.SessionManager.expired_sessions">expired<wbr></wbr>_sessions</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#session_class" class="internal-link" title="session3.SessionManager.SessionManager.session_class">session<wbr></wbr>_class</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#store" class="internal-link" title="session3.SessionManager.SessionManager.store">store</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="session3.SessionManager.html" class="internal-link" title="The parent of this class"><wbr></wbr>Session<wbr></wbr>Manager</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="session3.SessionManager.SessionManager.html" class="internal-link" title="session3.SessionManager.SessionManager"><wbr></wbr>Session<wbr></wbr>Manager</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">session3</a></code><wbr></wbr>.<code><a href="session3.SessionManager.html" class="internal-link" title="session3.SessionManager">SessionManager</a></code><wbr></wbr>.<code><a href="session3.SessionManager.SessionManager.html" class="internal-link" title="session3.SessionManager.SessionManager">SessionManager</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">SessionManager</span>:</code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="session3.SessionManager.SessionManager.__init__">SessionManager(store_obj, session_class)</a></code></p>
+          <p><a href="classIndex.html#session3.SessionManager.SessionManager">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p>A persistent session manager for Quixote.</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id9">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="session3.SessionManager.SessionManager.__init__">__init__</a></code></td>
+    <td><code><a href="session3.SessionManager.SessionManager.html#__init__" class="internal-link" title="session3.SessionManager.SessionManager.__init__">__init__</a></code> takes a session store instance and (optionally) the session class to use for storing session information. (This defaults to <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session.Session</a></code>).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="session3.SessionManager.SessionManager.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#clear_session" class="internal-link" title="session3.SessionManager.SessionManager.clear_session">clear<wbr></wbr>_session</a></code></td>
+    <td>Clear any residual session information for this request.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#expire_session" class="internal-link" title="session3.SessionManager.SessionManager.expire_session">expire<wbr></wbr>_session</a></code></td>
+    <td>Expire the current session, ie. revoke the session cookie from the client, remove the session object from the current request, and list it for permanent removal.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#finish_failed_request" class="internal-link" title="session3.SessionManager.SessionManager.finish_failed_request">finish<wbr></wbr>_failed<wbr></wbr>_request</a></code></td>
+    <td>Called near the end of a failed request (i.e. a exception that was not a PublisherError was raised.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#finish_successful_request" class="internal-link" title="session3.SessionManager.SessionManager.finish_successful_request">finish<wbr></wbr>_successful<wbr></wbr>_request</a></code></td>
+    <td>Called near the end of each successful request.  Not called if there were any errors processing the request.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_session" class="internal-link" title="session3.SessionManager.SessionManager.get_session">get<wbr></wbr>_session</a></code></td>
+    <td>Fetch or create a session object for the current session, and return it.  If a session cookie is found in the HTTP request object, use it to look up and return an existing session object. If no session cookie is found, create a new session.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#has_session" class="internal-link" title="session3.SessionManager.SessionManager.has_session">has<wbr></wbr>_session</a></code></td>
+    <td>Return true if a session identified by 'session_id' exists in the session manager.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#has_session_cookie" class="internal-link" title="session3.SessionManager.SessionManager.has_session_cookie">has<wbr></wbr>_session<wbr></wbr>_cookie</a></code></td>
+    <td>Return true if the request already has a cookie identifying a session object.  If 'must_exist' is true, the cookie must correspond to a currently existing session; otherwise (the default), we just check for the existence of the session cookie and don't inspect its content at all.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#maintain_session" class="internal-link" title="session3.SessionManager.SessionManager.maintain_session">maintain<wbr></wbr>_session</a></code></td>
+    <td>Maintain session information.  This method is called after servicing an HTTP request, just before the response is returned.  If a session contains information a cookie is dropped on the client and True is returned...</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#new_session" class="internal-link" title="session3.SessionManager.SessionManager.new_session">new<wbr></wbr>_session</a></code></td>
+    <td>Return a new session object, ie. an instance of the session_class class passed to the constructor (defaults to <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></code>).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#revoke_session_cookie" class="internal-link" title="session3.SessionManager.SessionManager.revoke_session_cookie">revoke<wbr></wbr>_session<wbr></wbr>_cookie</a></code></td>
+    <td>Remove the session cookie from the remote user's session by resetting the value and maximum age in the response object.  Also remove the cookie from the request so that further processing of this request does not see the cookie's revoked value.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#set_session_cookie" class="internal-link" title="session3.SessionManager.SessionManager.set_session_cookie">set<wbr></wbr>_session<wbr></wbr>_cookie</a></code></td>
+    <td>Ensure that a session cookie with value 'session_id' will be returned to the client via the response object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#start_request" class="internal-link" title="session3.SessionManager.SessionManager.start_request">start<wbr></wbr>_request</a></code></td>
+    <td>Called near the beginning of each request: after the HTTPRequest object has been built, but before we traverse the URL or call the callable object found by URL traversal.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#ACCESS_TIME_RESOLUTION" class="internal-link" title="session3.SessionManager.SessionManager.ACCESS_TIME_RESOLUTION">ACCESS<wbr></wbr>_TIME<wbr></wbr>_RESOLUTION</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#expired_sessions" class="internal-link" title="session3.SessionManager.SessionManager.expired_sessions">expired<wbr></wbr>_sessions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#session_class" class="internal-link" title="session3.SessionManager.SessionManager.session_class">session<wbr></wbr>_class</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#store" class="internal-link" title="session3.SessionManager.SessionManager.store">store</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_create_session" class="internal-link" title="session3.SessionManager.SessionManager._create_session">_create<wbr></wbr>_session</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_session_id" class="internal-link" title="session3.SessionManager.SessionManager._get_session_id">_get<wbr></wbr>_session<wbr></wbr>_id</a></code></td>
+    <td>Find the ID of the current session by looking for the session cookie in the request.  Return None if no such cookie or the cookie has been expired, otherwise return the cookie's value.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_make_session_id" class="internal-link" title="session3.SessionManager.SessionManager._make_session_id">_make<wbr></wbr>_session<wbr></wbr>_id</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_cookie" class="internal-link" title="session3.SessionManager.SessionManager._set_cookie">_set<wbr></wbr>_cookie</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span><span class="function-signature">(self, store_obj, session_class=<a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a>)</span>:
+    
+    <a class="headerLink" href="#__init__" title="session3.SessionManager.SessionManager.__init__">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p><code><a href="#__init__" class="internal-link" title="session3.SessionManager.SessionManager.__init__">__init__</a></code> takes a session store instance and (optionally) the
+session class to use for storing session information. (This defaults to <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session.Session</a></code>).</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#__repr__" title="session3.SessionManager.SessionManager.__repr__">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.clear_session">
+    
+  </a>
+  <a name="clear_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">clear_session</span><span class="function-signature">(self, request)</span>:
+    
+    <a class="headerLink" href="#clear_session" title="session3.SessionManager.SessionManager.clear_session">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Clear any residual session information for this request.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.expire_session">
+    
+  </a>
+  <a name="expire_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">expire_session</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#expire_session" title="session3.SessionManager.SessionManager.expire_session">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Expire the current session, ie. revoke the session cookie from
+the client, remove the session object from the current request,
+and list it for permanent removal.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.finish_failed_request">
+    
+  </a>
+  <a name="finish_failed_request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">finish_failed_request</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#finish_failed_request" title="session3.SessionManager.SessionManager.finish_failed_request">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called near the end of a failed request (i.e. a exception that was
+not a PublisherError was raised.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.finish_successful_request">
+    
+  </a>
+  <a name="finish_successful_request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">finish_successful_request</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#finish_successful_request" title="session3.SessionManager.SessionManager.finish_successful_request">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called near the end of each successful request.  Not called if
+there were any errors processing the request.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.get_session">
+    
+  </a>
+  <a name="get_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_session</span><span class="function-signature">(self) -&gt; <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></code></span>:
+    
+    <a class="headerLink" href="#get_session" title="session3.SessionManager.SessionManager.get_session">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Fetch or create a session object for the current session, and
+return it.  If a session cookie is found in the HTTP request
+object, use it to look up and return an existing session object.
+If no session cookie is found, create a new session.</p>
+<p>Note that this method does <em>not</em> cause the new session to be
+stored in the session manager, nor does it drop a session cookie
+on the user --- those are both the responsibility of [<code><a href="#finish_successful_request" class="internal-link" title="session3.SessionManager.SessionManager.finish_successful_request">finish_successful_request()</a></code>](#section-14).</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.has_session">
+    
+  </a>
+  <a name="has_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_session</span><span class="function-signature">(self, session_id: <code>str</code>) -&gt; <code>bool</code></span>:
+    
+    <a class="headerLink" href="#has_session" title="session3.SessionManager.SessionManager.has_session">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return true if a session identified by 'session_id' exists in
+the session manager.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.has_session_cookie">
+    
+  </a>
+  <a name="has_session_cookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_session_cookie</span><span class="function-signature">(self, must_exist: <code>bool</code> = False) -&gt; <code>bool</code></span>:
+    
+    <a class="headerLink" href="#has_session_cookie" title="session3.SessionManager.SessionManager.has_session_cookie">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return true if the request already has a cookie identifying a
+session object.  If 'must_exist' is true, the cookie must
+correspond to a currently existing session; otherwise (the
+default), we just check for the existence of the session cookie
+and don't inspect its content at all.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.maintain_session">
+    
+  </a>
+  <a name="maintain_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">maintain_session</span><span class="function-signature">(self, session) -&gt; <code>bool</code></span>:
+    
+    <a class="headerLink" href="#maintain_session" title="session3.SessionManager.SessionManager.maintain_session">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Maintain session information.  This method is called after servicing
+an HTTP request, just before the response is returned.  If a session
+contains information a cookie is dropped on the client and True is
+returned.  If not, the session is forcibly expired and False is
+returned.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.new_session">
+    
+  </a>
+  <a name="new_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">new_session</span><span class="function-signature">(self, id: <code>str|None</code>) -&gt; <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></code></span>:
+    
+    <a class="headerLink" href="#new_session" title="session3.SessionManager.SessionManager.new_session">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return a new session object, ie. an instance of the session_class
+class passed to the constructor (defaults to <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></code>).</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.revoke_session_cookie">
+    
+  </a>
+  <a name="revoke_session_cookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">revoke_session_cookie</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#revoke_session_cookie" title="session3.SessionManager.SessionManager.revoke_session_cookie">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Remove the session cookie from the remote user's session by
+resetting the value and maximum age in the response object.  Also
+remove the cookie from the request so that further processing of
+this request does not see the cookie's revoked value.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.set_session_cookie">
+    
+  </a>
+  <a name="set_session_cookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">set_session_cookie</span><span class="function-signature">(self, session_id: <code>str</code>)</span>:
+    
+    <a class="headerLink" href="#set_session_cookie" title="session3.SessionManager.SessionManager.set_session_cookie">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Ensure that a session cookie with value 'session_id' will be
+returned to the client via the response object.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="session3.SessionManager.SessionManager.start_request">
+    
+  </a>
+  <a name="start_request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">start_request</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#start_request" title="session3.SessionManager.SessionManager.start_request">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called near the beginning of each request: after the HTTPRequest
+object has been built, but before we traverse the URL or call the
+callable object found by URL traversal.</p></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="session3.SessionManager.SessionManager.ACCESS_TIME_RESOLUTION">
+    
+  </a>
+  <a name="ACCESS_TIME_RESOLUTION">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ACCESS_TIME_RESOLUTION</span>: <code>int</code> =
+    
+    <a class="headerLink" href="#ACCESS_TIME_RESOLUTION" title="session3.SessionManager.SessionManager.ACCESS_TIME_RESOLUTION">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>1</code></pre></td></tr></table>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="session3.SessionManager.SessionManager.expired_sessions">
+    
+  </a>
+  <a name="expired_sessions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">expired_sessions</span>: <code>dict</code> =
+    
+    <a class="headerLink" href="#expired_sessions" title="session3.SessionManager.SessionManager.expired_sessions">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="session3.SessionManager.SessionManager.session_class">
+    
+  </a>
+  <a name="session_class">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">session_class</span> =
+    
+    <a class="headerLink" href="#session_class" title="session3.SessionManager.SessionManager.session_class">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="session3.SessionManager.SessionManager.store">
+    
+  </a>
+  <a name="store">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">store</span> =
+    
+    <a class="headerLink" href="#store" title="session3.SessionManager.SessionManager.store">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="session3.SessionManager.SessionManager._create_session">
+    
+  </a>
+  <a name="_create_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_create_session</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#_create_session" title="session3.SessionManager.SessionManager._create_session">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="session3.SessionManager.SessionManager._get_session_id">
+    
+  </a>
+  <a name="_get_session_id">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_session_id</span><span class="function-signature">(self, config) -&gt; <code>str|None</code></span>:
+    
+    <a class="headerLink" href="#_get_session_id" title="session3.SessionManager.SessionManager._get_session_id">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Find the ID of the current session by looking for the session
+cookie in the request.  Return None if no such cookie or the
+cookie has been expired, otherwise return the cookie's value.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="session3.SessionManager.SessionManager._make_session_id">
+    
+  </a>
+  <a name="_make_session_id">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_make_session_id</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#_make_session_id" title="session3.SessionManager.SessionManager._make_session_id">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="session3.SessionManager.SessionManager._set_cookie">
+    
+  </a>
+  <a name="_set_cookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_set_cookie</span><span class="function-signature">(self, value, **attrs)</span>:
+    
+    <a class="headerLink" href="#_set_cookie" title="session3.SessionManager.SessionManager._set_cookie">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for session3,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    23.4.1 at 2023-08-16 09:39:27.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

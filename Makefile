@@ -1,6 +1,7 @@
 RST2HTML := rst2html5.py --initial-header-level=2 --footnote-references=superscript --smart-quotes=yes -g -d -t
-PDOC = pydoctor --make-html --disable-intersphinx-cache --html-output
-PYCCO := pycco --generate_index --paths -s --directory
+PDOC = pydoctor --make-html --docformat="restructuredtext" --disable-intersphinx-cache --html-output
+PYCCO := pycco --generate_index --paths --skip-bad-files  --directory
+
 
 
 all: setup
@@ -20,10 +21,10 @@ documentation:
 	$(RST2HTML) README.rst README.html
 	$(RST2HTML) test/README.rst test/README.html
 	$(PDOC) docs session3
-	$(PYCCO) docs/literate ./**/**/*.py ./session3/*.py ./test/*.py
+	$(PYCCO) docs/literate ./session3/*.py ./session3/store/*.py ./test/*.py
 
 # Call 'make clean' to get rid of the documentation directory
 # No directory or file will be called 'clean' so mark it as a phony
 .PHONY: clean
 clean:
-	$(RMRF) docs/
+	rm -rf docs/
