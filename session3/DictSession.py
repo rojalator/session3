@@ -1,10 +1,7 @@
-"""
-A session object that also acts like a dictionary.
-"""
 
-#from UserDict import UserDict
 from collections import UserDict
 from session3.Session import Session
+
 
 class DictSession(UserDict, Session):
     """

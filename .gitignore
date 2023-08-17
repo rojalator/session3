@@ -3,12 +3,11 @@ build/lib
 test/sessiondir
 dist
 session3.egg-info
-docs
-docs/literate
-docs/session3
 .spyproject
 .pytest_cache
 .idea
 venv
 *.pyc
 __pycache__/
+*.~1~
+env/

@@ -11,13 +11,16 @@ non-transactional table or you'll sometimes get an "incomplete rollback error".
 
 Use a separate database connection for sessions than for your other SQL code,
 to avoid incompatible code stomping on each other's transactions.
+
+### NOT YET IMPLEMENTED ###
 """
-import os, sys
+
 from array import array
-import cPickle as pickle
+import pickle
 from session3.store.SessionStore import SessionStore
 
 DEFAULT_TABLE = "sessions"
+
 
 class MySQLSessionStore(SessionStore):
     is_multiprocess_safe = True
@@ -26,7 +29,7 @@ class MySQLSessionStore(SessionStore):
 
     def __init__(self, conn, table=None):
         """
-        __init__ takes a MySQLdb connection object, together with an
+        `__init__` takes a MySQLdb connection object, together with an
         optional 'table' argument containing the name of the table to use.
         """
         if table is None:
@@ -38,8 +41,8 @@ class MySQLSessionStore(SessionStore):
         tables = [x[0] for x in c.fetchall()]
         if table not in tables:
             self.setup()
-        
-    ####### SessionStore methods ######
+
+    # #### SessionStore methods ###
     def load_session(self, id, default=None):
         c = self.conn.cursor()
         sql = "SELECT pickle FROM %s WHERE id=%%(id)s" % self.table
@@ -49,8 +52,8 @@ class MySQLSessionStore(SessionStore):
             return default
         assert c.rowcount == 1, "more than one session with id %s" % (id,)
         pck = c.fetchone()[0]
-        if isinstance(pck, array): # Object may be array.array('c') type.
-            pck = pck.tostring()  
+        if isinstance(pck, array):  # Object may be array.array('c') type.
+            pck = pck.tostring()
         obj = pickle.loads(pck)
         return obj
 
@@ -68,13 +71,13 @@ class MySQLSessionStore(SessionStore):
         dic = {'id': session.id}
         c.execute(sql, dic)
 
-    ###### Other methods ######
+    # ### Other methods ###
     def iter_sessions(self):
         c = self.conn.cursor()
         sql = "SELECT id, pickle FROM %s" % self.table
         c.execute(sql)
         return c.fetchall()
-    
+
     def setup(self):
         c = self.conn.cursor()
         c.execute("DROP TABLE IF EXISTS %s" % self.table)

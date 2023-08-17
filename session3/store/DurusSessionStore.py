@@ -1,10 +1,13 @@
 """
 Store sessions in a Durus database.
+
+### NOT YET IMPLEMENTED ###
 """
 
 import os, os.path
 from session3.store.SessionStore import SessionStore
 from durus.persistent_dict import PersistentDict
+
 
 class DurusSessionStore(SessionStore):
     """
@@ -12,21 +15,21 @@ class DurusSessionStore(SessionStore):
 
     Unlike the dulcinea Durus session store, session objects
     themselves are *not* subclasses of Persistent; here they
-    are managed by DurusSessionStore directly.
+    are managed by `DurusSessionStore` directly.
     """
-    
+
     is_multiprocess_safe = True
     is_thread_safe = False       # Durus is not thread safe.
-    
+
     def __init__(self, connection):
         """
         __init__ takes a Durus `connection` object.
         """
-        
+
         self.connection = connection
         root = connection.get_root()
         sessions_dict = root.get('sessions')
-        
+
         if sessions_dict is None:
             sessions_dict = PersistentDict()
             root['sessions'] = sessions_dict
