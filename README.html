@@ -620,73 +620,61 @@ a { text-decoration: none; }
 <dd class="license"><p>MIT  (<a class="reference external" href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a>)</p>
 </dd>
 <dt class="version">Version<span class="colon">:</span></dt>
-<dd class="version">3.0.0 released 2018-12-02</dd>
+<dd class="version">3-3.0.post0 released 2019-01-14</dd>
 <dt class="status">Status<span class="colon">:</span></dt>
-<dd class="status">Only the file-storage mechanism (DirectorySessionStore) is working with Quixote 3.0</dd>
+<dd class="status">Only the file-storage mechanism (DirectorySessionStore) is working with Quixote 3.0+</dd>
 </dl>
 <nav class="contents" id="contents" role="doc-toc">
 <p class="topic-title">Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#introduction" id="toc-entry-1">Introduction</a></p>
 <ul>
-<li><p><a class="reference internal" href="#changes-from-session2" id="toc-entry-2">Changes from Session2</a></p></li>
-<li><p><a class="reference internal" href="#road-map" id="toc-entry-3">Road-map</a></p></li>
+<li><p><a class="reference internal" href="#road-map" id="toc-entry-2">Road-map</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#getting-session3" id="toc-entry-4">Getting Session3</a></p>
+<li><p><a class="reference internal" href="#getting-session3" id="toc-entry-3">Getting Session3</a></p>
 <ul>
-<li><p><a class="reference internal" href="#installation" id="toc-entry-5">Installation</a></p></li>
-<li><p><a class="reference internal" href="#documentation" id="toc-entry-6">Documentation</a></p></li>
+<li><p><a class="reference internal" href="#installation" id="toc-entry-4">Installation</a></p></li>
+<li><p><a class="reference internal" href="#documentation" id="toc-entry-5">Documentation</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#using-session3" id="toc-entry-7">Using session3</a></p></li>
-<li><p><a class="reference internal" href="#features" id="toc-entry-8">Features</a></p>
+<li><p><a class="reference internal" href="#using-session3" id="toc-entry-6">Using session3</a></p></li>
+<li><p><a class="reference internal" href="#features" id="toc-entry-7">Features</a></p>
 <ul>
-<li><p><a class="reference internal" href="#interactive-testing" id="toc-entry-9">Interactive Testing</a></p></li>
-<li><p><a class="reference internal" href="#fcntl-caution" id="toc-entry-10"><span class="docutils literal">fcntl</span> Caution</a></p></li>
+<li><p><a class="reference internal" href="#interactive-testing" id="toc-entry-8">Interactive Testing</a></p></li>
+<li><p><a class="reference internal" href="#fcntl-caution" id="toc-entry-9"><span class="docutils literal">fcntl</span> Caution</a></p></li>
+<li><p><a class="reference internal" href="#changes-from-session2" id="toc-entry-10">Changes from Session2</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
 <h2><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">Introduction</a></h2>
-<p><a class="reference external" href="http://quixote.ca/">Quixote</a> is a Python Web application framework.  It comes with an
+<p><a class="reference external" href="https://github.com/nascheme/quixote">Quixote</a> is a Python Web application framework.  It comes with an
 in-memory session manager, which works but is incompatible with
-multi-process servers (SCGI, CGI, etc).  It also forgets the sessions
-when the Publisher quits.  <cite>Session3</cite> solves these problems by
+multi-process servers (SCGI, CGI, etc) —  it also forgets the sessions
+when the Publisher quits.  <a class="reference external" href="https://github.com/rojalator/session3">Session3</a> solves these problems by
 providing a new session manager class and a simple back-end storage
-API. Session3 is based upon the previous <a class="reference external" href="http://quixote.idyll.org/session2/">Session2</a> code (for, unsurprisingly,
-Quixote 2).</p>
+API.<a class="footnote-reference superscript" href="#previousversion" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p>
 <dl>
-<dt><cite>Session3</cite> version 3.0.0 provides a fully functional<a class="footnote-reference superscript" href="#limited" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> persistent storage</dt>
-<dd><p>back-end for use with Quixote 3.0.0 (also see <a class="reference internal" href="#road-map">Road-map</a> below, for later version notes):-</p>
+<dt>Session3 version 3.0.0 provides a fully functional<a class="footnote-reference superscript" href="#limited" id="footnote-reference-2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> persistent storage</dt>
+<dd><p>back-end for use with Quixote 3.0.0 and above (also see <a class="reference internal" href="#road-map">Road-map</a> below, for later version notes):-</p>
 </dd>
-<dt><a class="reference external" href="docs/session3/store/DirectorySessionStore.m.html">DirectorySessionStore</a></dt>
+<dt><a class="reference external" href="https://rojalator.github.io/session3/literate/session3/store/DirectorySessionStore.html">DirectorySessionStore</a> (<a class="reference external" href="https://rojalator.github.io/session3/session3.store.DirectorySessionStore.html">DirectorySessionStoreAPI</a>)</dt>
 <dd><p>Store each pickled session in a file in the designated directory.  The
 filename is the session ID.  Uses <span class="docutils literal">fcntl</span> file locking.</p>
 <pre class="literal-block">DirectorySessionStore(directory)</pre>
 </dd>
 </dl>
-<p>This package includes a refactored <a class="reference external" href="docs/session3/SessionManager.m.html">SessionManager</a> that makes it easy to develop
-additional back ends, and a simplified Session class (no <span class="docutils literal">.is_dirty</span> method).
+<p>This package includes a refactored <a class="reference external" href="https://rojalator.github.io/session3/literate/session3/SessionManager.html">SessionManager</a> (<a class="reference external" href="https://rojalator.github.io/session3/session3.SessionManager.SessionManager.html">SessionManagerAPI</a>) that makes it easy to develop
+additional back ends along with a simplified Session class (no <span class="docutils literal">.is_dirty</span> method).
 It supports the usual <span class="docutils literal">.user</span>, <span class="docutils literal">.set_user()</span> and <span class="docutils literal">.has_info()</span>
-attributes, and you can also set your own attributes which will be saved.</p>
+attributes and you can also set your own attributes which will be saved.</p>
 <p>It’s quite likely that the session stores can be adapted for use with other
 Web frameworks; let us know if you do this so we can link to you and / or
 include helpful code in the package.</p>
-<section id="changes-from-session2">
-<h3><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">Changes from Session2</a></h3>
-<p>Since <a class="reference external" href="http://quixote.idyll.org/session2/">Session2</a> was released a number of packages that were referred to in the documentation (and the source)
-have either ceased to exist or moved into maintenance mode and Session3 itself is solely for Python 3.</p>
-<blockquote>
-<ul class="simple">
-<li><p><a class="reference external" href="https://nose.readthedocs.io/en/latest/">Nose</a> is in maintenance mode</p></li>
-<li><p>The web-site for <a class="reference external" href="https://pypi.org/project/twill/">Twill</a> has disappeared. Existing Twill code appears to be Python 2 only</p></li>
-</ul>
-</blockquote>
-</section>
 <section id="road-map">
-<h3><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">Road-map</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">Road-map</a></h3>
 <p>Quixote (at time of writing - January 2019) is at version 3.0.0 and Session3 works with that
 (stable) version.</p>
 <p>Quixote 3.1.x has added BaseSessionManager and SessionStore classes requiring Session3
@@ -695,26 +683,22 @@ Session3 version-number will reflect the Quixote version it works with).</p>
 </section>
 </section>
 <section id="getting-session3">
-<h2><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">Getting Session3</a></h2>
-<p>Download the latest version here:
-<a class="reference external" href="http://www.file-away.co.uk/session3/dist/session3-3.0.0.tar.gz">http://www.file-away.co.uk/session3/dist/session3-3.0.0.tar.gz</a></p>
+<h2><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">Getting Session3</a></h2>
 <section id="installation">
-<h3><a class="toc-backref" href="#toc-entry-5" role="doc-backlink">Installation</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">Installation</a></h3>
 <p>Session3 can be installed via pip (<span class="docutils literal">pip3 install session3</span>).
 Alternatively (or if you also want the documentation) download and unpack
-the tar.gz file, and install the normal Python way (<span class="docutils literal">python3 setup.py install</span>). Note that Session3 requires Quixote 3.0.0 — this
-is also available in pip.</p>
+the tar.gz file and install the normal Python way (<span class="docutils literal">python3 setup.py install</span>). Note that Session3 requires Quixote 3.0.0 — this
+is also available via pip or from <a class="reference external" href="https://github.com/nascheme/quixote">Quixote</a>.</p>
 </section>
 <section id="documentation">
-<h3><a class="toc-backref" href="#toc-entry-6" role="doc-backlink">Documentation</a></h3>
-<p><a class="reference external" href="./docs/session3/index.html">API documentation</a> is available as is <a class="reference external" href="./docs/literate/index.html">Literate Programming documentation</a> —
-you’ll need to extract it from the tar.gz file.</p>
-<p>You can read it on-line at:
-<a class="reference external" href="http://www.file-away.co.uk/session3/README.html">http://www.file-away.co.uk/session3/README.html</a></p>
+<h3><a class="toc-backref" href="#toc-entry-5" role="doc-backlink">Documentation</a></h3>
+<p><a class="reference external" href="https://rojalator.github.io/session3/moduleIndex.html">API documentation</a> is available as is <a class="reference external" href="https://rojalator.github.io/session3/literate/">Literate Programming documentation</a> —
+either read it on-line or extract it from the tar.gz file.</p>
 </section>
 </section>
 <section id="using-session3">
-<h2><a class="toc-backref" href="#toc-entry-7" role="doc-backlink">Using session3</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6" role="doc-backlink">Using session3</a></h2>
 <p>You need a <em>store</em>, a <em>manager</em> and then you need to tell Quixote’s
 publisher to use them both: in your <cite>create_publisher</cite> function, place the following code:</p>
 <pre class="literal-block"># create the session store.
@@ -728,11 +712,11 @@ session_manager = SessionManager(store)
 # create the publisher.
 from quixote.publish import Publisher
 publisher = Publisher(..., session_manager.session_manager)</pre>
-<p>Each session store has different initialization requirements:<a class="footnote-reference superscript" href="#limited" id="footnote-reference-2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> see
-the <a class="reference external" href="./docs/session3/index.html">API documentation</a> or the <a class="reference external" href="./docs/literate/index.html">literate programming documentation</a> for more information.</p>
+<p>Each session store has different initialization requirements:<a class="footnote-reference superscript" href="#limited" id="footnote-reference-3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> see
+the <a class="reference external" href="https://rojalator.github.io/session3/moduleIndex.html">API documentation</a> or the <a class="reference external" href="https://rojalator.github.io/session3/literate/">literate programming documentation</a> for more information.</p>
 </section>
 <section id="features">
-<h2><a class="toc-backref" href="#toc-entry-8" role="doc-backlink">Features</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7" role="doc-backlink">Features</a></h2>
 <p>All session stores have the following methods, which are called by the session
 manager:-</p>
 <p><span class="docutils literal">.load_session</span>, <span class="docutils literal">.save_session</span>, <span class="docutils literal">.delete_session</span>,
@@ -750,7 +734,7 @@ a daily cron job.</p>
 <dt><span class="docutils literal">.iter_sessions()</span>:</dt>
 <dd><p>Return an iterable of (id, session) for all sessions
 in the store.  This is for admin applications that want to browse the sessions.
-The DirectorySession will raise a <em>NotImplementedError</em><a class="footnote-reference superscript" href="#wasinsession2" id="footnote-reference-3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
+The DirectorySession will raise a <em>NotImplementedError</em><a class="footnote-reference superscript" href="#wasinsession2" id="footnote-reference-4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
 </dd>
 </dl>
 <p>All stores have <span class="docutils literal">.is_multiprocess_safe</span> and <span class="docutils literal">.is_thread_safe</span> attributes.
@@ -760,11 +744,11 @@ The flags are defined as follows:-</p>
 <li><p>DirectorySessionStore is multiprocess safe because it uses <span class="docutils literal">fcntl</span> file
 locking.  This limits its use to POSIX.  See the fcntl caution below.  It may
 be thread safe because it always locks-unlocks within the same method, but we
-don’t know for sure so the attribute is false.<a class="footnote-reference superscript" href="#limited" id="footnote-reference-4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
+don’t know for sure so the attribute is false.<a class="footnote-reference superscript" href="#limited" id="footnote-reference-5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
 </ul>
 <section id="interactive-testing">
-<h3><a class="toc-backref" href="#toc-entry-9" role="doc-backlink">Interactive Testing</a></h3>
-<p>session3 comes with an interactive web test application. To run the web demo,
+<h3><a class="toc-backref" href="#toc-entry-8" role="doc-backlink">Interactive Testing</a></h3>
+<p>Session3 comes with an interactive web test application. To run the web demo,
 cd to the <strong>test/</strong> directory in the application source and run:</p>
 <pre class="literal-block">$ test_session2.py directory</pre>
 <p>Point your web browser to <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a>  and play around.
@@ -774,17 +758,34 @@ or port.</p>
 Windows).</p>
 </section>
 <section id="fcntl-caution">
-<h3><a class="toc-backref" href="#toc-entry-10" role="doc-backlink"><span class="docutils literal">fcntl</span> Caution</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-9" role="doc-backlink"><span class="docutils literal">fcntl</span> Caution</a></h3>
 <p>On Mac OS X when using PTL, import <span class="docutils literal">fcntl</span> <em>before</em> enabling PTL.
 Otherwise the import hook may load the deprecated FCNTL.py instead due to
 the Mac’s case-insensitive filesystem, which will cause errors down the road.
 This was supposedly fixed in Python 2.4, which doesn’t have FCNTL.py.</p>
+</section>
+<section id="changes-from-session2">
+<h3><a class="toc-backref" href="#toc-entry-10" role="doc-backlink">Changes from Session2</a></h3>
+<p>Since Session2 was released a number of packages that were referred to in the documentation (and the source)
+have either ceased to exist or moved into maintenance mode and Session3 itself is solely for Python 3.</p>
+<blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nose.readthedocs.io/en/latest/">Nose</a> is in maintenance mode</p></li>
+<li><p>The original web-site for <a class="reference external" href="https://pypi.org/project/twill/">Twill</a> has disappeared. Existing Twill code appears to be Python 2 only. There
+is a new version at <a class="reference external" href="https://github.com/twill-tools/twill">TwillTools</a></p></li>
+</ul>
+</blockquote>
+<!-- _ShelveSessionStore:https://rojalator.github.io/session3/literate/session3/store/ShelveSessionStore.html -->
+<aside class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">README.rst</span>, line 177)</p>
+<p>malformed hyperlink target.</p>
+</aside>
 <hr class="docutils" />
 <aside class="footnote-list superscript">
 <aside class="footnote superscript" id="limited" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#footnote-reference-1">1</a>,<a role="doc-backlink" href="#footnote-reference-2">2</a>,<a role="doc-backlink" href="#footnote-reference-4">3</a>)</span>
-<p>Note that only <a class="reference external" href="docs/session3/store/DirectorySessionStore.m.html">DirectorySessionStore</a> is working for version 3.0</p>
+<span class="backrefs">(<a role="doc-backlink" href="#footnote-reference-2">1</a>,<a role="doc-backlink" href="#footnote-reference-3">2</a>,<a role="doc-backlink" href="#footnote-reference-5">3</a>)</span>
+<p>Note that only <a class="reference external" href="https://rojalator.github.io/session3/literate/session3/store/DirectorySessionStore.html">DirectorySessionStore</a> is working for version 3.0</p>
 </aside>
 <aside class="footnote superscript" id="dict-note" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
@@ -793,15 +794,19 @@ to use <a class="reference external" href="https://github.com/cdent/paste/">Past
 However, the migration for <span class="docutils literal">.user</span> and <span class="docutils literal">.set_user()</span> is not yet clear.</p>
 </aside>
 <aside class="footnote superscript" id="wasinsession2" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-3">3</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-4">3</a><span class="fn-bracket">]</span></span>
 <p>For the Session2 code, this <em>was</em> implemented but <em>only</em> for MySQL</p>
+</aside>
+<aside class="footnote superscript" id="previousversion" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-1">4</a><span class="fn-bracket">]</span></span>
+<p>Session3 is based upon the previous Session2 code (designed for, unsurprisingly, Quixote 2).</p>
 </aside>
 </aside>
 </section>
 </section>
 </main>
 <footer>
-<p>Generated on: 2023-08-16 08:39 UTC.
+<p>Generated on: 2023-08-17 11:24 UTC.
 Generated by <a class="reference external" href="https://docutils.sourceforge.io/">Docutils</a> from <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText</a> source.
 </p>
 </footer>
