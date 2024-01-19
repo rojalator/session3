@@ -1,3 +1,7 @@
+2024 IN PROGRESS R J Ladyman <it@file-away.co.uk>
+    * Version bumped to 3.4.0
+
+
 2023-07-07 R J Ladyman <it@file-away.co.uk>
     * Removed Quixote dependency (although it's needed, auto-installing can cause problems)
     * Updated Makefile for document generation

@@ -51,7 +51,7 @@ project_urls={
     'Tracker': 'https://github.com/pypa/sampleproject/issues',
 },
 
-List additional relevant URLs about your project. This is the place to link to bug trackers, source repositories, 
+List additional relevant URLs about your project. This is the place to link to bug trackers, source repositories,
 or where to support package development. The string of the key is the exact text that will be displayed on PyPI
 
 python_requires='>=3',
@@ -60,7 +60,19 @@ https://pypi.org/classifiers/
 
 https://packaging.python.org/tutorials/packaging-projects/
 
+Convert tests to pytest:-
+    Nose2 page notes that:
+    'nose2 vs pytest
 
+    pytest is an excellent test framework and we encourage users to consider it for new projects.
+    It has a bigger team of maintainers and a larger community of users. '
 
+    https://github.com/pytest-dev/nose2pytest
+    https://docs.pytest.org/en/6.2.x/nose.html
 
+Update the twill tests:-
+    http://ivory.idyll.org/articles/twill-and-wsgi_intercept.html
+    https://twill-tools.github.io/twill/index.html
+    https://github.com/twill-tools/twill
 
+Update documentation to actually be rst

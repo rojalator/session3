@@ -5,10 +5,10 @@ Session3: Persistent Session Management for Quixote 3.0
 :Authors: R J Ladyman, (based upon session2 by C Titus Brown and Mike Orr)
 :Email: it@file-away.co.uk
 :License: MIT  (http://www.opensource.org/licenses/mit-license.php)
-:Version: 3-3.0.post0 released 2019-01-14
+:Version: 3-4.0 released January 2024
 :Status: Only the file-storage mechanism (DirectorySessionStore) is working with Quixote 3.0+
 
-.. contents::
+.. contents:: Contents
 
 Introduction
 ============
@@ -20,7 +20,7 @@ when the Publisher quits.  Session3_ solves these problems by
 providing a new session manager class and a simple back-end storage
 API. [#previousversion]_
 
-Session3 version 3.0.0 provides a fully functional [#limited]_ persistent storage
+Session3 version 3.4.0 provides a fully functional [#limited]_ persistent storage
  back-end for use with Quixote 3.0.0 and above (also see Road-map_ below, for later version notes):-
 
 DirectorySessionStore_ (DirectorySessionStoreAPI_)
@@ -41,12 +41,11 @@ include helpful code in the package.
 
 Road-map
 --------
-Quixote (at time of writing - January 2019) is at version 3.0.0 and Session3 works with that
+Quixote (at time of writing - January 2024) is at version 3.6 and Session3 works with that
 (stable) version.
 
-Quixote 3.1.x has added BaseSessionManager and SessionStore classes requiring Session3
-to be updated (the new
-Session3 version-number will reflect the Quixote version it works with).
+Quixote 3.1.x added BaseSessionManager and SessionStore classes requiring Session3
+to be updated.
 
 Getting Session3
 ================
@@ -56,7 +55,7 @@ Installation
 Session3 can be installed via pip (``pip3 install session3``).
 Alternatively (or if you also want the documentation) download and unpack
 the tar.gz file and install the normal Python way (``python3
-setup.py install``). Note that Session3 requires Quixote 3.0.0 --- this
+setup.py install``). Note that Session3 requires Quixote 3.6 --- this
 is also available via pip or from Quixote_.
 
 Documentation
@@ -126,14 +125,23 @@ Interactive Testing
 Session3 comes with an interactive web test application. To run the web demo,
 cd to the **test/** directory in the application source and run::
 
-    $ test_session2.py directory
+    $ test_session3.py directory
 
 Point your web browser to http://localhost:8080/  and play around.
 You can use ``--host=hostname`` and ``--port=N`` to bind to a different hostname
-or port.
+or port. You can also just run ‘test_session3.py’ with no command-line arguments
+for help.
 
 Press ctrl-C to quit the demo (or command-C on the Mac, or ctrl-Break on
 Windows).
+
+The directory ‘twill-tests’ contains several tests that verify the
+behavior of ‘test_session3.py’.  To run them, you need to install TwillTools_ and
+nose_ .  Then just execute ‘nosetests’ in the top directory.
+
+The tests do not test persistence or multithreading yet and were merely copied over
+from the python2 code.
+
 
 ``fcntl`` Caution
 -----------------
@@ -142,6 +150,7 @@ On Mac OS X when using PTL, import ``fcntl`` *before* enabling PTL.
 Otherwise the import hook may load the deprecated FCNTL.py instead due to
 the Mac's case-insensitive filesystem, which will cause errors down the road.
 This was supposedly fixed in Python 2.4, which doesn't have FCNTL.py.
+
 
 Changes from Session2
 ---------------------
@@ -180,9 +189,6 @@ have either ceased to exist or moved into maintenance mode and Session3 itself i
 
 --------------
 
-.. [#limited] Note that only DirectorySessionStore_ is working for version 3.0
-.. [#dict_note] DictSession is especially useful for applications that may want
-   to use `Paste`_'s session middleware in the future, because it is dict-based.
-   However, the migration for ``.user`` and ``.set_user()`` is not yet clear.
+.. [#limited] Note that only DirectorySessionStore_ is working for version 3.4
 .. [#wasinsession2] For the Session2 code, this *was* implemented but *only* for MySQL
-.. [#previousversion] Session3 is based upon the previous Session2 code (designed for, unsurprisingly, Quixote 2).
+.. [#previousversion] Session3 is based upon the previous Session2 code (designed for, unsurprisingly, Quixote 2)

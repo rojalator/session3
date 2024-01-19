@@ -1,0 +1,6 @@
+rst2html5
+Pycco
+Quixote==3.6
+pydoctor
+dycco
+# pip install ~/pythonstuff/dycco/
