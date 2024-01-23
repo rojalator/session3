@@ -1,6 +1,6 @@
-=======================================================
-Session3: Persistent Session Management for Quixote 3.0
-=======================================================
+========================================================
+Session3: Persistent Session Management for Quixote 3.6+
+========================================================
 
 :Authors: R J Ladyman, (based upon session2 by C Titus Brown and Mike Orr)
 :Email: it@file-away.co.uk
@@ -15,13 +15,12 @@ Introduction
 
 Quixote_ is a Python Web application framework.  It comes with an
 in-memory session manager, which works but is incompatible with
-multi-process servers (SCGI, CGI, etc) ---  it also forgets the sessions
-when the Publisher quits.  Session3_ solves these problems by
-providing a new session manager class and a simple back-end storage
-API. [#previousversion]_
+multi-process servers (SCGI, CGI, etc) ---  it also (by design) forgets the sessions
+when the Publisher quits.  Session3_ providing a new session manager class and a
+simple back-end storage API to allow persistence for sessions. [#previousversion]_
 
 Session3 version 3.4.0 provides a fully functional [#limited]_ persistent storage
- back-end for use with Quixote 3.0.0 and above (also see Road-map_ below, for later version notes):-
+back-end for use with Quixote 3.0.0 and above (also see Road-map_ below, for later version notes):-
 
 DirectorySessionStore_ (DirectorySessionStoreAPI_)
   Store each pickled session in a file in the designated directory.  The
@@ -55,8 +54,8 @@ Installation
 Session3 can be installed via pip (``pip3 install session3``).
 Alternatively (or if you also want the documentation) download and unpack
 the tar.gz file and install the normal Python way (``python3
-setup.py install``). Note that Session3 requires Quixote 3.6 --- this
-is also available via pip or from Quixote_.
+setup.py install``). Note that Session3 requires Quixote 3.6 or greater --- this
+is also available via pip or from Quixote_'s repository.
 
 Documentation
 -------------
@@ -68,7 +67,7 @@ Using session3
 ==============
 
 You need a *store*, a *manager* and then you need to tell Quixote's
-publisher to use them both: in your `create_publisher` function, place the following code::
+*publisher* to use them both: in your `create_publisher()` function, place the following code::
 
     # create the session store.
     from session3.store.DirectorySessionStore import DirectorySessionStore
@@ -89,7 +88,7 @@ the `API documentation`_ or the `literate programming documentation`_ for more i
 Features
 ========
 
-All session stores have the following methods, which are called by the session
+All session3 stores have the following methods, which are called by the session
 manager:-
 
 ``.load_session``, ``.save_session``, ``.delete_session``,

@@ -5,7 +5,7 @@
 import sys
 
 if sys.version_info < (3,9,0):
-    sys.stderr.write("You need python 3.4.0 or later to run this script\n")
+    sys.stderr.write("You need python 3.9.0 or later to run this script\n")
     exit(1)
 
 import setuptools

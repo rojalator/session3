@@ -76,3 +76,4 @@ Update the twill tests:-
     https://github.com/twill-tools/twill
 
 Update documentation to actually be rst
+Add sysexit to modified_quix_demo. Add CTRL-C handling
