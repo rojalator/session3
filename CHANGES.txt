@@ -17,6 +17,7 @@
 2015-01-11 R J Ladyman <it@file-away.co.uk>
 	* Converted to Python3 (renamed to Session3, accordingly)
 
+---------------------
 
 2006-02-04  Titus Brown  <t@issola.caltech.edu>
 
