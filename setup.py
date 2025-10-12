@@ -32,7 +32,6 @@ setuptools.setup(
         "Intended Audience :: Developers",
         "Topic :: Internet :: WWW/HTTP :: Session"
     ],
-    # install_requires = ["Quixote>=3.0.0,<=3.0.0"],
     python_requires='>=3.9',
     platforms='Most'
 )
