@@ -14,4 +14,4 @@ RJLRJL references are from R J Ladyman
 
 """
 
-__version__ = '3.0'
+__version__ = '3.4.1'

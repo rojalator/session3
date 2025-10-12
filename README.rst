@@ -5,8 +5,9 @@ Session3: Persistent Session Management for Quixote 3.6+
 :Authors: R J Ladyman, (based upon session2 by C Titus Brown and Mike Orr)
 :Email: it@file-away.co.uk
 :License: MIT  (http://www.opensource.org/licenses/mit-license.php)
-:Version: 3-4.0 released January 2024
+:Version: 3-4.1 released October 2025
 :Status: Only the file-storage mechanism (DirectorySessionStore) is working with Quixote 3.0+
+		 Now allows later versions of Quixote
 
 .. contents:: Contents
 
@@ -20,7 +21,7 @@ when the Publisher quits.  Session3_ providing a new session manager class and a
 simple back-end storage API to allow persistence for sessions. [#previousversion]_
 
 Session3 version 3.4.0 provides a fully functional [#limited]_ persistent storage
-back-end for use with Quixote 3.0.0 and above (also see Road-map_ below, for later version notes):-
+back-end for use with Quixote 3.6.0 and above (also see Road-map_ below, for later version notes):-
 
 DirectorySessionStore_ (DirectorySessionStoreAPI_)
   Store each pickled session in a file in the designated directory.  The
@@ -40,11 +41,8 @@ include helpful code in the package.
 
 Road-map
 --------
-Quixote (at time of writing - January 2024) is at version 3.6 and Session3 works with that
-(stable) version.
-
 Quixote 3.1.x added BaseSessionManager and SessionStore classes requiring Session3
-to be updated.
+to be updated at some point.
 
 Getting Session3
 ================

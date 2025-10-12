@@ -1,4 +1,4 @@
-RST2HTML := rst2html5.py --initial-header-level=2 --footnote-references=superscript --smart-quotes=yes -g -d -t
+RST2HTML := rst2html5 --initial-header-level=2 --footnote-references=superscript --smart-quotes=yes -g -d -t
 PDOC = pydoctor --make-html --docformat="restructuredtext" --disable-intersphinx-cache --html-output
 PYCCO := pycco --generate_index --paths --skip-bad-files  --directory
 
