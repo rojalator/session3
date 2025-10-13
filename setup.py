@@ -11,7 +11,7 @@ if sys.version_info < (3, 9, 0):
 import setuptools
 
 with open("README.rst", "r") as fh:
-    long_description = fh.read()
+    read_long_description = fh.read()
 
 setuptools.setup(
     name="session3",
@@ -19,7 +19,7 @@ setuptools.setup(
     author="R J Ladyman [C. Titus Brown (titus@caltech.edu), and Mike Orr (mso@oz.net) for session2]",
     author_email="it@file-away.co.uk",
     description="Persistent sessions for Quixote 3",
-    long_description=long_description,
+    long_description=read_long_description,
     long_description_content_type="text/x-rst",
     url="http://www.file-away.co.uk/session3/README.html",
     packages=setuptools.find_packages(),

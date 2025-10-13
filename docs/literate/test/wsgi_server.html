@@ -71,11 +71,11 @@ Last updated 2005-05-18.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">BaseHTTPServer</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">thread</span><span class="o">,</span> <span class="nn">traceback</span><span class="o">,</span> <span class="nn">urlparse</span>
-<span class="kn">from</span> <span class="nn">quixote.http_request</span> <span class="kn">import</span> <span class="n">HTTPRequest</span>
-<span class="kn">from</span> <span class="nn">quixote.publish</span> <span class="kn">import</span> <span class="n">Publisher</span>
-<span class="kn">from</span> <span class="nn">quixote.server.util</span> <span class="kn">import</span> <span class="n">get_server_parser</span>
-<span class="kn">from</span> <span class="nn">quixote.util</span> <span class="kn">import</span> <span class="n">import_object</span>
+      <div class="highlight"><pre><span class="kn">import</span><span class="w"> </span><span class="nn">BaseHTTPServer</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">thread</span><span class="o">,</span><span class="w"> </span><span class="nn">traceback</span><span class="o">,</span><span class="w"> </span><span class="nn">urlparse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.http_request</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPRequest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.publish</span><span class="w"> </span><span class="kn">import</span> <span class="n">Publisher</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.server.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_server_parser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_object</span>
 <span class="n">WSGIUTILS_URL</span> <span class="o">=</span> <span class="s2">&quot;http://www.owlfish.com/software/wsgiutils/&quot;</span>
 <span class="vm">__doc__</span> <span class="o">%=</span> <span class="n">WSGIUTILS_URL</span>
 <span class="n">MAIN_DOC</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
@@ -96,7 +96,7 @@ Last updated 2005-05-18.</p>
 <p>I make a Quixote Publisher object look like a WSGI application.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">QWIP</span><span class="p">:</span>
+      <div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">QWIP</span><span class="p">:</span>
     <span class="n">request_class</span> <span class="o">=</span> <span class="n">HTTPRequest</span></pre></div>
     </div>
   </div>
@@ -109,7 +109,7 @@ Last updated 2005-05-18.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publisher</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publisher</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span> <span class="o">=</span> <span class="n">publisher</span></pre></div>
     </div>
   </div>
@@ -122,7 +122,7 @@ Last updated 2005-05-18.</p>
       <p>I am called for each request.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;wsgi.multithread&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> \
             <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">publisher</span><span class="p">,</span> <span class="s1">&#39;is_thread_safe&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="n">reason</span> <span class="o">=</span>  <span class="s2">&quot;</span><span class="si">%r</span><span class="s2"> is not thread safe&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span>
@@ -150,7 +150,7 @@ Last updated 2005-05-18.</p>
 <p>Doesn&rsquo;t catch all possible exceptions; e.g., misformed headers.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">WSGI_RequestHandler</span><span class="p">(</span><span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">BaseHTTPRequestHandler</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">WSGI_RequestHandler</span><span class="p">(</span><span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">BaseHTTPRequestHandler</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -162,7 +162,7 @@ Last updated 2005-05-18.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">protocol</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">fragment</span> <span class="o">=</span> \
             <span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="s2">&quot;http://DUMMY&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
         <span class="n">env</span> <span class="o">=</span> <span class="p">{</span>
@@ -216,7 +216,7 @@ Last updated 2005-05-18.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="s2">&quot;write() before start_response()!&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers_sent</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">send_response</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_message</span><span class="p">)</span>
@@ -236,7 +236,7 @@ Last updated 2005-05-18.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">start_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">headers_received</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">start_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">headers_received</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">exc_info</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log_exception</span><span class="p">(</span><span class="n">exc_info</span><span class="p">)</span>
             <span class="n">exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Avoid dangling circular reference.</span>
@@ -257,7 +257,7 @@ Last updated 2005-05-18.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">log_exception</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_info</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">log_exception</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_info</span><span class="p">):</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">exc_info</span><span class="p">)</span>
         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></pre></div>
@@ -273,7 +273,7 @@ Last updated 2005-05-18.</p>
 <p>Internal functions that will be used as methods.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">_set_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">_set_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_request_dict</span><span class="p">[</span><span class="n">thread</span><span class="o">.</span><span class="n">get_ident</span><span class="p">()]</span> <span class="o">=</span> <span class="n">request</span></pre></div>
     </div>
   </div>
@@ -286,8 +286,8 @@ Last updated 2005-05-18.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">_clear_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="kn">import</span> <span class="nn">thread</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">_clear_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">thread</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_dict</span><span class="p">[</span><span class="n">thread</span><span class="o">.</span><span class="n">get_ident</span><span class="p">()]</span>
     <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
@@ -303,7 +303,7 @@ Last updated 2005-05-18.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">get_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">get_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">thread</span><span class="o">.</span><span class="n">get_ident</span><span class="p">())</span></pre></div>
     </div>
   </div>
@@ -317,7 +317,7 @@ Last updated 2005-05-18.</p>
 A thread-safe version of Quixote&rsquo;s Publisher.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">ThreadedPublisher</span><span class="p">(</span><span class="n">Publisher</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">ThreadedPublisher</span><span class="p">(</span><span class="n">Publisher</span><span class="p">):</span>
     <span class="n">is_thread_safe</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">_set_request</span> <span class="o">=</span> <span class="n">_set_request</span>
     <span class="n">_clear_request</span> <span class="o">=</span> <span class="n">_clear_request</span>
@@ -333,7 +333,7 @@ A thread-safe version of Quixote&rsquo;s Publisher.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="n">Publisher</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_request_dict</span> <span class="o">=</span> <span class="p">{}</span></pre></div>
     </div>
@@ -349,7 +349,7 @@ multithreaded servers.
 Side effects: replaces several methods in the instance&rsquo;s class.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">make_publisher_thread_safe</span><span class="p">(</span><span class="n">publisher</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">make_publisher_thread_safe</span><span class="p">(</span><span class="n">publisher</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">publisher</span><span class="p">,</span> <span class="s1">&#39;is_thread_safe&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span>
     <span class="n">publisher</span><span class="o">.</span><span class="n">_request_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -370,7 +370,7 @@ Side effects: replaces several methods in the instance&rsquo;s class.</p>
 <p>Launch the synchronous HTTP server.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">create_publisher</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">create_publisher</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
     <span class="n">publisher</span> <span class="o">=</span> <span class="n">create_publisher</span><span class="p">()</span>
     <span class="n">httpd</span> <span class="o">=</span> <span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">),</span> <span class="n">WSGI_RequestHandler</span><span class="p">)</span>
     <span class="n">httpd</span><span class="o">.</span><span class="n">application</span> <span class="o">=</span> <span class="n">QWIP</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
@@ -386,8 +386,8 @@ Side effects: replaces several methods in the instance&rsquo;s class.</p>
       <p>Launch a multithreaded HTTP server.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">run_multithreaded</span><span class="p">(</span><span class="n">create_publisher</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
-    <span class="kn">from</span> <span class="nn">wsgiutils.wsgiServer</span> <span class="kn">import</span> <span class="n">WSGIServer</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">run_multithreaded</span><span class="p">(</span><span class="n">create_publisher</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">wsgiutils.wsgiServer</span><span class="w"> </span><span class="kn">import</span> <span class="n">WSGIServer</span>
     <span class="n">publisher</span> <span class="o">=</span> <span class="n">create_publisher</span><span class="p">()</span>
     <span class="n">make_publisher_thread_safe</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
     <span class="n">app_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="n">QWIP</span><span class="p">(</span><span class="n">publisher</span><span class="p">)}</span>
@@ -404,7 +404,7 @@ Side effects: replaces several methods in the instance&rsquo;s class.</p>
       <h5>MAIN ROUTINE</h5>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">get_server_parser</span><span class="p">(</span><span class="n">MAIN_DOC</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s1">&#39;--thread&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;thread&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="n">THREAD_HELP</span><span class="p">)</span>
@@ -423,6 +423,6 @@ Side effects: replaces several methods in the instance&rsquo;s class.</p>
 </div>
     <footer>
       Generated by <a href="https://github.com/rojalator/pycco">Pycco</a>.
-      Last updated 17 Aug 2023.
+      Last updated 13 Oct 2025.
     </footer>
 </body>

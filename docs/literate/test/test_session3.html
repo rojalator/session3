@@ -63,18 +63,18 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
-<span class="kn">from</span> <span class="nn">quixote.publish</span> <span class="kn">import</span> <span class="n">Publisher</span>
-<span class="kn">from</span> <span class="nn">quixote.directory</span> <span class="kn">import</span> <span class="n">Directory</span>
-<span class="kn">from</span> <span class="nn">quixote</span> <span class="kn">import</span> <span class="n">get_session</span><span class="p">,</span> <span class="n">get_session_manager</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">redirect</span>
-<span class="kn">from</span> <span class="nn">quixote.server</span> <span class="kn">import</span> <span class="n">simple_server</span>
-<span class="kn">from</span> <span class="nn">quixote.server.util</span> <span class="kn">import</span> <span class="n">get_server_parser</span>
-<span class="kn">from</span> <span class="nn">quixote.logger</span> <span class="kn">import</span> <span class="n">DefaultLogger</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+      <div class="highlight"><pre><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">optparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptionParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.publish</span><span class="w"> </span><span class="kn">import</span> <span class="n">Publisher</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.directory</span><span class="w"> </span><span class="kn">import</span> <span class="n">Directory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_session</span><span class="p">,</span> <span class="n">get_session_manager</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">redirect</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.server</span><span class="w"> </span><span class="kn">import</span> <span class="n">simple_server</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.server.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_server_parser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefaultLogger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">session3.Session</span> <span class="kn">import</span> <span class="n">Session</span>
-<span class="kn">from</span> <span class="nn">session3.SessionManager</span> <span class="kn">import</span> <span class="n">SessionManager</span></pre></div>
+<span class="kn">from</span><span class="w"> </span><span class="nn">session3.Session</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">session3.SessionManager</span><span class="w"> </span><span class="kn">import</span> <span class="n">SessionManager</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -98,8 +98,8 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_volatile</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">session3.store.VolatileSessionStore</span> <span class="kn">import</span> <span class="n">VolatileSessionStore</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">use_volatile</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">session3.store.VolatileSessionStore</span><span class="w"> </span><span class="kn">import</span> <span class="n">VolatileSessionStore</span>
     <span class="n">store</span> <span class="o">=</span> <span class="n">VolatileSessionStore</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">store</span><span class="p">)</span></pre></div>
     </div>
@@ -113,8 +113,8 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_shelve</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">session3.store.ShelveSessionStore</span> <span class="kn">import</span> <span class="n">ShelveSessionStore</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">use_shelve</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">session3.store.ShelveSessionStore</span><span class="w"> </span><span class="kn">import</span> <span class="n">ShelveSessionStore</span>
     <span class="n">shelve_store</span> <span class="o">=</span> <span class="n">ShelveSessionStore</span><span class="p">(</span><span class="s1">&#39;sessions.shelf&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">shelve_store</span><span class="p">)</span></pre></div>
     </div>
@@ -128,8 +128,8 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_directory</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">session3.store.DirectorySessionStore</span> <span class="kn">import</span> <span class="n">DirectorySessionStore</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">use_directory</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">session3.store.DirectorySessionStore</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirectorySessionStore</span>
     <span class="n">dir_store</span> <span class="o">=</span> <span class="n">DirectorySessionStore</span><span class="p">(</span><span class="s1">&#39;./sessiondir/&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">dir_store</span><span class="p">)</span></pre></div>
     </div>
@@ -143,9 +143,9 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_psycopg</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">session3.store.PostgresSessionStore</span> <span class="kn">import</span> <span class="n">PostgresSessionStore</span>
-    <span class="kn">import</span> <span class="nn">psycopg</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">use_psycopg</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">session3.store.PostgresSessionStore</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostgresSessionStore</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">psycopg</span>
     <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;dbname=sql_store&#39;</span><span class="p">)</span>
     <span class="n">sql_store</span> <span class="o">=</span> <span class="n">PostgresSessionStore</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">sql_store</span><span class="p">)</span>
@@ -161,9 +161,9 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_mysql</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">session3.store.MySQLSessionStore</span> <span class="kn">import</span> <span class="n">MySQLSessionStore</span>
-    <span class="kn">import</span> <span class="nn">MySQLdb</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">use_mysql</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">session3.store.MySQLSessionStore</span><span class="w"> </span><span class="kn">import</span> <span class="n">MySQLSessionStore</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">MySQLdb</span>
     <span class="n">conn</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
     <span class="n">sql_store</span> <span class="o">=</span> <span class="n">MySQLSessionStore</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">sql_store</span><span class="p">)</span></pre></div>
@@ -178,10 +178,10 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">use_durus</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">session3.store.DurusSessionStore</span> <span class="kn">import</span> <span class="n">DurusSessionStore</span>
-    <span class="kn">from</span> <span class="nn">durus.file_storage</span> <span class="kn">import</span> <span class="n">FileStorage</span>
-    <span class="kn">from</span> <span class="nn">durus.connection</span> <span class="kn">import</span> <span class="n">Connection</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">use_durus</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">session3.store.DurusSessionStore</span><span class="w"> </span><span class="kn">import</span> <span class="n">DurusSessionStore</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">durus.file_storage</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileStorage</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">durus.connection</span><span class="w"> </span><span class="kn">import</span> <span class="n">Connection</span>
     <span class="n">durus_conn</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">FileStorage</span><span class="p">(</span><span class="s1">&#39;sessions.durus&#39;</span><span class="p">))</span>
     <span class="n">durus_store</span> <span class="o">=</span> <span class="n">DurusSessionStore</span><span class="p">(</span><span class="n">durus_conn</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">create_publisher</span><span class="p">(</span><span class="n">durus_store</span><span class="p">)</span>
@@ -197,7 +197,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">create_publisher</span><span class="p">(</span><span class="n">session_store</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">create_publisher</span><span class="p">(</span><span class="n">session_store</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">logger</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">DefaultLogger</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">access_log</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
@@ -242,7 +242,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">TestSession</span><span class="p">(</span><span class="n">Session</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">TestSession</span><span class="p">(</span><span class="n">Session</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -254,7 +254,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
         <span class="n">Session</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keep</span> <span class="o">=</span> <span class="kc">False</span></pre></div>
@@ -269,7 +269,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span></pre></div>
     </div>
   </div>
@@ -282,7 +282,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">has_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">has_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep</span></pre></div>
     </div>
   </div>
@@ -295,7 +295,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       <p>Do some simple session manipulations.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">LoginSession</span><span class="p">(</span><span class="n">Directory</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">LoginSession</span><span class="p">(</span><span class="n">Directory</span><span class="p">):</span>
     <span class="n">_q_exports</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;logout&#39;</span><span class="p">,</span> <span class="s1">&#39;logoutfail&#39;</span><span class="p">,</span> <span class="s1">&#39;increment&#39;</span><span class="p">,</span> <span class="s1">&#39;incrementfail&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;keep&#39;</span><span class="p">]</span></pre></div>
     </div>
@@ -309,7 +309,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_q_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">_q_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -359,7 +359,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       <p>Set the session to persist.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">keep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">keep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">session</span> <span class="o">=</span> <span class="n">get_session</span><span class="p">()</span>
         <span class="n">session</span><span class="o">.</span><span class="n">keep</span> <span class="o">=</span> <span class="kc">True</span></pre></div>
     </div>
@@ -385,7 +385,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       <p>Expire the session, redirect back to index page.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">logout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -423,7 +423,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
 <p>Effect: no log out.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">logoutfail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">logoutfail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">session_manager</span> <span class="o">=</span> <span class="n">get_session_manager</span><span class="p">()</span>
         <span class="n">session_manager</span><span class="o">.</span><span class="n">expire_session</span><span class="p">()</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;oops.&quot;</span><span class="p">)</span></pre></div>
@@ -438,7 +438,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">session</span> <span class="o">=</span> <span class="n">get_session</span><span class="p">()</span>
         <span class="n">session</span><span class="o">.</span><span class="n">increment</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">get_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span></pre></div>
@@ -453,7 +453,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">incrementfail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">incrementfail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">session</span> <span class="o">=</span> <span class="n">get_session</span><span class="p">()</span>
         <span class="n">session</span><span class="o">.</span><span class="n">increment</span><span class="p">()</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;oops!&quot;</span><span class="p">)</span></pre></div>
@@ -497,7 +497,7 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">get_server_parser</span><span class="p">(</span><span class="n">DESCRIPTION</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">set_usage</span><span class="p">(</span><span class="n">USAGE</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">remove_option</span><span class="p">(</span><span class="s1">&#39;--factory&#39;</span><span class="p">)</span>
@@ -519,6 +519,6 @@ Run with (for use_directory) in the &ldquo;test&rdquo; folder:</p>
 </div>
     <footer>
       Generated by <a href="https://github.com/rojalator/pycco">Pycco</a>.
-      Last updated 17 Aug 2023.
+      Last updated 13 Oct 2025.
     </footer>
 </body>

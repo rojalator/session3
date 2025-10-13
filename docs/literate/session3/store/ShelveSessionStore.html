@@ -32,8 +32,8 @@
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">shelve</span>
-<span class="kn">from</span> <span class="nn">session3.store.SessionStore</span> <span class="kn">import</span> <span class="n">SessionStore</span></pre></div>
+      <div class="highlight"><pre><span class="kn">import</span><span class="w"> </span><span class="nn">shelve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">session3.store.SessionStore</span><span class="w"> </span><span class="kn">import</span> <span class="n">SessionStore</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -49,7 +49,7 @@ section for the shelve module in the Python Library Reference for
 information about file locking.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">ShelveSessionStore</span><span class="p">(</span><span class="n">SessionStore</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">ShelveSessionStore</span><span class="p">(</span><span class="n">SessionStore</span><span class="p">):</span>
     <span class="n">is_multiprocess_safe</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># DBM isn&#39;t process safe.</span>
     <span class="n">is_thread_safe</span> <span class="o">=</span> <span class="kc">False</span>        <span class="c1"># Don&#39;t know about this...</span></pre></div>
     </div>
@@ -63,7 +63,7 @@ information about file locking.</p>
       <p><strong>init</strong> takes the filename to use as the shelve store.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span></pre></div>
     </div>
   </div>
@@ -76,7 +76,7 @@ information about file locking.</p>
       <p>Open the shelve store file.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span></pre></div>
     </div>
   </div>
@@ -89,7 +89,7 @@ information about file locking.</p>
       <p>Load the session from the shelf.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">load_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">load_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span></pre></div>
     </div>
@@ -103,7 +103,7 @@ information about file locking.</p>
       <p>Delete the given session from the shelf.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">delete_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">delete_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
         <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
         <span class="k">del</span> <span class="n">db</span><span class="p">[</span><span class="n">session</span><span class="o">.</span><span class="n">id</span><span class="p">]</span></pre></div>
     </div>
@@ -117,7 +117,7 @@ information about file locking.</p>
       <p>Save the session to the shelf.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">save_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">save_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
         <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
         <span class="n">db</span><span class="p">[</span><span class="n">session</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">session</span>
 
@@ -128,6 +128,6 @@ information about file locking.</p>
 </div>
     <footer>
       Generated by <a href="https://github.com/rojalator/pycco">Pycco</a>.
-      Last updated 17 Aug 2023.
+      Last updated 13 Oct 2025.
     </footer>
 </body>

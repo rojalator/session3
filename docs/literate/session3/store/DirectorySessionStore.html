@@ -74,16 +74,16 @@ it and we should let go and try again.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+      <div class="highlight"><pre><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;You need python 3.4.0 or later to run this script</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">fcntl</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">os.path</span>
-<span class="kn">from</span> <span class="nn">pickle</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
-<span class="kn">from</span> <span class="nn">session3.store.SessionStore</span> <span class="kn">import</span> <span class="n">SessionStore</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">fcntl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pickle</span><span class="w"> </span><span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">session3.store.SessionStore</span><span class="w"> </span><span class="kn">import</span> <span class="n">SessionStore</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="n">SLEEPY_TIME</span> <span class="o">=</span> <span class="mf">0.1</span></pre></div>
     </div>
   </div>
@@ -96,7 +96,7 @@ it and we should let go and try again.</p>
       <p>Store sessions in individual files within a directory.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">DirectorySessionStore</span><span class="p">(</span><span class="n">SessionStore</span><span class="p">):</span>
+      <div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">DirectorySessionStore</span><span class="p">(</span><span class="n">SessionStore</span><span class="p">):</span>
     <span class="n">is_multiprocess_safe</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Needs file locking; OS-specific.</span>
     <span class="n">is_thread_safe</span> <span class="o">=</span> <span class="kc">False</span>        <span class="c1"># Needs file locking or synchronization.</span></pre></div>
     </div>
@@ -124,7 +124,7 @@ it and we should let go and try again.</p>
 it&rsquo;s not already there.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span></pre></div>
     </div>
   </div>
@@ -167,7 +167,7 @@ it&rsquo;s not already there.</p>
       <p>Build the filename from the session ID.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_make_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">_make_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span></pre></div>
     </div>
   </div>
@@ -180,7 +180,7 @@ it&rsquo;s not already there.</p>
       <p>Pickle the session and save it into a file.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">save_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">save_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_filename</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span></pre></div>
     </div>
@@ -213,7 +213,7 @@ it&rsquo;s not already there.</p>
       <p>Load the pickled session from a file.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">load_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">load_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_filename</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
         <span class="n">finished</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">finished</span><span class="p">:</span>
@@ -296,7 +296,7 @@ it&rsquo;s not already there.</p>
       <p>Delete the session file.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">delete_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">delete_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_filename</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></pre></div>
     </div>
@@ -315,7 +315,7 @@ your application maintenance program; e.g., a daily cron job.</p>
 </code></pre>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">delete_old_sessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minutes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">delete_old_sessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minutes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="n">deleted</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">remaining</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">sess_id</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">):</span>
@@ -336,6 +336,6 @@ your application maintenance program; e.g., a daily cron job.</p>
 </div>
     <footer>
       Generated by <a href="https://github.com/rojalator/pycco">Pycco</a>.
-      Last updated 17 Aug 2023.
+      Last updated 13 Oct 2025.
     </footer>
 </body>

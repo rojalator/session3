@@ -7,7 +7,7 @@ Session3: Persistent Session Management for Quixote 3.6+
 :License: MIT  (http://www.opensource.org/licenses/mit-license.php)
 :Version: 3-4.1 released October 2025
 :Status: Only the file-storage mechanism (DirectorySessionStore) is working with Quixote 3.0+
-		 Now allows later versions of Quixote
+         Now allows later versions of Quixote
 
 .. contents:: Contents
 
@@ -95,17 +95,17 @@ manager:-
 They also have these convenience methods:-
 
 ``.setup()``:
-	initializes the store.
+    initializes the store.
 
 ``.delete_old_sessions(minutes)``:
-	deletes sessions that haven't been modified for N minutes.
-	This is meant for your application maintenance program; e.g.,
-	a daily cron job.
+    deletes sessions that haven't been modified for N minutes.
+    This is meant for your application maintenance program; e.g.,
+    a daily cron job.
 
 ``.iter_sessions()``:
-	Return an iterable of (id, session) for all sessions
-	in the store.  This is for admin applications that want to browse the sessions.
-	The DirectorySession will raise a *NotImplementedError* [#wasinsession2]_.
+    Return an iterable of (id, session) for all sessions
+    in the store.  This is for admin applications that want to browse the sessions.
+    The DirectorySession will raise a *NotImplementedError* [#wasinsession2]_.
 
 All stores have ``.is_multiprocess_safe`` and ``.is_thread_safe`` attributes.
 An application can check these flags and abort if configured inappropriately.
@@ -158,12 +158,7 @@ have either ceased to exist or moved into maintenance mode and Session3 itself i
  * The original web-site for Twill_ has disappeared. Existing Twill code appears to be Python 2 only. There
    is a new version at TwillTools_
 
-.. _xxQuixote: http://www.mems-exchange.org/software/quixote/
 .. _Quixote: https://github.com/nascheme/quixote
-.. _MySQL: http://mysql.org/
-.. _PostgreSQL: http://postgresql.org/
-.. _Paste: https://github.com/cdent/paste/
-.. _Durus: http://www.mems-exchange.org/software/durus/
 .. _Twill: https://pypi.org/project/twill/
 .. _TwillTools: https://github.com/twill-tools/twill
 .. _api documentation: https://rojalator.github.io/session3/moduleIndex.html
@@ -176,12 +171,6 @@ have either ceased to exist or moved into maintenance mode and Session3 itself i
 .. _DirectorySessionStoreAPI: https://rojalator.github.io/session3/session3.store.DirectorySessionStore.html
 .. _SessionManager: https://rojalator.github.io/session3/literate/session3/SessionManager.html
 .. _SessionManagerAPI: https://rojalator.github.io/session3/session3.SessionManager.SessionManager.html
-
-.. _DurusSessionStore: https://rojalator.github.io/session3/literate/session3/store/DurusSessionStore.html
-.. _MySQLSessionStore: https://rojalator.github.io/session3/literate/session3/store/MySQLSessionStore.html
-.. _PostgresSessionStore: https://rojalator.github.io/session3/literate/session3/store/PostgresSessionStore.html
-.. _ShelveSessionStore:https://rojalator.github.io/session3/literate/session3/store/ShelveSessionStore.html
-
 
 
 --------------

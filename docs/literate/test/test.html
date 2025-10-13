@@ -35,7 +35,7 @@
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">require</span></pre></div>
+      <div class="highlight"><pre><span class="kn">from</span><span class="w"> </span><span class="nn">pkg_resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -48,10 +48,10 @@
     </div>
     <div class='code'>
       <div class="highlight"><pre><span class="n">require</span><span class="p">(</span><span class="s1">&#39;twill &gt;= 0.8.2a3&#39;</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">utils</span><span class="o">,</span> <span class="nn">test_session2</span>
-<span class="kn">import</span> <span class="nn">twill</span>
-<span class="kn">from</span> <span class="nn">cStringIO</span> <span class="kn">import</span> <span class="n">StringIO</span></pre></div>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">utils</span><span class="o">,</span><span class="w"> </span><span class="nn">test_session2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">twill</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cStringIO</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -63,7 +63,7 @@
       <p>Test basic session handling with the volatile session handler.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_basic</span><span class="p">():</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">test_basic</span><span class="p">():</span>
     <span class="n">utils</span><span class="o">.</span><span class="n">setup_wsgi_intercept</span><span class="p">(</span><span class="n">test_session2</span><span class="o">.</span><span class="n">use_volatile</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
@@ -88,7 +88,7 @@
       <p>Test basic session handling with the directory session handler.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_directory</span><span class="p">():</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">test_directory</span><span class="p">():</span>
     <span class="n">utils</span><span class="o">.</span><span class="n">setup_wsgi_intercept</span><span class="p">(</span><span class="n">test_session2</span><span class="o">.</span><span class="n">use_directory</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">old_err</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">()</span>
@@ -114,7 +114,7 @@
       <p>Test basic session handling with the shelve session handler.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_shelve</span><span class="p">():</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">test_shelve</span><span class="p">():</span>
     <span class="n">utils</span><span class="o">.</span><span class="n">setup_wsgi_intercept</span><span class="p">(</span><span class="n">test_session2</span><span class="o">.</span><span class="n">use_shelve</span><span class="p">)</span>
     
     <span class="k">try</span><span class="p">:</span>
@@ -140,9 +140,9 @@
       <p>Test basic session handling with the durus session handler.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_durus</span><span class="p">():</span>
+      <div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">test_durus</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">durus</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">durus</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
         <span class="k">pass</span>
     <span class="k">else</span><span class="p">:</span>
@@ -166,6 +166,6 @@
 </div>
     <footer>
       Generated by <a href="https://github.com/rojalator/pycco">Pycco</a>.
-      Last updated 17 Aug 2023.
+      Last updated 13 Oct 2025.
     </footer>
 </body>

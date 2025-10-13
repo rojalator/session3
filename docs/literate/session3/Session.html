@@ -20,9 +20,9 @@
       <h2><span id="session-storage-class-for-quixote-3.x." href="session-storage-class-for-quixote-3.x."> Session storage class for Quixote 3.x. </span></h2>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span><span class="p">,</span> <span class="n">strftime</span><span class="p">,</span> <span class="n">localtime</span>
-<span class="kn">from</span> <span class="nn">quixote</span> <span class="kn">import</span> <span class="n">get_request</span>
-<span class="kn">from</span> <span class="nn">quixote.util</span> <span class="kn">import</span> <span class="n">randbytes</span></pre></div>
+      <div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">time</span><span class="p">,</span> <span class="n">strftime</span><span class="p">,</span> <span class="n">localtime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quixote.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">randbytes</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -83,7 +83,7 @@ and a <code>Session</code> subclass in the future.&#160;<a class="footnote-backr
 </div>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">Session</span><span class="p">:</span></pre></div>
+      <div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">Session</span><span class="p">:</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -107,7 +107,7 @@ and a <code>Session</code> subclass in the future.&#160;<a class="footnote-backr
       <p><code>__init__</code> is called only by <code>SessionManager.SessionManager</code></p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_remote_address</span> <span class="o">=</span> <span class="n">get_request</span><span class="p">()</span><span class="o">.</span><span class="n">get_environ</span><span class="p">(</span><span class="s2">&quot;REMOTE_ADDR&quot;</span><span class="p">)</span>
@@ -135,7 +135,7 @@ and a <code>Session</code> subclass in the future.&#160;<a class="footnote-backr
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">%s</span><span class="s2"> at </span><span class="si">%x</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></pre></div>
     </div>
   </div>
@@ -148,7 +148,7 @@ and a <code>Session</code> subclass in the future.&#160;<a class="footnote-backr
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;session </span><span class="si">%s</span><span class="s2"> (user </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -164,7 +164,7 @@ and a <code>Session</code> subclass in the future.&#160;<a class="footnote-backr
       <p>Return True if this session contains any information that must be saved.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">has_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">has_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span></pre></div>
     </div>
   </div>
@@ -177,7 +177,7 @@ and a <code>Session</code> subclass in the future.&#160;<a class="footnote-backr
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="n">time_fmt</span> <span class="o">=</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span>
         <span class="n">ctime</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="n">time_fmt</span><span class="p">,</span> <span class="n">localtime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_creation_time</span><span class="p">))</span>
         <span class="n">atime</span> <span class="o">=</span> <span class="n">strftime</span><span class="p">(</span><span class="n">time_fmt</span><span class="p">,</span> <span class="n">localtime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_access_time</span><span class="p">))</span>
@@ -200,7 +200,7 @@ object has been built, but before we traverse the URL or call the
 callable object found by URL traversal.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">start_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">start_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></pre></div>
     </div>
   </div>
@@ -225,7 +225,7 @@ callable object found by URL traversal.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">set_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">set_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span></pre></div>
     </div>
   </div>
@@ -238,7 +238,7 @@ callable object found by URL traversal.</p>
       
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span></pre></div>
     </div>
   </div>
@@ -251,7 +251,7 @@ callable object found by URL traversal.</p>
       <p>Return the IP address (dotted-quad string) that made the initial request in this session.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_remote_address</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">get_remote_address</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remote_address</span></pre></div>
     </div>
   </div>
@@ -264,7 +264,7 @@ callable object found by URL traversal.</p>
       <p>Return the time that this session was created (seconds since epoch).</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_creation_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">get_creation_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_creation_time</span></pre></div>
     </div>
   </div>
@@ -277,7 +277,7 @@ callable object found by URL traversal.</p>
       <p>Return the time that this session was last accessed (seconds since epoch).</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_access_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">get_access_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_access_time</span></pre></div>
     </div>
   </div>
@@ -292,7 +292,7 @@ callable object found by URL traversal.</p>
  with <code>get_access_age()</code></p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_creation_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_now</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">get_creation_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_now</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">_now</span> <span class="ow">or</span> <span class="n">time</span><span class="p">())</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_creation_time</span></pre></div>
     </div>
   </div>
@@ -306,7 +306,7 @@ callable object found by URL traversal.</p>
 <p><code>_now</code> arg is for <code>SessionManager</code>&rsquo;s use</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_access_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_now</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">get_access_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_now</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">_now</span> <span class="ow">or</span> <span class="n">time</span><span class="p">())</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_access_time</span></pre></div>
     </div>
   </div>
@@ -319,7 +319,7 @@ callable object found by URL traversal.</p>
       <h3><span id="methods-for-sessionmanager-only" href="methods-for-sessionmanager-only"> Methods for SessionManager only </span></h3>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_set_access_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">_set_access_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution</span><span class="p">):</span>
         <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">now</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_access_time</span> <span class="o">&gt;</span> <span class="n">resolution</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_access_time</span> <span class="o">=</span> <span class="n">now</span></pre></div>
@@ -348,7 +348,7 @@ tokens for this session.  A maximum of <code>MAX_FORM_TOKENS</code> are saved.
 The new token is returned.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">create_form_token</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">create_form_token</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">token</span> <span class="o">=</span> <span class="n">randbytes</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_form_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
         <span class="n">extra</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_form_tokens</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_FORM_TOKENS</span>
@@ -366,7 +366,7 @@ The new token is returned.</p>
       <p>Return True if <code>token</code> is in the queue of outstanding tokens.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">has_form_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">has_form_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_form_tokens</span></pre></div>
     </div>
   </div>
@@ -379,7 +379,7 @@ The new token is returned.</p>
       <p>Remove <code>token</code> from the queue of outstanding tokens.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">remove_form_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+      <div class="highlight"><pre>    <span class="k">def</span><span class="w"> </span><span class="nf">remove_form_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_form_tokens</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
 
 </pre></div>
@@ -389,6 +389,6 @@ The new token is returned.</p>
 </div>
     <footer>
       Generated by <a href="https://github.com/rojalator/pycco">Pycco</a>.
-      Last updated 17 Aug 2023.
+      Last updated 13 Oct 2025.
     </footer>
 </body>

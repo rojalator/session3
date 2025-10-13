@@ -7,7 +7,7 @@
   <head>
     
     <title>session3.SessionManager.SessionManager</title>
-    <meta name="generator" content="pydoctor 23.4.1"> 
+    <meta name="generator" content="pydoctor 25.10.1"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -439,7 +407,7 @@
 
 </nav>
         </div>
-        <div id="collapseSideBar">
+        <div id="collapse-sidebar">
           <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
           </a>
         </div> 
@@ -447,14 +415,14 @@
        
       </div>
 
-      <div id="main" class="">
+      <main class="">
         
 
         
 
         <div class="page-header">
           <h1 class="class"><code><code><a href="index.html" class="internal-link">session3</a></code><wbr></wbr>.<code><a href="session3.SessionManager.html" class="internal-link" title="session3.SessionManager">SessionManager</a></code><wbr></wbr>.<code><a href="session3.SessionManager.SessionManager.html" class="internal-link" title="session3.SessionManager.SessionManager">SessionManager</a></code></code></h1>
-          <div id="showPrivate">
+          <div id="show-private">
             <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
           </div>
         </div>
@@ -464,15 +432,14 @@
         </div>
 
         <div class="extrasDocstring">
-          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">SessionManager</span>:</code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="session3.SessionManager.SessionManager.__init__">SessionManager(store_obj, session_class)</a></code></p>
-          <p><a href="classIndex.html#session3.SessionManager.SessionManager">View In Hierarchy</a></p>
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">SessionManager</span>:</code></p><p>Constructor: <code><a href="#__init__" class="internal-link" title="session3.SessionManager.SessionManager.__init__">SessionManager(store_obj, session_class)</a></code></p><p><a href="classIndex.html#session3.SessionManager.SessionManager">View In Hierarchy</a></p>
         </div>
 
         <div class="moduleDocstring">
           <div><p>A persistent session manager for Quixote.</p></div>
         </div>
 
-        <div id="splitTables">
+        <div id="split-tables">
           <table class="children sortable" id="id9">
   
   
@@ -485,7 +452,7 @@
     
     <td>Method</td>
     <td><code><a href="#__repr__" class="internal-link" title="session3.SessionManager.SessionManager.__repr__">__repr__</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -550,27 +517,27 @@
     
     <td>Constant</td>
     <td><code><a href="#ACCESS_TIME_RESOLUTION" class="internal-link" title="session3.SessionManager.SessionManager.ACCESS_TIME_RESOLUTION">ACCESS<wbr></wbr>_TIME<wbr></wbr>_RESOLUTION</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
     <td><code><a href="#expired_sessions" class="internal-link" title="session3.SessionManager.SessionManager.expired_sessions">expired<wbr></wbr>_sessions</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
     <td><code><a href="#session_class" class="internal-link" title="session3.SessionManager.SessionManager.session_class">session<wbr></wbr>_class</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
     <td><code><a href="#store" class="internal-link" title="session3.SessionManager.SessionManager.store">store</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
     <td><code><a href="#_create_session" class="internal-link" title="session3.SessionManager.SessionManager._create_session">_create<wbr></wbr>_session</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
@@ -580,12 +547,12 @@
     
     <td>Method</td>
     <td><code><a href="#_make_session_id" class="internal-link" title="session3.SessionManager.SessionManager._make_session_id">_make<wbr></wbr>_session<wbr></wbr>_id</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
     <td><code><a href="#_set_cookie" class="internal-link" title="session3.SessionManager.SessionManager._set_cookie">_set<wbr></wbr>_cookie</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
           
@@ -593,7 +560,7 @@
             
         </div>
 
-        <div id="childList">
+        <div id="child-list">
           <div class="basemethod">
   
   
@@ -606,7 +573,7 @@
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">__init__</span><span class="function-signature">(self, store_obj, session_class=<a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a>)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__init__</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">store_obj, </span><span class="rst-sig-param">session_class=<a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></span>):</span>
     
     <a class="headerLink" href="#__init__" title="session3.SessionManager.SessionManager.__init__">
       
@@ -631,7 +598,7 @@ session class to use for storing session information. (This defaults to <code><a
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">__repr__</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#__repr__" title="session3.SessionManager.SessionManager.__repr__">
       
@@ -655,7 +622,7 @@ session class to use for storing session information. (This defaults to <code><a
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">clear_session</span><span class="function-signature">(self, request)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">clear_session</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">request</span>):</span>
     
     <a class="headerLink" href="#clear_session" title="session3.SessionManager.SessionManager.clear_session">
       
@@ -679,7 +646,7 @@ session class to use for storing session information. (This defaults to <code><a
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">expire_session</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">expire_session</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#expire_session" title="session3.SessionManager.SessionManager.expire_session">
       
@@ -705,7 +672,7 @@ and list it for permanent removal.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">finish_failed_request</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">finish_failed_request</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#finish_failed_request" title="session3.SessionManager.SessionManager.finish_failed_request">
       
@@ -730,7 +697,7 @@ not a PublisherError was raised.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">finish_successful_request</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">finish_successful_request</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#finish_successful_request" title="session3.SessionManager.SessionManager.finish_successful_request">
       
@@ -755,7 +722,7 @@ there were any errors processing the request.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">get_session</span><span class="function-signature">(self) -&gt; <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></code></span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">get_session</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>) -&gt; <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></code>:</span>
     
     <a class="headerLink" href="#get_session" title="session3.SessionManager.SessionManager.get_session">
       
@@ -786,7 +753,7 @@ on the user --- those are both the responsibility of [<code><a href="#finish_suc
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">has_session</span><span class="function-signature">(self, session_id: <code>str</code>) -&gt; <code>bool</code></span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">has_session</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">session_id: <code>str</code></span>) -&gt; <code>bool</code>:</span>
     
     <a class="headerLink" href="#has_session" title="session3.SessionManager.SessionManager.has_session">
       
@@ -811,7 +778,7 @@ the session manager.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">has_session_cookie</span><span class="function-signature">(self, must_exist: <code>bool</code> = False) -&gt; <code>bool</code></span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">has_session_cookie</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">must_exist: <code>bool</code> = False</span>) -&gt; <code>bool</code>:</span>
     
     <a class="headerLink" href="#has_session_cookie" title="session3.SessionManager.SessionManager.has_session_cookie">
       
@@ -839,7 +806,7 @@ and don't inspect its content at all.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">maintain_session</span><span class="function-signature">(self, session) -&gt; <code>bool</code></span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">maintain_session</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">session</span>) -&gt; <code>bool</code>:</span>
     
     <a class="headerLink" href="#maintain_session" title="session3.SessionManager.SessionManager.maintain_session">
       
@@ -867,7 +834,7 @@ returned.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">new_session</span><span class="function-signature">(self, id: <code>str|None</code>) -&gt; <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></code></span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">new_session</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">id: <code>str | None</code></span>) -&gt; <code><a href="session3.Session.Session.html" class="internal-link" title="session3.Session.Session">Session</a></code>:</span>
     
     <a class="headerLink" href="#new_session" title="session3.SessionManager.SessionManager.new_session">
       
@@ -892,7 +859,7 @@ class passed to the constructor (defaults to <code><a href="session3.Session.Ses
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">revoke_session_cookie</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">revoke_session_cookie</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#revoke_session_cookie" title="session3.SessionManager.SessionManager.revoke_session_cookie">
       
@@ -919,7 +886,7 @@ this request does not see the cookie's revoked value.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">set_session_cookie</span><span class="function-signature">(self, session_id: <code>str</code>)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">set_session_cookie</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">session_id: <code>str</code></span>):</span>
     
     <a class="headerLink" href="#set_session_cookie" title="session3.SessionManager.SessionManager.set_session_cookie">
       
@@ -944,7 +911,7 @@ returned to the client via the response object.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">start_request</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">start_request</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#start_request" title="session3.SessionManager.SessionManager.start_request">
       
@@ -1066,7 +1033,7 @@ callable object found by URL traversal.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_create_session</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_create_session</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#_create_session" title="session3.SessionManager.SessionManager._create_session">
       
@@ -1090,7 +1057,7 @@ callable object found by URL traversal.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_get_session_id</span><span class="function-signature">(self, config) -&gt; <code>str|None</code></span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_get_session_id</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">config</span>) -&gt; <code>str | None</code>:</span>
     
     <a class="headerLink" href="#_get_session_id" title="session3.SessionManager.SessionManager._get_session_id">
       
@@ -1116,7 +1083,7 @@ cookie has been expired, otherwise return the cookie's value.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_make_session_id</span><span class="function-signature">(self)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_make_session_id</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span></span>):</span>
     
     <a class="headerLink" href="#_make_session_id" title="session3.SessionManager.SessionManager._make_session_id">
       
@@ -1140,7 +1107,7 @@ cookie has been expired, otherwise return the cookie's value.</p></div>
   <div class="functionHeader">
     
     
-    <span class="py-keyword">def</span> <span class="py-defname">_set_cookie</span><span class="function-signature">(self, value, **attrs)</span>:
+    <span class="py-keyword">def</span>&#160;<span class="py-defname">_set_cookie</span><span class="function-signature">(<span class="rst-sig-param"><span class="rst-undocumented">self</span>, </span><span class="rst-sig-param">value, </span><span class="rst-sig-param">**attrs</span>):</span>
     
     <a class="headerLink" href="#_set_cookie" title="session3.SessionManager.SessionManager._set_cookie">
       
@@ -1155,16 +1122,16 @@ cookie has been expired, otherwise return the cookie's value.</p></div>
 </div>
         </div>
       
-      </div>
+      </main>
     </div>
 
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for session3,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.4.1 at 2023-08-17 12:24:07.
+    25.10.1 at 2025-10-13 10:50:32.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

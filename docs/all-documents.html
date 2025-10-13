@@ -6,7 +6,7 @@
   <head>
     
     <title>All Documents</title>
-    <meta name="generator" content="pydoctor 23.4.1"> 
+    <meta name="generator" content="pydoctor 25.10.1"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
   <body>
     
@@ -48,7 +49,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -72,39 +73,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -115,8 +83,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -147,7 +115,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">No module docstring; 1/1 class documented</span></div>
+            <div class="summary"><span class="rst-undocumented">No module docstring; 1/1 class documented</span></div>
           </li><li id="session3.Session">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session</div>
@@ -155,7 +123,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">No module docstring; 1/1 class documented</span></div>
+            <div class="summary"><span class="rst-undocumented">No module docstring; 1/1 class documented</span></div>
           </li><li id="session3.SessionManager">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager</div>
@@ -163,7 +131,7 @@
             <div class="type">Module</div>
             <div class="kind">Module</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">No module docstring; 1/1 class documented</span></div>
+            <div class="summary"><span class="rst-undocumented">No module docstring; 1/1 class documented</span></div>
           </li><li id="session3.store">
             
             <div class="fullName">session3<wbr></wbr>.store</div>
@@ -235,7 +203,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session</div>
@@ -251,7 +219,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.__init__">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.__init__</div>
@@ -267,7 +235,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.user">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.user</div>
@@ -275,7 +243,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session._remote_address">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>._remote<wbr></wbr>_address</div>
@@ -283,7 +251,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session._creation_time">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>._creation<wbr></wbr>_time</div>
@@ -291,7 +259,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session._access_time">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>._access<wbr></wbr>_time</div>
@@ -299,7 +267,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session._form_tokens">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>._form<wbr></wbr>_tokens</div>
@@ -307,7 +275,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.__repr__">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.__repr__</div>
@@ -315,7 +283,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.__str__">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.__str__</div>
@@ -323,7 +291,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.has_info">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.has<wbr></wbr>_info</div>
@@ -339,7 +307,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.start_request">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.start<wbr></wbr>_request</div>
@@ -355,7 +323,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.get_user">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.get<wbr></wbr>_user</div>
@@ -363,7 +331,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.get_remote_address">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.get<wbr></wbr>_remote<wbr></wbr>_address</div>
@@ -411,7 +379,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.Session.Session.create_form_token">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>.create<wbr></wbr>_form<wbr></wbr>_token</div>
@@ -467,7 +435,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.SessionManager.SessionManager.__init__">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.__init__</div>
@@ -483,7 +451,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.SessionManager.SessionManager.session_class">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.session<wbr></wbr>_class</div>
@@ -491,7 +459,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.SessionManager.SessionManager.expired_sessions">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.expired<wbr></wbr>_sessions</div>
@@ -499,7 +467,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.SessionManager.SessionManager.__repr__">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.__repr__</div>
@@ -507,7 +475,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.SessionManager.SessionManager.get_session">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.get<wbr></wbr>_session</div>
@@ -595,7 +563,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.SessionManager.SessionManager._create_session">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>._create<wbr></wbr>_session</div>
@@ -603,7 +571,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.SessionManager.SessionManager._set_cookie">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>._set<wbr></wbr>_cookie</div>
@@ -611,7 +579,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PRIVATE</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.SessionManager.SessionManager.set_session_cookie">
             
             <div class="fullName">session3<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Manager<wbr></wbr>.set<wbr></wbr>_session<wbr></wbr>_cookie</div>
@@ -651,7 +619,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.SessionStore.SessionStore.is_thread_safe">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.is<wbr></wbr>_thread<wbr></wbr>_safe</div>
@@ -659,7 +627,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.SessionStore.SessionStore.load_session">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.load<wbr></wbr>_session</div>
@@ -723,7 +691,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DirectorySessionStore.DirectorySessionStore">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store</div>
@@ -739,7 +707,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DirectorySessionStore.DirectorySessionStore.is_thread_safe">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.is<wbr></wbr>_thread<wbr></wbr>_safe</div>
@@ -747,7 +715,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DirectorySessionStore.DirectorySessionStore.pickle_protocol">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.pickle<wbr></wbr>_protocol</div>
@@ -755,7 +723,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DirectorySessionStore.DirectorySessionStore.__init__">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.__init__</div>
@@ -771,7 +739,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DirectorySessionStore.DirectorySessionStore._make_filename">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Directory<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>._make<wbr></wbr>_filename</div>
@@ -827,7 +795,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DurusSessionStore.DurusSessionStore.is_thread_safe">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.is<wbr></wbr>_thread<wbr></wbr>_safe</div>
@@ -835,7 +803,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DurusSessionStore.DurusSessionStore.__init__">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.__init__</div>
@@ -851,7 +819,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DurusSessionStore.DurusSessionStore.sessions_dict">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.sessions<wbr></wbr>_dict</div>
@@ -859,7 +827,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.DurusSessionStore.DurusSessionStore.load_session">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Durus<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.load<wbr></wbr>_session</div>
@@ -891,7 +859,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.MySQLSessionStore.MySQLSessionStore">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store</div>
@@ -899,7 +867,7 @@
             <div class="type">Class</div>
             <div class="kind">Class</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">No class docstring; 0/2 instance variable, 0/3 class variable, 1/7 method documented</span></div>
+            <div class="summary"><span class="rst-undocumented">No class docstring; 0/2 instance variable, 0/3 class variable, 1/7 method documented</span></div>
           </li><li id="session3.store.MySQLSessionStore.MySQLSessionStore.is_multiprocess_safe">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.is<wbr></wbr>_multiprocess<wbr></wbr>_safe</div>
@@ -907,7 +875,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.MySQLSessionStore.MySQLSessionStore.is_thread_safe">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.is<wbr></wbr>_thread<wbr></wbr>_safe</div>
@@ -915,7 +883,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.MySQLSessionStore.MySQLSessionStore.pickle_protocol">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.pickle<wbr></wbr>_protocol</div>
@@ -923,7 +891,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.MySQLSessionStore.MySQLSessionStore.__init__">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.__init__</div>
@@ -939,7 +907,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.MySQLSessionStore.MySQLSessionStore.table">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.table</div>
@@ -947,7 +915,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.MySQLSessionStore.MySQLSessionStore.load_session">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>My<wbr></wbr>SQLSession<wbr></wbr>Store<wbr></wbr>.load<wbr></wbr>_session</div>
@@ -1003,7 +971,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.PostgresSessionStore.PostgresSessionStore">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store</div>
@@ -1019,7 +987,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.PostgresSessionStore.PostgresSessionStore.is_thread_safe">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.is<wbr></wbr>_thread<wbr></wbr>_safe</div>
@@ -1027,7 +995,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.PostgresSessionStore.PostgresSessionStore.__init__">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.__init__</div>
@@ -1043,7 +1011,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.PostgresSessionStore.PostgresSessionStore.table">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.table</div>
@@ -1051,7 +1019,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.PostgresSessionStore.PostgresSessionStore.load_session">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Postgres<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.load<wbr></wbr>_session</div>
@@ -1099,7 +1067,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.ShelveSessionStore.ShelveSessionStore.is_thread_safe">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Shelve<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Shelve<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.is<wbr></wbr>_thread<wbr></wbr>_safe</div>
@@ -1107,7 +1075,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.ShelveSessionStore.ShelveSessionStore.__init__">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Shelve<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Shelve<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.__init__</div>
@@ -1123,7 +1091,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.ShelveSessionStore.ShelveSessionStore.open">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Shelve<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Shelve<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.open</div>
@@ -1171,7 +1139,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.VolatileSessionStore.VolatileSessionStore.is_thread_safe">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Volatile<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Volatile<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.is<wbr></wbr>_thread<wbr></wbr>_safe</div>
@@ -1179,7 +1147,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.VolatileSessionStore.VolatileSessionStore.__init__">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Volatile<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Volatile<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.__init__</div>
@@ -1195,7 +1163,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Instance Variable</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary"><span class="rst-undocumented">Undocumented</span></div>
           </li><li id="session3.store.VolatileSessionStore.VolatileSessionStore.load_session">
             
             <div class="fullName">session3<wbr></wbr>.store<wbr></wbr>.<wbr></wbr>Volatile<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.<wbr></wbr>Volatile<wbr></wbr>Session<wbr></wbr>Store<wbr></wbr>.load<wbr></wbr>_session</div>

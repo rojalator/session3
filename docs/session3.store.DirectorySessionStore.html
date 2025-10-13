@@ -7,7 +7,7 @@
   <head>
     
     <title>session3.store.DirectorySessionStore</title>
-    <meta name="generator" content="pydoctor 23.4.1"> 
+    <meta name="generator" content="pydoctor 25.10.1"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
+    
 </head>
 
   <body>
@@ -52,7 +53,7 @@
             
             <span class="input-group-btn">
               <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
-              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+              <a class="btn btn-default" id="apidocs-help-button" title="Help" href="apidocs-help.html"><img src="fonts/info.svg" alt="Help" /></a>
             </span>
           </div>
         </div>
@@ -76,39 +77,6 @@
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
 
-        <div class="hint" id="search-help-box">
-          <p class="rst-last">
-      
-            Search bar offers the following options:
-            <ul>   
-                <li>
-                  <strong>Term presence.</strong> The below example searches for documents that 
-                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
-                </li> 
-
-                <li>
-                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
-                </li> 
-
-                <li>
-                  <strong>Search in specific fields.</strong> The following search matches all objects 
-                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
-
-                  <p>
-                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
-                    Last two fields are only applicable if "search in docstrings" is enabled.
-                  </p>
-                </li>
-
-                <li>
-                  <strong>Fuzzy matches.</strong> The following search matches all documents 
-                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
-                </li>
-            </ul>
-
-          </p>
-        </div>
-
         <div id="search-status"> </div>
 
         <div class="warning" id="search-warn-box" style="display: none;">
@@ -119,8 +87,8 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div style="margin-top: 8px;">
-          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        <div style="margin-top: 10px;">
+          <p>For more information on the search, visit the <a href="apidocs-help.html#rst-search">help page</a>.</p>
         </div>
       </div>
 
@@ -299,7 +267,7 @@
 
 </nav>
         </div>
-        <div id="collapseSideBar">
+        <div id="collapse-sidebar">
           <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
           </a>
         </div> 
@@ -307,14 +275,14 @@
        
       </div>
 
-      <div id="main" class="">
+      <main class="">
         
 
         
 
         <div class="page-header">
           <h1 class="module"><code><code><a href="index.html" class="internal-link">session3</a></code><wbr></wbr>.<code><a href="session3.store.html" class="internal-link" title="session3.store">store</a></code><wbr></wbr>.<code><a href="session3.store.DirectorySessionStore.html" class="internal-link" title="session3.store.DirectorySessionStore">DirectorySessionStore</a></code></code></h1>
-          <div id="showPrivate">
+          <div id="show-private">
             <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
           </div>
         </div>
@@ -325,7 +293,6 @@
 
         <div class="extrasDocstring">
           
-          <p></p>
         </div>
 
         <div class="moduleDocstring">
@@ -361,7 +328,7 @@ fcntl.flock(f.fileno(), fcntl.LOCK_EX)</blockquote>
 <p>(You can try it in the older code by quickly refreshing a browser calling a Quixote server.)</p>
 <p>What happened appears to have been:</p>
 <blockquote>
-<ol class="rst-arabic simple">
+<ol class="rst-arabic rst-simple">
 <li>save_session() opens the file to write  [f = open(filename, 'wb')]</li>
 <li>load_session() opens the file to read   [f = open(filename, 'rb')]</li>
 <li>load_session() asks for and GETS a shared lock [fcntl.LOCK_SH]</li>
@@ -377,7 +344,7 @@ It turns out that, during testing, one can get at <code>EOFError</code> from pic
 </div>
         </div>
 
-        <div id="splitTables">
+        <div id="split-tables">
           <table class="children sortable" id="id11">
   
   
@@ -390,7 +357,7 @@ It turns out that, during testing, one can get at <code>EOFError</code> from pic
     
     <td>Constant</td>
     <td><code><a href="#SLEEPY_TIME" class="internal-link" title="session3.store.DirectorySessionStore.SLEEPY_TIME">SLEEPY<wbr></wbr>_TIME</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td><span class="rst-undocumented">Undocumented</span></td>
   </tr>
 </table>
           
@@ -398,7 +365,7 @@ It turns out that, during testing, one can get at <code>EOFError</code> from pic
             
         </div>
 
-        <div id="childList">
+        <div id="child-list">
           <div class="baseconstant">
   
   
@@ -426,16 +393,16 @@ It turns out that, during testing, one can get at <code>EOFError</code> from pic
 </div>
         </div>
       
-      </div>
+      </main>
     </div>
 
     <footer class="navbar navbar-default">
 
   
-  <div class="container">
+  <div class="container-fluid">
     <a href="index.html">API Documentation</a> for session3,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.4.1 at 2023-08-17 12:24:07.
+    25.10.1 at 2025-10-13 10:50:32.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
