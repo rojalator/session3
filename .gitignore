@@ -1,0 +1,13 @@
+build
+build/lib
+test/sessiondir
+dist
+session3.egg-info
+.spyproject
+.pytest_cache
+.idea
+venv
+*.pyc
+__pycache__/
+env
+.vscode
