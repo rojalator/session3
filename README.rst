@@ -119,26 +119,8 @@ The flags are defined as follows:-
 Interactive Testing
 -------------------
 
-Session3 comes with an interactive web test application. To run the web demo,
-cd to the **test/** directory in the application source and run::
-
-    $ test_session3.py directory
-
-Point your web browser to http://localhost:8080/  and play around.
-You can use ``--host=hostname`` and ``--port=N`` to bind to a different hostname
-or port. You can also just run ‘test_session3.py’ with no command-line arguments
-for help.
-
-Press ctrl-C to quit the demo (or command-C on the Mac, or ctrl-Break on
-Windows).
-
-The directory ‘twill-tests’ contains several tests that verify the
-behavior of ‘test_session3.py’.  To run them, you need to install TwillTools_ and
-nose_ .  Then just execute ‘nosetests’ in the top directory.
-
-The tests do not test persistence or multithreading yet and were merely copied over
-from the python2 code.
-
+Session3 comes with an automatic and interactive Quxiote test application. To run it,
+consult the README.md file in the **test/** directory.
 
 ``fcntl`` Caution
 -----------------

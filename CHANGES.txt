@@ -1,3 +1,7 @@
+2026 <it@file-away.co.uk>
+	* Version bumped to 3.4.2
+	* Tests updated
+
 2025 <it@file-away.co.uk>
     * Version bumped to 3.4.1
     * Allowed use of Quixote versions later than 3.6
